@@ -4,7 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<<<<<<< HEAD
         <title>Willkommen beim Dualen-WG Manager</title>
+=======
+        <title>Laravel</title>
+>>>>>>> parent of 56b1525... TestTitle
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Willkommen beim Dualen-WG Manager :-)</title>
+        <title>Willkommen beim Dualen-WG Manager</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Hallo Creative Informatics Team :)
+                    Hallo Creative Informatics Team (Bestes Team)
                 </div>
 
                 <div class="links">

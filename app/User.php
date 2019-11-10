@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','role',
     ];
 
     /**
@@ -36,4 +36,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function roles() {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function wgs() {
+        return $this->belongsToMany(WG::class);
+    }
+
+    public function wgchoiceRoles($roles) {
+        if (is_array($roles)) {
+            return $this->hasAnyWGRole($roles) || false;
+        }
+
+        return $this->hasRoles($roles) || false;
+    }
+
+    public function hasAnyWGRole($roles) {
+        return null !== $this->roles()->whereIn('name', $roles)->first();
+    }
+
+    public function hasWGRole($roles) {
+        return null !== $this->roles()->where('name', $roles)->first();
+    }
 }

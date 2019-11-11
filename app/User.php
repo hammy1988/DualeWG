@@ -38,5 +38,8 @@ class User extends Authenticatable
     ];
 
 
+    public function flatshare() {
+        return $this->belongsTo(Flatshare::class);
+    }
 
 }

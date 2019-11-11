@@ -36,47 +36,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-    public function roles() {
-        return $this->belongsTo(Role::class);
-    }
 
-    public function wgs() {
-        return $this->belongsToMany(WG::class);
-    }
 
-    public function hasActiveWG() {
-        if ($this->wgs()->exists()) {
-            return true;
-        }
-        return false;
-    }
-
-    /*public function wgchoiceRoles($roles) {
-        if (is_array($roles)) {
-            return $this->hasAnyWGRole($roles) || false;
-        }
-
-        return $this->hasRoles($roles) || false;
-    }
-
-    public function hasAnyWGRole($roles) {
-        return null !== $this->roles()->whereIn('name', $roles)->first();
-    }
-
-    public function hasWGRole($roles) {
-        return null !== $this->roles()->where('name', $roles)->first();
-    }*/
-=======
->>>>>>> parent of 99638b4... Zuweisungen von WG und Role erstellt
-=======
->>>>>>> parent of 99638b4... Zuweisungen von WG und Role erstellt
-=======
->>>>>>> parent of 99638b4... Zuweisungen von WG und Role erstellt
-=======
->>>>>>> parent of 99638b4... Zuweisungen von WG und Role erstellt
 }

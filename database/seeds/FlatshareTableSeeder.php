@@ -13,9 +13,9 @@ class FlatshareTableSeeder extends Seeder
      */
     public function run()
     {
-        $user_new = User::where('name', 'noob')->first();
-        $user_wg = User::where('name', 'wg')->first();
-        $user_admin = User::where('name', 'wgpapa')->first();
+        $user_new = User::where('username', 'noob')->first();
+        $user_wg = User::where('username', 'wg')->first();
+        $user_admin = User::where('username', 'wgpapa')->first();
 
         $flatshare_erste = new Flatshare();
         $flatshare_erste->name = 'Erste';

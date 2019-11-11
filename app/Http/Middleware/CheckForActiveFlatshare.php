@@ -15,8 +15,8 @@ class CheckForActiveFlatshare
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->user()->hasActiveWG()) {
-            return redirect('/test');
+        if (!$request->user()->hasActiveFlatshare()) {
+            return redirect(route('flatsharechoiceoptions'));
         }
         return $next($request);
     }

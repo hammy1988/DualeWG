@@ -29,9 +29,25 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header">Test</div>
+                <div class="card-header">WG - Info</div>
                 <div class="card-body">
-                    Hat eine WG: {{Auth::user()->hasActiveWG()}}
+                    @if(Auth::user()->hasActiveFlatshare())
+                        Ist in der WG: <b><u>{{Auth::user()->flatshare()->first()->name}}</u></b>
+                    @else
+                        Ist in keiner WG.
+                    @endif
+                    <br />
+                    Ist WG-Admin:
+                    @if(Auth::user()->isFlatshareAdmin())
+                        <b>ja</b>
+                    @else
+                        <b>nein</b>
+                    @endif
+                    <br /><br />
+                    WG-Zeugs:<br />
+                    <code>
+                        {{Auth::user()->flatshare()->first()}}
+                    </code>
                 </div>
             </div>
         </div>

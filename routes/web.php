@@ -11,10 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'FlatshareMainController@index')->name('dashboard');
+
+Route::get('/flatshare/choice', 'FlatshareChoiceController@index')->name('flatsharechoiceoptions');
+
 
 Auth::routes();
 

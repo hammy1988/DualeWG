@@ -28,6 +28,12 @@
                     </code>
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header"Test</div>
+                <div class="card-body">
+                    Abfrage hasWG: {{Auth::user()->hasActiveWG()}}
+                </div>
+            </div>
         </div>
     </div>
 </div>

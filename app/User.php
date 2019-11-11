@@ -45,7 +45,14 @@ class User extends Authenticatable
         return $this->belongsToMany(WG::class);
     }
 
-    public function wgchoiceRoles($roles) {
+    public function hasActiveWG() {
+        if ($this->wgs()->exists()) {
+            return true;
+        }
+        return false;
+    }
+
+    /*public function wgchoiceRoles($roles) {
         if (is_array($roles)) {
             return $this->hasAnyWGRole($roles) || false;
         }
@@ -59,5 +66,5 @@ class User extends Authenticatable
 
     public function hasWGRole($roles) {
         return null !== $this->roles()->where('name', $roles)->first();
-    }
+    }*/
 }

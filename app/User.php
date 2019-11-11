@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','role',
+        'name', 'email', 'password',
     ];
 
     /**
@@ -36,6 +36,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+<<<<<<< HEAD
 
     public function roles() {
         return $this->belongsTo(Role::class);
@@ -67,4 +68,6 @@ class User extends Authenticatable
     public function hasWGRole($roles) {
         return null !== $this->roles()->where('name', $roles)->first();
     }*/
+=======
+>>>>>>> parent of 99638b4... Zuweisungen von WG und Role erstellt
 }

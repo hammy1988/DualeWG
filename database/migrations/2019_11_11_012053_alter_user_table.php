@@ -16,7 +16,7 @@ class AlterUserTable extends Migration
         //
         Schema::table('users', function (Blueprint $table) {
             //
-            $table->bigInteger('flatshare')->unsigned()->nullable();
+            $table->bigInteger('flatshare_id')->unsigned()->nullable();
         });
     }
 

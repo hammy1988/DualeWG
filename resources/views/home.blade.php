@@ -44,10 +44,22 @@
                         <b>nein</b>
                     @endif
                     <br /><br />
-                    WG-Zeugs:<br />
+                    WG-Datensatz:<br />
                     <code>
                         {{Auth::user()->flatshare()->first()}}
                     </code>
+                    <br /><br />
+                    WG-Admin:
+                    <code>
+                        {{Auth::user()->flatshare()->first()->admin()->first()}}
+                    </code>
+                    <br /><br />
+                    Alle WG Mitglieder:<br />
+                    <ul>
+                    @foreach (Auth::user()->flatshare()->first()->users() as $wguser)
+                            <li><code>{{ $wguser }}</code></li>
+                    @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

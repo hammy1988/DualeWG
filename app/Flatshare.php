@@ -14,6 +14,11 @@ class Flatshare extends Model
     ];
 
     public function users() {
-        $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'users','flatshare_id');
+    }
+
+
+    public function admin() {
+        return $this->belongsTo(User::class, 'admin_id');
     }
 }

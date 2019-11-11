@@ -14,7 +14,7 @@ class Flatshare extends Model
     ];
 
     public function users() {
-        return $this->belongsToMany(User::class, 'users','flatshare_id');
+        return $this->hasMany(User::class);
     }
 
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FlatshareMainController extends Controller
 {
@@ -24,6 +25,7 @@ class FlatshareMainController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $flatshareUsers = Auth::user()->flatshare()->first();
+        return view('home', compact('flatshareUsers'));
     }
 }

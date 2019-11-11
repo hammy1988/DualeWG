@@ -56,7 +56,7 @@
                     <br /><br />
                     Alle WG Mitglieder:<br />
                     <ul>
-                    @foreach (Auth::user()->flatshare()->first()->users() as $wguser)
+                    @foreach ($flatshareUsers->users as $wguser)
                             <li><code>{{ $wguser }}</code></li>
                     @endforeach
                     </ul>

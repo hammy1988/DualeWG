@@ -13,8 +13,13 @@
 
 Route::get('/', 'FlatshareMainController@index')->name('dashboard');
 
-Route::get('/flatshare/choice', 'FlatshareChoiceController@index')->name('flatsharechoiceoptions');
+Route::prefix('/flatshare')->group(function() {
 
+    Route::get('choice', 'FlatshareChoiceController@index')->name('flatsharechoiceoptions');
+    Route::get('join', 'FlatshareChoiceController@join')->name('flatsharechoicejoin');
+    Route::get('create', 'FlatshareChoiceController@create')->name('flatsharechoicecreate');
+
+});
 
 Auth::routes();
 

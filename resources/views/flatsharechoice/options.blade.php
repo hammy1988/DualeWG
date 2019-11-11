@@ -1,11 +1,11 @@
-@extends("layouts.flatsharechoice", ["title" => "Dashboard"])
+@extends("layouts.flatsharechoice", ["title" => "Auswahl"])
 
 @section("content")
     <h1>WG Auswahl</h1>
     <div id="dashContent">
         <ul>
-            <li>neue WG erstellen</li>
-            <li>einer bestehender WG beitreten</li>
+            <li><a href="{{route('flatsharechoicecreate')}}">neue WG erstellen</a></li>
+            <li><a href="{{route('flatsharechoicejoin')}}">einer bestehender WG beitreten</a></li>
         </ul>
     </div>
 @endsection

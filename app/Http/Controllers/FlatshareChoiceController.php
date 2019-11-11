@@ -22,8 +22,15 @@ class FlatshareChoiceController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
+    public function index() {
         return view('flatsharechoice.options');
+    }
+
+    public function join() {
+        return view('flatsharechoice.join');
+    }
+
+    public function create() {
+        return view('flatsharechoice.create');
     }
 }

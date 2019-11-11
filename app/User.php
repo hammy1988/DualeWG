@@ -42,4 +42,10 @@ class User extends Authenticatable
         return $this->belongsTo(Flatshare::class);
     }
 
+    public function hasActiveWG() {
+        if ($this->flatshare()->exists()) {
+            return true;
+        }
+        return false;
+    }
 }

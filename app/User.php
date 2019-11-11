@@ -37,6 +37,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 <<<<<<< HEAD
+<<<<<<< HEAD
 
     public function roles() {
         return $this->belongsTo(Role::class);
@@ -68,6 +69,8 @@ class User extends Authenticatable
     public function hasWGRole($roles) {
         return null !== $this->roles()->where('name', $roles)->first();
     }*/
+=======
+>>>>>>> parent of 99638b4... Zuweisungen von WG und Role erstellt
 =======
 >>>>>>> parent of 99638b4... Zuweisungen von WG und Role erstellt
 }

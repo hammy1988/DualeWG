@@ -5074,7 +5074,9 @@ input[type=button].btn-block {
 
 .card-header:first-child {
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
-    background-color: skyblue;
+    background-color: lightblue;
+    border-radius: 15px;
+    margin-bottom: 2%;
 
 }
 

@@ -1,0 +1,21 @@
+.wgChoiceOptions {
+    display: flex;
+    justify-content: space-around;
+}
+
+.wgChoiceOptions a {
+    padding: 50px;
+    background-color: #ddd;
+    width: 40%;
+    text-align: center;
+    color: #333;
+    border: 3px solid #fff;
+    box-shadow: 0px 0px 5px #333;
+    border-radius: 25px;
+}
+
+.wgChoiceOptions a:hover {
+    text-decoration: none;
+    background-image: linear-gradient(to bottom right, #ed88f0 0%, #3c86f9 100%);
+    color: #fff;
+}

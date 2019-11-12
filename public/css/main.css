@@ -81,6 +81,11 @@ html, body {
     border: 1px solid #fff;
 }
 
+.wgButton:focus, .wgButton:active, .wgButton:active:focus {
+    box-shadow: 0px 0px 3px #666 !important;
+    border: 1px solid #fff !important;
+}
+
 .wgInputFieldWrapper {
     background-color: #666;
     background-image: linear-gradient(to left, #3c86f9 0%, #ed88f0 45%, #ed88f0 50%, #ed88f0 55%, #3c86f9 100%);

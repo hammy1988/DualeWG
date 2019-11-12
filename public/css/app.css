@@ -4739,7 +4739,7 @@ input[type=button].btn-block {
   .navbar-expand-md > .container,
   .navbar-expand-md > .container-fluid {
       background-color: darkgrey;
-      border-radius: 20px;
+      border-radius: 15px;
     flex-wrap: nowrap;
   }
 
@@ -5001,6 +5001,7 @@ input[type=button].btn-block {
 }
 
 .card {
+
   position: relative;
   display: -webkit-box;
   display: flex;
@@ -5018,11 +5019,13 @@ input[type=button].btn-block {
 .card > hr {
   margin-right: 0;
   margin-left: 0;
+
 }
 
 .card > .list-group:first-child .list-group-item:first-child {
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
+
 }
 
 .card > .list-group:last-child .list-group-item:last-child {
@@ -5034,6 +5037,10 @@ input[type=button].btn-block {
   -webkit-box-flex: 1;
           flex: 1 1 auto;
   padding: 1.25rem;
+    background-color: lightblue;
+    border-radius: 15px;
+
+
 }
 
 .card-title {
@@ -5068,6 +5075,7 @@ input[type=button].btn-block {
 .card-header:first-child {
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
     background-color: skyblue;
+
 }
 
 .card-header + .list-group .list-group-item:first-child {

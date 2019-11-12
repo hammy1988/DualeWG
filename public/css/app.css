@@ -2734,7 +2734,7 @@ fieldset:disabled a.btn {
 
 .btn-primary {
   color: #fff;
-    background: -moz-linear-gradient(right, #21d4fd, #b721ff, #21d4fd, #b721ff);
+  background-color: #3490dc;
   border-color: #3490dc;
 }
 
@@ -4738,8 +4738,6 @@ input[type=button].btn-block {
 
   .navbar-expand-md > .container,
   .navbar-expand-md > .container-fluid {
-      background-color: darkgrey;
-      border-radius: 15px;
     flex-wrap: nowrap;
   }
 
@@ -5037,8 +5035,6 @@ input[type=button].btn-block {
   -webkit-box-flex: 1;
           flex: 1 1 auto;
   padding: 1.25rem;
-    background-color: lightblue;
-    border-radius: 15px;
 
 
 }
@@ -5074,9 +5070,6 @@ input[type=button].btn-block {
 
 .card-header:first-child {
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
-    background-color: lightblue;
-    border-radius: 15px;
-    margin-bottom: 2%;
 
 }
 

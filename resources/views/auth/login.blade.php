@@ -18,10 +18,11 @@
                             </label>
 
                             <div class="col-md-6">
-                                <input id="login" type="text" placeholder="Max.Mustermann@hof-university.de"
-                                       class="form-control{{  $errors->has('email') || $errors->has('username') ? ' is-invalid' : '' }}"
-                                       name="login" value="{{ old('email') ?: old('username') }}" required autofocus>
-
+                                <div class="wgInputFieldWrapper">
+                                    <input id="login" type="text" placeholder="E-Mail-Adresse/Benutzername"
+                                           class="form-control{{  $errors->has('email') || $errors->has('username') ? ' is-invalid' : '' }} wgInputField"
+                                           name="login" value="{{ old('email') ?: old('username') }}" required autofocus>
+                                </div>
                                 @if ($errors->has('email') || $errors->has('username'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('email') ?: $errors->first('username') }}</strong>
@@ -34,7 +35,9 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" placeholder="Nobody is watching?" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <div class="wgInputFieldWrapper">
+                                    <input id="password" type="password" placeholder="Passwort" class="form-control @error('password') is-invalid @enderror wgInputField" name="password" required autocomplete="current-password">
+                                </div>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -58,7 +61,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary wgButton">
                                     {{ __('Anmelden') }}
                                 </button>
 

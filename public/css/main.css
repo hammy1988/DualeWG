@@ -61,10 +61,32 @@ html, body {
 
 
 .wgNavbar {
-    background-image: linear-gradient(to right, #6f9bdf 0%, #c46af7 100%);
+    background-image: linear-gradient(to right, #7fb1ff 0%, #e896ff 100%);
     box-shadow: 0px 0px 6px #000 !important;
 }
 
+.wgNavbar .wgBrand {
+    font-size: 170%;
+}
+
+.wgNavbar .wgBrand .wgTitleIcon {
+    color: rgba(30, 40, 180, 1.0);
+    margin: 0 5px 0 0;
+}
+
+.wgNavbar .wgNavUser {
+    font-size: 130%;
+}
+
+.wgNavbar .wgNavUser .wgNavUserIcon {
+    margin: 0 13px 0 0;
+    color: #1f6fb2;
+    height: 30px;
+    width: 30px;
+    background-color: #fff;
+    padding: 5px 6px 6px 7px;
+    border-radius: 50%;
+}
 
 .wgButton {
     background-image: linear-gradient(to left, #3c86f9 0%, #ed88f0 45%, #ed88f0 50%, #ed88f0 55%, #3c86f9 100%);
@@ -109,4 +131,9 @@ html, body {
 .wgInputField:focus {
     border: none;
     box-shadow: none;
+}
+
+
+.invalid-feedback {
+    display: block;
 }

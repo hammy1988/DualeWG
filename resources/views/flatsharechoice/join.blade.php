@@ -16,7 +16,6 @@
                     <div class="card-header">{{ __('Einer WG beitreten') }}</div>
 
                     <div class="card-body">
-
                         <form method="POST" action="{{ route('flatshare.store') }}">
                             @csrf
 
@@ -54,4 +53,5 @@
             </div>
         </div>
     </div>
+
 @endsection

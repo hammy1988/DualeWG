@@ -6,6 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="api_token" content="{{ (Auth::user()) ? Auth::user()->api_token : '' }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -14,7 +15,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" />
     <link href="{{ asset('css/fontawesome_all.css')  }}" rel="stylesheet" />
-    <link href="{{ asset('css/fontawesome_duotone.css')  }}" rel="stylesheet" /
+    <link href="{{ asset('css/fontawesome_duotone.css')  }}" rel="stylesheet" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />

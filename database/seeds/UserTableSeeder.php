@@ -20,6 +20,7 @@ class UserTableSeeder extends Seeder
         $user_new->username = 'noob';
         $user_new->email = 'noob@test.de';
         $user_new->password = bcrypt('pw');
+        $user_new->api_token = Str::random(60);
         $user_new->save();
 
         $user_wg = new User();
@@ -28,6 +29,7 @@ class UserTableSeeder extends Seeder
         $user_wg->username = 'wg';
         $user_wg->email = 'wg@test.de';
         $user_wg->password = bcrypt('pw');
+        $user_wg->api_token = Str::random(60);
         $user_wg->save();
 
         $user_admin = new User();
@@ -36,6 +38,7 @@ class UserTableSeeder extends Seeder
         $user_admin->username = 'wgpapa';
         $user_admin->email = 'wgpapa@test.de';
         $user_admin->password = bcrypt('pw');
+        $user_admin->api_token = Str::random(60);
         $user_admin->save();
     }
 }

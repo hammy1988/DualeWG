@@ -1,4 +1,5 @@
 var xhr_flatchoice;
+var wgbearertoken;
 
 $(document).ready(function() {
 
@@ -14,6 +15,9 @@ $(document).ready(function() {
 
 });
 
+function wgsearchChangeListener() {
+
+}
 
 function wgsearchCallback(data) {
 

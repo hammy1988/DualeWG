@@ -117,7 +117,7 @@ html, body {
     padding: 0px 0px 2px 0px;
 }
 
-.wgInputFieldWrapper:hover {
+.wgInputFieldWrapper:hover, .wgInputFieldWrapper:active, .wgInputFieldWrapper:focus {
     /*background-image: linear-gradient(to left, #3c86f9 0%, #ed88f0 100%);*/
     background-position: left;
 }

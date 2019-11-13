@@ -12,10 +12,20 @@ class FlatshareController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request['q'] != null) {
+            return response()->json(Flatshare::where('name', 'like', $request['q'] . '%')->get(), 200);
+        } else {
+            return response()->json(Flatshare::all(), 200);
+        };
     }
+
+    /*public function search(Request $request)
+    {
+        return var_dump($request->getContent());
+        //return response()->json(Flatshare::where('name', 'like',), 200);
+    }*/
 
     /**
      * Show the form for creating a new resource.
@@ -30,7 +40,7 @@ class FlatshareController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,7 +51,7 @@ class FlatshareController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Flatshare  $flatshare
+     * @param \App\Flatshare $flatshare
      * @return \Illuminate\Http\Response
      */
     public function show(Flatshare $flatshare)
@@ -52,7 +62,7 @@ class FlatshareController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Flatshare  $flatshare
+     * @param \App\Flatshare $flatshare
      * @return \Illuminate\Http\Response
      */
     public function edit(Flatshare $flatshare)
@@ -63,8 +73,8 @@ class FlatshareController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Flatshare  $flatshare
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Flatshare $flatshare
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Flatshare $flatshare)
@@ -75,7 +85,7 @@ class FlatshareController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Flatshare  $flatshare
+     * @param \App\Flatshare $flatshare
      * @return \Illuminate\Http\Response
      */
     public function destroy(Flatshare $flatshare)

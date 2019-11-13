@@ -5,7 +5,7 @@
 @endsection
 
 @section('headjs')
-
+    <script src="{{ asset('js/wgflatsharechoice.js') }}"></script>
 @endsection
 
 @section("content")
@@ -13,15 +13,10 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('WG Auswahl') }}</div>
+                    <div class="card-header">{{ __('Einer WG beitreten') }}</div>
 
                     <div class="card-body">
-
-
-                        <div class="wgChoiceOptions">
-                            <a href="{{route('flatsharechoicecreate')}}">neue WG <br />erstellen</a>
-                            <a href="{{route('flatsharechoicejoin')}}">einer bestehender <br />WG beitreten</a>
-                        </div>
+                        Hier kommt Zeugs her!
                     </div>
                 </div>
             </div>

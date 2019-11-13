@@ -14,7 +14,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" />
     <link href="{{ asset('css/fontawesome_all.css')  }}" rel="stylesheet" />
-    <link href="{{ asset('css/fontawesome_duotone.css')  }}" rel="stylesheet" />
+    <link href="{{ asset('css/fontawesome_duotone.css')  }}" rel="stylesheet" /
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
@@ -24,6 +24,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ asset('js/wgscript.js') }}"></script>
     @yield('headjs')
 
 </head>

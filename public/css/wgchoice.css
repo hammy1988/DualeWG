@@ -5,10 +5,10 @@
 
 .wgChoiceOptions a {
     padding: 50px;
-    background-color: #ddd;
     width: 40%;
     text-align: center;
     color: #333;
+    background-color: #ddd;
     border: 3px solid #fff;
     box-shadow: 0px 0px 5px #333;
     border-radius: 25px;
@@ -16,6 +16,39 @@
 
 .wgChoiceOptions a:hover {
     text-decoration: none;
+    background-image: linear-gradient(to bottom right, #ed88f0 0%, #3c86f9 100%);
+    color: #fff;
+}
+
+#wgsearchresult {
+    margin: 10px 0 10px 0;
+}
+
+#wgsearchresult ul.wgsearchoutput {
+    list-style: none;
+    padding: 0 15px 0 15px;
+    margin: 0px;
+}
+
+#wgsearchresult .wgsearchoutput .wgsearchrow {
+    margin: 3px 0 3px 0;
+}
+
+#wgsearchresult .wgsearchoutput .wgsearchrow input[type="radio"] {
+    display: none;
+}
+
+#wgsearchresult .wgsearchoutput .wgsearchrow label {
+    padding: 4px 18px;
+    color: #333;
+    background-color: #ddd;
+    border: 2px solid #fff;
+    box-shadow: 0px 0px 3px #333;
+    border-radius: 25px;
+    width: 100%;
+}
+
+#wgsearchresult .wgsearchoutput  .wgsearchrow input[type="radio"]:checked+label {
     background-image: linear-gradient(to bottom right, #ed88f0 0%, #3c86f9 100%);
     color: #fff;
 }

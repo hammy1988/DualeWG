@@ -1,4 +1,5 @@
-var xhr
+var xhr;
+var emptyWGSearchInput = true;
 
 function apiCall_GET(api, callback, query = '') {
 
@@ -15,7 +16,9 @@ function apiCall_GET(api, callback, query = '') {
         dataType: "json",
         url: url,
         success: function(data){
-            callback(data);
+            if (!(emptyWGSearchInput)) {
+                callback(data);
+            }
         }
     });
 

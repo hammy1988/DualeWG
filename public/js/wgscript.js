@@ -1,7 +1,7 @@
-var xhr;
+
 var emptyWGSearchInput = true;
 
-function apiCall_GET(api, callback, query = '') {
+function apiCall_GET(api, callback, xhr, query = '') {
 
     let url = "/api/" + api;
     if (query.length > 0) {
@@ -9,7 +9,6 @@ function apiCall_GET(api, callback, query = '') {
     }
     if (xhr !== undefined) {
         xhr.abort();
-        console.log('###abort!!! :)');
     }
     xhr = $.ajax({
         type: "GET",
@@ -22,5 +21,5 @@ function apiCall_GET(api, callback, query = '') {
         }
     });
 
-
+    return xhr;
 }

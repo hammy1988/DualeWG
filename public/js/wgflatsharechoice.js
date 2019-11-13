@@ -1,4 +1,4 @@
-
+var xhr_flatchoice;
 
 $(document).ready(function() {
 
@@ -8,7 +8,7 @@ $(document).ready(function() {
             wgsearchCallback(JSON.parse('[]'));
         } else {
             emptyWGSearchInput = false;
-            apiCall_GET("flatshare", wgsearchCallback, "q=" + $("#wgsearch").val());
+            xhr_flatchoice = apiCall_GET("flatshare", wgsearchCallback, xhr_flatchoice, "q=" + $("#wgsearch").val());
         }
     });
 
@@ -27,7 +27,7 @@ function wgsearchCallback(data) {
         for (let i = 0; i < data.length; i++) {
             wgsearchoutput.append(
                 $("<li>", { class: "wgsearchrow" }).append(
-                    $("<input>", { type: "radio", name: "wgsearchjoinchoice", id: "id_" + data[i].name + "_" + data[i].tagid })
+                    $("<input>", { type: "radio", name: "wgsearchjoinchoice", id: "id_" + data[i].name + "_" + data[i].tagid, value: data[i].id })
                 ).append(
                     $("<label>", { for: "id_" + data[i].name + "_" + data[i].tagid }).text(data[i].name + "#" + data[i].tagid)
                 )

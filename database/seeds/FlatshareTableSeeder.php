@@ -27,5 +27,18 @@ class FlatshareTableSeeder extends Seeder
         $user_wg->save();
         $user_admin->flatshare_id = Flatshare::where('name', 'Erste')->first()->id;
         $user_admin->save();
+
+
+        $flatshare_ersti = new Flatshare();
+        $flatshare_ersti->name = 'Ersti';
+        $flatshare_ersti->tagid = 2345;
+        $flatshare_ersti->admin_id = 0;
+        $flatshare_ersti->save();
+
+        $flatshare_zweite = new Flatshare();
+        $flatshare_zweite->name = 'Zweite';
+        $flatshare_zweite->tagid = 9876;
+        $flatshare_zweite->admin_id = 0;
+        $flatshare_zweite->save();
     }
 }

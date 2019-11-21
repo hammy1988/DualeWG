@@ -35,6 +35,7 @@ function apiCall_PUT(api, id, data) {
     $.ajax({
         type: "PUT",
         dataType: "json",
+        data: data,
         url: url,
         headers: {
             'Authorization': 'Bearer ' + $('meta[name="api_token"]').attr('content'),

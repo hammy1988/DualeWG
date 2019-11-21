@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -51,6 +52,13 @@ class User extends Authenticatable
 
     public function isFlatshareAdmin() {
         if ($this->flatshare()->first()->admin_id == $this->id) {
+            return true;
+        }
+        return false;
+    }
+
+    public function isActualUser() {
+        if ($this->id == Auth::id()) {
             return true;
         }
         return false;

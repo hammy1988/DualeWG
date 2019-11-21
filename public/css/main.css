@@ -137,3 +137,7 @@ html, body {
 .invalid-feedback {
     display: block;
 }
+.logininfo{
+    display: flex;
+    justify-content: center;
+}

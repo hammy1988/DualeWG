@@ -15,8 +15,8 @@ function apiCall_GET(api, callback, xhr, query = '') {
         dataType: "json",
         url: url,
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
             'Authorization': 'Bearer ' + $('meta[name="api_token"]').attr('content'),
+            //'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
         },
         success: function(data){
             if (!(emptyWGSearchInput)) {
@@ -26,4 +26,22 @@ function apiCall_GET(api, callback, xhr, query = '') {
     });
 
     return xhr;
+}
+
+function apiCall_PUT(api, id, data) {
+
+    let url = "/api/" + api + "/" + id;
+
+    $.ajax({
+        type: "PUT",
+        dataType: "json",
+        url: url,
+        headers: {
+            'Authorization': 'Bearer ' + $('meta[name="api_token"]').attr('content'),
+            //'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        },
+        success: function(data){
+            console.log(data);
+        }
+    });
 }

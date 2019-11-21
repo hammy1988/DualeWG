@@ -21,12 +21,6 @@ class FlatshareController extends Controller
         };
     }
 
-    /*public function search(Request $request)
-    {
-        return var_dump($request->getContent());
-        //return response()->json(Flatshare::where('name', 'like',), 200);
-    }*/
-
     /**
      * Show the form for creating a new resource.
      *
@@ -43,9 +37,8 @@ class FlatshareController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+        return var_dump($request->getContent());
     }
 
     /**

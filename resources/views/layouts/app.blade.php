@@ -91,6 +91,9 @@
         <main class="py-4">
             @yield('content')
         </main>
+
     </div>
+    <div class="card-footer">{{ __('©2019 / www.dualewg.de / ') }} <a href=""> Impressum</a> </div>
 </body>
+
 </html>

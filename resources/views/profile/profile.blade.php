@@ -13,13 +13,21 @@
                     <div class="card-header">{{ __('Ihre Profil Informationen') }}</div>
 
                     <div class="card-body">
-                        Username: <br>
-                        E-Mail-Adresse: <br>
-                        BierBierBier!
+                        Vorname: {{Auth::user()->givenname}} <br>
+                        Nachname: {{Auth::user()->name}}<br>
+                        Username:  {{Auth::user()->username}}<br>
+                        E-Mail-Adresse:  {{Auth::user()->email}}<br>
+                        Meine WG:  @if(Auth::user()->hasActiveFlatshare())
+                            Ist in der WG: <b><u>{{Auth::user()->flatshare()->first()->name}}</u></b>
+                        @else
+                            Oh, leider scheinst du keiner WG beigetreten zu sein!
+                        @endif
+                        <br>
+                       
                     </div>
                 </div>
 
-                <div class="logininfo"> Sie sind angemeldet als: <a href=""> NAME </a>  | <a href=" {{route('logout')}}"       onclick="event.preventDefault();
+                <div class="logininfo"> Sie sind angemeldet als: <a href=""> {{Auth::user()->givenname}} {{Auth::user()->name}} </a>  | <a href=" {{route('logout')}}"       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">{{__('(Logout)')}}  </a>
 
 

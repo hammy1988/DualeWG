@@ -23,11 +23,11 @@
                             Oh, leider scheinst du keiner WG beigetreten zu sein!
                         @endif
                         <br>
-                       
-                    </div>
-                </div>
 
-                <div class="logininfo"> Sie sind angemeldet als: <a href=""> {{Auth::user()->givenname}} {{Auth::user()->name}} </a>  | <a href=" {{route('logout')}}"       onclick="event.preventDefault();
+                     </div>
+                 </div>
+
+                 <div class="logininfo"> Sie sind angemeldet als: <a href="{{ route('profile') }}"> {{Auth::user()->givenname}} {{Auth::user()->name}} </a>  | <a href=" {{route('logout')}}"       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">{{__('(Logout)')}}  </a>
 
 

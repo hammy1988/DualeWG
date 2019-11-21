@@ -15,7 +15,14 @@ class FlatshareController extends Controller
     public function index(Request $request)
     {
         if ($request['q'] != null) {
-            return response()->json(Flatshare::where('name', 'like', $request['q'] . '%')->get(), 200);
+            $tagIdPos = strrpos($request['q'], "#");
+            if ($tagIdPos) {
+                $wgName = substr($request['q'], 0, $tagIdPos);
+                $tagId = substr($request['q'], $tagIdPos + 1, strlen($request['q']));
+                return response()->json(Flatshare::where('name', $wgName)->where('tagid', 'like', $tagId . '%')->get(), 200);
+            } else {
+                return response()->json(Flatshare::where('name', 'like', $request['q'] . '%')->get(), 200);
+            }
         } else {
             return response()->json(Flatshare::all(), 200);
         };

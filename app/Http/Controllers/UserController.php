@@ -51,7 +51,7 @@ class UserController extends Controller
     {
         //
         $user = User::findOrFail($id);
-        return $user->;
+        //return $user->;
         //$user->update($request->all());
         return ("tes" . $id);
         return var_dump($request->getContent());

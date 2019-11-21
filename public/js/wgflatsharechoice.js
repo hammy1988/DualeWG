@@ -9,7 +9,7 @@ $(document).ready(function() {
             wgsearchCallback(JSON.parse('[]'));
         } else {
             emptyWGSearchInput = false;
-            xhr_flatchoice = apiCall_GET("flatshare", wgsearchCallback, xhr_flatchoice, "q=" + $("#wgsearch").val());
+            xhr_flatchoice = apiCall_GET("flatshare", wgsearchCallback, xhr_flatchoice, "q=" +  encodeURIComponent($("#wgsearch").val()));
         }
     });
 

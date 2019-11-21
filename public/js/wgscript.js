@@ -5,7 +5,7 @@ function apiCall_GET(api, callback, xhr, query = '') {
 
     let url = "/api/" + api;
     if (query.length > 0) {
-        url += "?" + query
+        url += "?" + query;
     }
     if (xhr !== undefined) {
         xhr.abort();

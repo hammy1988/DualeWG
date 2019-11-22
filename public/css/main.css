@@ -157,7 +157,7 @@ html, body {
 }
 
 .wgNavMenu .wgNavProfile {
-
+    margin: 0 0 15px 0;
 }
 
 .wgNavMenu .wgNavProfile span {
@@ -181,7 +181,7 @@ html, body {
 }
 
 .wgNavMenu .wgNavLogout {
-
+    margin: 15px 0 0 0;
 }
 
 .wgNavMenu .wgNavLogout span {

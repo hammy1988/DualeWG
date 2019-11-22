@@ -11,6 +11,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Ihre Profil Informationen') }}
+                        <a href="{{route('profileedit')}}">Profil bearbeiten </a>
                     </div>
 
                     <div class="card-body">
@@ -26,7 +27,7 @@
                         <br>
 
                      </div>
-                    <div> <button id="workonprofile">Mein Profil bearbeiten </button> </div>
+                    <div>
                  </div>
             </div>
         </div>

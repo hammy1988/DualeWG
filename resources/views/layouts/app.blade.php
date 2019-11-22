@@ -120,14 +120,12 @@
         @endauth
 
     </div>
-    <div class="card-footer">{{ __('©2019 / www.dualewg.de / ') }} <a href=""> Impressum</a> </div>
-    <!--
-    Nur eine weitere Footer-Alternative
-    <footer class="footer mt-auto py-3">
+
+    <footer class="modal-footer text-center mt-auto py-3">
         <div class="container">
-            <span class="text-muted">Place sticky footer content here.</span>
+            <span class="text-muted">{{ __('©2019 /  CreativeInformatics / ')}} <a href=""> Impressum</a></span>
         </div>
-    </footer>-->
+    </footer>
 </body>
 
 </html>

@@ -15,10 +15,30 @@
                     </div>
 
                     <div class="card-body">
-                        Vorname: {{Auth::user()->givenname}} <br>
-                        Nachname: {{Auth::user()->name}}<br>
-                        Username:  {{Auth::user()->username}}<br>
-                        E-Mail-Adresse:  {{Auth::user()->email}}<br>
+
+                        <table id="infotable">
+                            <tr>
+                                <td>Vorname: </td>
+                                <td>{{Auth::user()->givenname}}</td>
+
+                            </tr>
+                            <tr>
+                                <td> Nachname:</td>
+                                <td>{{Auth::user()->name}} </td>
+                            </tr>
+                            <tr>
+                                <td> Username:</td>
+                                <td>{{Auth::user()->username}} </td>
+                            </tr>
+
+                            <tr>
+                                <td> E-Mail-Adresse:</td>
+                                <td>{{Auth::user()->email}} </td>
+                            </tr>
+
+
+                        </table>
+
                         Meine WG:  @if(Auth::user()->hasActiveFlatshare())
                             Ist in der WG: <b><u>{{Auth::user()->flatshare()->first()->name}}</u></b>
                         @else

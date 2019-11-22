@@ -72,6 +72,14 @@
                                         <i class="fa fa-beer" aria-hidden="true"></i>
                                         {{ __('Profil') }}
                                     </a>
+                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                        <span class="fad fa-list"></span>
+                                        {{ __('Einkaufsliste') }}
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                        <span class="fad fa-calendar-week"></span>
+                                        {{ __('Kalender') }}
+                                    </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

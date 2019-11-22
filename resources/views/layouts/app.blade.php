@@ -68,10 +68,16 @@
 
                                 <div class="dropdown-menu dropdown-menu-right wgNavMenu" aria-labelledby="navbarDropdown">
 
-                                    <a class="dropdown-item wgNavProfile" href="{{ route('profile') }}">
+                                    <a class="dropdown-item wgNavProfile border-bottom" href="{{ route('profile') }}">
                                         <span class="fad fa-beer" aria-hidden="true"></span>
                                         {{ __('Profil') }}
                                     </a>
+
+                                    <a class="dropdown-item wgNavDashboard" href="{{ route('profile') }}">
+                                        <span class="fad fa-newspaper" aria-hidden="true"></span>
+                                        {{ __('Dashboard') }}
+                                    </a>
+
                                     <a class="dropdown-item wgNavGroceryList" href="{{ route('profile') }}">
                                         <span class="fad fa-list"></span>
                                         {{ __('Einkaufsliste') }}
@@ -81,7 +87,7 @@
                                         {{ __('Kalender') }}
                                     </a>
 
-                                    <a class="dropdown-item wgNavLogout" href="{{ route('logout') }}"
+                                    <a class="dropdown-item wgNavLogout border-top" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         <span class="fad fa-sign-out" aria-hidden="true"></span>

@@ -164,6 +164,14 @@ html, body {
     color:#f28e1c;
 }
 
+.wgNavMenu .wgNavDashboard {
+
+}
+
+.wgNavMenu .wgNavDashboard span {
+    color:#3f95f3;
+}
+
 .wgNavMenu .wgNavGroceryList {
 
 }

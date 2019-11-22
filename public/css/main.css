@@ -14,6 +14,7 @@ html, body {
     font-weight: 200;
     height: 100vh;
     margin: 0;
+    padding-top: 2rem;
 }
 
 .full-height {
@@ -137,3 +138,9 @@ html, body {
 .invalid-feedback {
     display: block;
 }
+.logininfo{
+    display: flex;
+    justify-content: center;
+}
+
+

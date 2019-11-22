@@ -21,5 +21,7 @@ Route::prefix('/flatshare')->group(function() {
 
 });
 
+Route::get('/profile', 'ProfileController@index')->name('profile');
+
 Auth::routes();
 

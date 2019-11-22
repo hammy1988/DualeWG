@@ -16,37 +16,36 @@
                     <div class="card-header">{{ __('Einer WG beitreten') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('flatshare.store') }}">
-                            @csrf
+                        @csrf
 
-                            <div class="form-group row">
-                                <label for="login" class="col-sm-4 col-form-label text-md-right">
-                                    {{ __('WG-Suche') }}
-                                </label>
+                        <div class="form-group row">
+                            <label for="login" class="col-sm-4 col-form-label text-md-right">
+                                {{ __('WG-Suche') }}
+                            </label>
 
-                                <div class="col-md-6">
-                                    <div class="wgInputFieldWrapper">
-                                        <input id="wgsearch" type="text" placeholder="Suche ..."
-                                               class="form-control wgInputField"
-                                               name="wgsearch" value="" autofocus autocomplete="off">
-                                    </div>
+                            <div class="col-md-6">
+                                <div class="wgInputFieldWrapper">
+                                    <input id="wgsearch" type="text" placeholder="Suche ..."
+                                           class="form-control wgInputField"
+                                           name="wgsearch" value="" autofocus autocomplete="off" />
+                                    <input type="hidden" id="wgJoinUserId" name="wgJoinUserID" value="{{ Auth::id() }}" />
                                 </div>
                             </div>
+                        </div>
 
-                            <div class="form-group row">
-                                <div class="col-md-6 offset-md-4">
-                                    <div id="wgsearchresult"></div>
-                                </div>
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div id="wgsearchresult"></div>
                             </div>
+                        </div>
 
-                            <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary wgButton">
-                                        {{ __('WG beitreten') }}
-                                    </button>
-                                </div>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button type="submit" id="joinInWG" class="btn btn-primary wgButton">
+                                    {{ __('WG beitreten') }}
+                                </button>
                             </div>
-                        </form>
+                        </div>
 
                     </div>
                 </div>

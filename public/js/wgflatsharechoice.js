@@ -13,6 +13,24 @@ $(document).ready(function() {
         }
     });
 
+    $("#joinInWG").click(function(evt) {
+        evt.preventDefault();
+        let flatshareid = $('input[name=wgsearchjoinchoice]:checked', '#wgsearchresult').val();
+
+        if (flatshareid === undefined) {
+            console.log("WG auswählen!");
+        } else {
+
+            let jsonData = {
+                action: 'updateFlatshare',
+                flatshareid: flatshareid
+            };
+
+            apiCall_PUT('user', $("#wgJoinUserId").val(),jsonData, wgjoinCallback);
+
+        }
+    });
+
 });
 
 function wgsearchChangeListener() {
@@ -40,4 +58,12 @@ function wgsearchCallback(data) {
     }
 
     $("#wgsearchresult").html(wgsearchoutput);
+}
+
+
+function wgjoinCallback(data) {
+
+    var url = "/";
+    $(location).attr('href',url);
+
 }

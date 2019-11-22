@@ -28,7 +28,7 @@ function apiCall_GET(api, callback, xhr, query = '') {
     return xhr;
 }
 
-function apiCall_PUT(api, id, data) {
+function apiCall_PUT(api, id, data, callback) {
 
     let url = "/api/" + api + "/" + id;
 
@@ -42,7 +42,7 @@ function apiCall_PUT(api, id, data) {
             //'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
         },
         success: function(data){
-            console.log(data);
+            callback(data);
         }
     });
 }

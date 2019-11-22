@@ -66,25 +66,25 @@
                                     <span class="fad fa-user wgNavUserIcon"></span>{{ Auth::user()->username }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-right wgNavMenu" aria-labelledby="navbarDropdown">
 
-                                    <a class="dropdown-item" href="{{ route('profile') }}">
-                                        <i class="fa fa-beer" aria-hidden="true"></i>
+                                    <a class="dropdown-item wgNavProfile" href="{{ route('profile') }}">
+                                        <span class="fad fa-beer" aria-hidden="true"></span>
                                         {{ __('Profil') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                    <a class="dropdown-item wgNavGroceryList" href="{{ route('profile') }}">
                                         <span class="fad fa-list"></span>
                                         {{ __('Einkaufsliste') }}
                                     </a>
-                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                    <a class="dropdown-item wgNavAppointment" href="{{ route('profile') }}">
                                         <span class="fad fa-calendar-week"></span>
                                         {{ __('Kalender') }}
                                     </a>
 
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item wgNavLogout" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                        <span class="fad fa-sign-out" aria-hidden="true"></span>
                                         {{ __('Abmelden') }}
                                     </a>
 

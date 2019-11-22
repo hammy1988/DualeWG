@@ -144,3 +144,46 @@ html, body {
 }
 
 
+/*
+###################
+###             ###
+###   Top Nav   ###
+###             ###
+###################
+ */
+
+.wgNavMenu {
+
+}
+
+.wgNavMenu .wgNavProfile {
+
+}
+
+.wgNavMenu .wgNavProfile span {
+    color:#f28e1c;
+}
+
+.wgNavMenu .wgNavGroceryList {
+
+}
+
+.wgNavMenu .wgNavGroceryList span {
+    color:#0ddd84;
+}
+
+.wgNavMenu .wgNavAppointment {
+
+}
+
+.wgNavMenu .wgNavAppointment span {
+    color:#3f95f3;
+}
+
+.wgNavMenu .wgNavLogout {
+
+}
+
+.wgNavMenu .wgNavLogout span {
+    color:#f2235d;
+}

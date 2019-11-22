@@ -20,6 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
+    <link href="{{ asset('lib/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" />
     @yield('headcss')
 
     <!-- Scripts -->
@@ -31,7 +32,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm wgNavbar">
+        <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white shadow-sm wgNavbar">
             <div class="container">
                 <a class="navbar-brand wgBrand" href="{{ url('/') }}">
                     <span class="fad fa-home-heart wgTitleIcon"></span>
@@ -68,12 +69,14 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                                     <a class="dropdown-item" href="{{ route('profile') }}">
-                                       {{ __('Profil') }}
+                                        <i class="fa fa-beer" aria-hidden="true"></i>
+                                        {{ __('Profil') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i>
                                         {{ __('Abmelden') }}
                                     </a>
 
@@ -92,8 +95,25 @@
             @yield('content')
         </main>
 
+        @auth
+            <div class="logininfo"> Sie sind angemeldet als: <a href="{{ route('profile') }}"> {{Auth::user()->givenname}} {{Auth::user()->name}} </a>  | <a href=" {{route('logout')}}"       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">{{__('(Logout)')}}  </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+
+            </div>
+        @endauth
+
     </div>
     <div class="card-footer">{{ __('©2019 / www.dualewg.de / ') }} <a href=""> Impressum</a> </div>
+    <!--
+    Nur eine weitere Footer-Alternative
+    <footer class="footer mt-auto py-3">
+        <div class="container">
+            <span class="text-muted">Place sticky footer content here.</span>
+        </div>
+    </footer>-->
 </body>
 
 </html>

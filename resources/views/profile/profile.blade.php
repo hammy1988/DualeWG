@@ -35,7 +35,10 @@
                                 <td> E-Mail-Adresse:</td>
                                 <td>{{Auth::user()->email}} </td>
                             </tr>
-
+                            <tr>
+                                <td> Registriert seit:</td>
+                                <td>{{Auth::user()->created_at}} </td>
+                            </tr>
 
                         </table>
 

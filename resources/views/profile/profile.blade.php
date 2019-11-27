@@ -20,20 +20,24 @@
                             <tr>
                                 <td>Vorname: </td>
                                 <td>{{Auth::user()->givenname}}</td>
+                                <td> <span class="fad fa-pencil"></span> </td>
 
                             </tr>
                             <tr>
                                 <td> Nachname:</td>
                                 <td>{{Auth::user()->name}} </td>
+                                <td> <span class="fad fa-pencil"></span> </td>
                             </tr>
-                            <tr>
-                                <td> Username:</td>
-                                <td>{{Auth::user()->username}} </td>
-                            </tr>
+
 
                             <tr>
                                 <td> E-Mail-Adresse:</td>
                                 <td>{{Auth::user()->email}} </td>
+                                <td><span class="fad fa-pencil"></span> </td>
+                            </tr>
+                            <tr>
+                                <td> Username:</td>
+                                <td>{{Auth::user()->username}} </td>
                             </tr>
                             <tr>
                                 <td> Registriert seit:</td>
@@ -52,22 +56,7 @@
                             Oh, leider scheinst du keiner WG beigetreten zu sein!
                         @endif
                         <br>
-                        <DIV id="mouselayer" style="z-index:100;left:200px;top:100px;height:35px;width:40px;position:absolute;bor der:1px
-solid #000000;background-color:white;">
 
-
-                            <DIV id="mouselayer" style="z-index:100;left:200px;top:100px;height:35px;width:40px;position:absolute;bor der:1px
-solid #000000;background-color:white;">
-
-                                <form name="formname">
-                                    <table>
-                                        <tr>
-                                            <td><a onClick="document.formname.textfeldname.value ='test1'"><img src="test.png" width=30 height=30 border="0"></a></td>
-                                            <td><a onClick="document.formname.textfeldname.value ='test2'"><img src="test.png" width=30 height=30 border="0"></a></td>
-                                            <td><input type="text" name="textfeldname" value=""></td>
-                                        </tr>
-                                    </table>
-                                </form>
                      </div>
                     <div>
                  </div>

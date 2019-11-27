@@ -25,6 +25,8 @@ Route::prefix('/flatshare')->group(function() {
 
 });
 
+Route::get('/profile', 'ProfileController@index')->name('profile');
+
 /**
  * Display All Tasks
  */

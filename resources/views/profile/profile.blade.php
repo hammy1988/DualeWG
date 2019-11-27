@@ -4,6 +4,10 @@
     <link href="{{ asset('css/profile.css') }}" rel="stylesheet">
 @endsection
 
+@section('headjs')
+    <script src="{{ asset('js/wgprofilechange.js') }}"></script>
+@endsection
+
 @section("content")
 
     <div class="container">
@@ -45,6 +49,9 @@
                                 <td>{{Auth::user()->updated_at}} </td>
                             </tr>
                         </table>
+
+                        <div id="ibimsmartin">test</div><br />
+                        <div id="ibimsbutton">ich bin ein button ;)</div>
 
                         Meine WG:  @if(Auth::user()->hasActiveFlatshare())
                             Ist in der WG: <b><u>{{Auth::user()->flatshare()->first()->name}}</u></b>

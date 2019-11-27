@@ -24,3 +24,9 @@ tbody tr:nth-child(even){
     background-color: #e4ebf2;
     color:#000;
 }
+
+
+#ibimsbutton:hover {
+    cursor: pointer;
+    color: #f60;
+}

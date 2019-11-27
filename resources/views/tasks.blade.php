@@ -11,7 +11,7 @@
     <!-- Komischer Code - gelöscht -->
 
     <!-- New Task Form -->
-        <form action="/list/task" method="POST" class="form-horizontal">
+        <form action="/grocerylist/task" method="POST" class="form-horizontal">
         {{ csrf_field() }}
 
         <!-- Task Name -->
@@ -67,7 +67,7 @@
 
                             <!-- Delete Button -->
                             <td>
-                                <form action="/list/task/{{ $task->id }}" method="POST">
+                                <form action="/grocerylist/task/{{ $task->id }}" method="POST">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
 

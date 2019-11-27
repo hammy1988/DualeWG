@@ -30,18 +30,18 @@ Route::get('/profile', 'ProfileController@index')->name('profile');
 /**
  * Display All Tasks
  */
-Route::get('/list', function () {
+Route::get('/grocerylist', function () {
     $tasks = Task::orderBy('created_at', 'asc')->get();
 
     return view('tasks', [
         'tasks' => $tasks
     ]);
-});
+})->name('grocerylist');
 
 /**
  * Add A New Task
  */
-Route::post('/list/task', function (Request $request) {
+Route::post('/grocerylist/task', function (Request $request) {
     /* $validator = Validator::make($request->all(), [
         'name' => 'required|max:255',
     ]);
@@ -56,16 +56,16 @@ Route::post('/list/task', function (Request $request) {
     $task->name = $request->name;
     $task->save();
 
-    return redirect('/list');
+    return redirect('/grocerylist');
 });
 
 /**
  * Delete An Existing Task
  */
-Route::delete('/list/task/{id}', function ($id) {
+Route::delete('/grocerylist/task/{id}', function ($id) {
     Task::findOrFail($id)->delete();
 
-    return redirect('/list');
+    return redirect('/grocerylist');
 });
 
 Auth::routes();

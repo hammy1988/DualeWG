@@ -78,7 +78,7 @@
                                         {{ __('Dashboard') }}
                                     </a>
 
-                                    <a class="dropdown-item wgNavGroceryList" href="{{ route('profile') }}">
+                                    <a class="dropdown-item wgNavGroceryList" href="{{ route('grocerylist') }}">
                                         <span class="fad fa-list"></span>
                                         {{ __('Einkaufsliste') }}
                                     </a>

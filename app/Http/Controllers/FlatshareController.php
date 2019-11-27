@@ -56,7 +56,9 @@ class FlatshareController extends Controller
      */
     public function show(Flatshare $flatshare)
     {
-        //
+
+        return response()->json($flatshare);
+
     }
 
     /**

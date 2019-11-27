@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Flatshare;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -51,10 +52,28 @@ class UserController extends Controller
     {
         //
         $user = User::findOrFail($id);
-        //return $user->;
-        //$user->update($request->all());
-        return ("tes" . $id);
-        return var_dump($request->getContent());
+
+        if ($user->id != Auth::id()) {
+            abort(403, 'Access denied');
+        }
+
+        if ($request->action == 'updateFlatshare') {
+
+            $flatshare = Flatshare::findOrFail($request->flatshareid);
+            $user->flatshare_id = $flatshare->id;
+            $user->save();
+
+            if ($flatshare->admin_id == 0) {
+                $flatshare->admin_id = $user->id;
+                $flatshare->save();
+            }
+
+            return response()->json($user,200);
+        }
+
+
+        return $user;
+
     }
 
     /**

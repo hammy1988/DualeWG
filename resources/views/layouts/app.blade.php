@@ -20,6 +20,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
+    <link href="{{ asset('lib/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" />
     @yield('headcss')
 
     <!-- Scripts -->
@@ -31,7 +32,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm wgNavbar">
+        <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white shadow-sm wgNavbar">
             <div class="container">
                 <a class="navbar-brand wgBrand" href="{{ url('/') }}">
                     <span class="fad fa-home-heart wgTitleIcon"></span>
@@ -65,10 +66,31 @@
                                     <span class="fad fa-user wgNavUserIcon"></span>{{ Auth::user()->username }} <span class="caret"></span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                <div class="dropdown-menu dropdown-menu-right wgNavMenu" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item wgNavProfile border-bottom" href="{{ route('profile') }}">
+                                        <span class="fad fa-beer" aria-hidden="true"></span>
+                                        {{ __('Profil') }}
+                                    </a>
+
+                                    <a class="dropdown-item wgNavDashboard" href="{{ route('profile') }}">
+                                        <span class="fad fa-newspaper" aria-hidden="true"></span>
+                                        {{ __('Dashboard') }}
+                                    </a>
+
+                                    <a class="dropdown-item wgNavGroceryList" href="{{ route('profile') }}">
+                                        <span class="fad fa-list"></span>
+                                        {{ __('Einkaufsliste') }}
+                                    </a>
+                                    <a class="dropdown-item wgNavAppointment" href="{{ route('profile') }}">
+                                        <span class="fad fa-calendar-week"></span>
+                                        {{ __('Kalender') }}
+                                    </a>
+
+                                    <a class="dropdown-item wgNavLogout border-top" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
+                                        <span class="fad fa-sign-out" aria-hidden="true"></span>
                                         {{ __('Abmelden') }}
                                     </a>
 
@@ -86,6 +108,24 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        @auth
+            <div class="logininfo"> Sie sind angemeldet als: <a href="{{ route('profile') }}"> {{Auth::user()->givenname}} {{Auth::user()->name}} </a>  | <a href=" {{route('logout')}}"       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">{{__('(Logout)')}}  </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+
+            </div>
+        @endauth
+
     </div>
+
+    <footer class="wgFooter text-center mt-auto py-3">
+        <div class="container">
+            <span class="text-muted">{{ __('©2019 /  CreativeInformatics / ')}} <a href=""> Impressum</a></span>
+        </div>
+    </footer>
 </body>
+
 </html>

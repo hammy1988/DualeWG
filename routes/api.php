@@ -21,6 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::middleware('auth:api')->group(function() {
 
     Route::resource('flatshare', 'FlatshareController');
+    //Route::middleware('checkUser')->resource('user', 'UserController');
     Route::resource('user', 'UserController');
 
 });

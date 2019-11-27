@@ -20,6 +20,14 @@
     color: #fff;
 }
 
+.wgJoinSearchWrapper {
+    /*text-align: center;*/
+}
+
+.wgJoinSearchWrapper .wgsearcherrormessages {
+    text-align: center;
+}
+
 #wgsearchresult {
     margin: 10px 0 10px 0;
 }
@@ -51,4 +59,54 @@
 #wgsearchresult .wgsearchoutput  .wgsearchrow input[type="radio"]:checked+label {
     background-image: linear-gradient(to bottom right, #ed88f0 0%, #3c86f9 100%);
     color: #fff;
+}
+
+#wgsearchfail {
+    display: none;
+}
+
+#wgsearchselectfail {
+    display: none;
+}
+
+.wgJoinWaitWrapper {
+    text-align: center;
+}
+
+.wgJoinWaitWrapper span {
+    font-size: 500%;
+    margin: 40px 0 40px 0;
+    color: #3c86f9;
+    transition: color 5s linear;
+}
+.wgJoinWaitWrapper span.wgJoinColorChange {
+    color: #ed88f0;
+}
+
+
+
+.wgJoinSuccessWrapper {
+    display: none;
+    text-align: center;
+}
+
+.wgJoinSuccessWelcome {
+    font-weight: bold;
+    font-size: 200%;
+    margin: 20px 0 30px 0;
+}
+
+.wgJoinSuccessWelcome .fa-smile-plus {
+    color: #eb0;
+    font-size: 300%;
+    margin: 0 0 0 30px;
+}
+
+.wgJoinSuccessRedirect {
+    font-size: 150%;
+}
+
+.wgJoinSuccessRedirect .fa-chart-network {
+    color: #c09;
+    margin: 0 0 0 5px;
 }

@@ -15,7 +15,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Einer WG beitreten') }}</div>
 
-                    <div class="card-body">
+                    <div class="card-body wgJoinSearchWrapper">
                         @csrf
 
                         <div class="form-group row">
@@ -34,7 +34,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
+                            <div class="col-md-12 wgsearcherrormessages">
+                                <span id="wgsearchfail" class="invalid-feedback" role="alert">
+                                        <strong>Da hat etwas nicht geklappt. Probiere es noch einmal.</strong>
+                                </span>
+                                <span id="wgsearchselectfail" class="invalid-feedback" role="alert">
+                                        <strong>Bitte eine WG auswählen.</strong>
+                                </span>
+                            </div>
+                            <div class="col-md-6 offset-md-4 wgJoinSearchWrapper">
                                 <div id="wgsearchresult"></div>
                             </div>
                         </div>
@@ -49,7 +57,25 @@
 
                     </div>
 
+                    <div class="card-body wgJoinWaitWrapper">
+                        <span id="wgsearchwaitspinner" class="fas fa-spinner fa-pulse"></span>
+                    </div>
+
+                    <div class="card-body wgJoinSuccessWrapper">
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <div class="wgJoinSuccessWelcome">
+                                    Willkommen in der WG <br /><br />
+                                    <span id="wgsearchsuccessflatsharename"></span>
+                                </div>
+                                <div class="wgJoinSuccessRedirect">
+                                    <a href="/">Weiter zur Übersicht <span class="fad fa-chart-network"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>

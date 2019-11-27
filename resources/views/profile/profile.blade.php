@@ -23,21 +23,43 @@
                         <table id="infotable">
                             <tr>
                                 <td>Vorname: </td>
-                                <td>{{Auth::user()->givenname}}</td>
-                                <td> <span class="fad fa-pencil"></span> </td>
-
+                                <td id="tdgivenname">
+                                    <span id="profilgivenname_show">{{Auth::user()->givenname}}</span>
+                                    <div class="wgInputFieldWrapper">
+                                        <input id="profilgivenname_input" type="text"
+                                               class="form-control wgInputField profileinputhide" name="profilgivenname"
+                                               value="{{Auth::user()->givenname}}"autofocus autocomplete="off" />
+                                    </div>
+                                </td>
+                                <td> <span id="givennamechange" class="fad fa-pencil"></span> </td>
+                                <td><span id="givennamechangeClipboard" class="fad fa-clipboard-check"></span></td>
                             </tr>
                             <tr>
                                 <td> Nachname:</td>
-                                <td>{{Auth::user()->name}} </td>
-                                <td> <span class="fad fa-pencil"></span> </td>
+                                <td id="name">
+                                    <span id="profilname_show">{{Auth::user()->name}} </span>
+                                    <div class="wgInputFieldWrapper">
+                                        <input id="profilname_input" type="text"
+                                               class="form-control wgInputField profileinputhide" name="profilname"
+                                               value="{{Auth::user()->name}}" autofocus autocomplete="off" />
+                                    </div>
+                                </td>
+                                <td> <span id="namechange" class="fad fa-pencil"></span></td>
+                                <td><span id="namechangeClipboard" class="fad fa-clipboard-check"></span></td>
                             </tr>
-
 
                             <tr>
                                 <td> E-Mail-Adresse:</td>
-                                <td>{{Auth::user()->email}} </td>
-                                <td><span class="fad fa-pencil"></span> </td>
+                                <td id="email">
+                                    <span id="email_show">{{Auth::user()->email}} </span>
+                                    <div class="wgInputFieldWrapper">
+                                    <input id="email_input" type="text"
+                                           class="form-control wgInputField profileinputhide" name="profilemail"
+                                           value="{{Auth::user()->email}}" autofocus autocomplete="off" />
+                                    </div>
+                                </td>
+                                <td><span id="emailchange" class="fad fa-pencil"></span></td>
+                                <td><span id="emailchangeClipboard" class="fad fa-clipboard-check"></span></td>
                             </tr>
                             <tr>
                                 <td> Username:</td>
@@ -53,9 +75,6 @@
                                 <td>{{Auth::user()->updated_at}} </td>
                             </tr>
                         </table>
-
-                        <div id="ibimsmartin">test</div><br />
-                        <div id="ibimsbutton">ich bin ein button ;)</div>
 
                         Meine WG:  @if(Auth::user()->hasActiveFlatshare())
                             Ist in der WG: <b><u>{{Auth::user()->flatshare()->first()->name}}</u></b>

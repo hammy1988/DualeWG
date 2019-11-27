@@ -1,10 +1,22 @@
 
 $(document).ready(function() {
 
-    $("#ibimsbutton").click(function() {
+    $("#givennamechange").click(function () {
+        $("#profilgivenname_show").hide();
+        $("#profilgivenname_input").show();
+        console.log("Wir haben geklickt!");
+    });
 
-        $("#ibimsmartin").html("<span style='color: #65f'; font-weight: bold;>martin</span>");
+    $("#namechange").click(function () {
+        $("#profilname_show").hide();
+        $("#profilname_input").show();
+        console.log("Wir haben geklickt!");
+    });
 
+    $("#emailchange").click(function () {
+        $("#email_show").hide();
+        $("#email_input").show();
+        console.log("Wir haben geklickt!");
     });
 
 });

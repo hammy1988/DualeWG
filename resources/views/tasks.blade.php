@@ -16,7 +16,7 @@
 
         <!-- Task Name -->
             <div class="form-group">
-                <label for="task" class="col-sm-3 control-label">Einkaufsliste</label>
+                <label for="task" class="col-sm-3 control-label">Neuer Artikel</label>
 
                 <div class="col-sm-6">
                     <input type="text" name="name" id="task-name" class="form-control">
@@ -39,7 +39,7 @@
     @if (count($tasks) > 0)
         <div class="panel panel-default">
             <div class="panel-heading">
-                Current Tasks
+                Einkaufsliste
             </div>
 
             <div class="panel-body">
@@ -47,7 +47,7 @@
 
                     <!-- Table Headings -->
                     <thead>
-                    <th>Task</th>
+                    <th>Artikel</th>
                     <th>&nbsp;</th>
                     </thead>
 

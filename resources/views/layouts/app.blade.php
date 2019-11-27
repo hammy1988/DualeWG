@@ -121,7 +121,7 @@
 
     </div>
 
-    <footer class="modal-footer text-center mt-auto py-3">
+    <footer class="wgFooter text-center mt-auto py-3">
         <div class="container">
             <span class="text-muted">{{ __('©2019 /  CreativeInformatics / ')}} <a href=""> Impressum</a></span>
         </div>

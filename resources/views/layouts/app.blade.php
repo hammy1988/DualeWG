@@ -31,7 +31,7 @@
 
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="wgAppContainer">
         <nav class="navbar fixed-top navbar-expand-md navbar-light bg-white shadow-sm wgNavbar">
             <div class="container">
                 <a class="navbar-brand wgBrand" href="{{ url('/') }}">
@@ -105,7 +105,7 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="py-4 wgMainContainer">
             @yield('content')
         </main>
 

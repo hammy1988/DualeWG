@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateUserProfileRequest;
 use Illuminate\Http\Request;
 use App\Flatshare;
 use App\User;
@@ -67,6 +68,16 @@ class UserController extends Controller
                 $flatshare->admin_id = $user->id;
                 $flatshare->save();
             }
+
+            return response()->json($user,200);
+        }
+
+        if ($request->action == 'updateProfile') {
+
+            $user->givenname = $request->givenname;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->save();
 
             return response()->json($user,200);
         }

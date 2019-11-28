@@ -206,7 +206,43 @@ function apiCall_STORE(api, data, callback, xhr) {
     });
 }
 
+function wgDateTimeFormat(conString) {
+    return wgDateTimeFormatDate(new Date(conString));
+}
 
+function wgDateTimeFormatDate(conDate) {
+
+
+    var dd = conDate.getDay();
+    if (dd < 10) {
+        dd =  "0" + dd;
+    }
+
+    var mm = conDate.getMonth();
+    if (mm < 10) {
+        mm =  "0" + mm;
+    }
+    var yy = conDate.getFullYear();
+
+    var hh = conDate.getHours();
+
+    if (hh < 10) {
+        hh =  "0" + hh;
+    }
+    var ss = conDate.getMinutes();
+    if (ss < 10) {
+        ss =  "0" + ss;
+    }
+
+
+    return dd + "." +
+        mm + "." +
+        yy + " " +
+        hh + ":" +
+        ss;
+
+
+}
 
 function wgWaitSpinnerColorChanger() {
 

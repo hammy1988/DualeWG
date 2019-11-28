@@ -1,22 +1,90 @@
+var xhr_updateuser;
+
 
 $(document).ready(function() {
 
-    $("#givennamechange").click(function () {
-        $("#profilgivenname_show").hide();
-        $("#profilgivenname_input").show();
-        console.log("Wir haben geklickt!");
+    $("#profileditbuttonstart").click(function (evt) {
+
+        evt.preventDefault();   // unterdrückt die Funktionen von einem Button (Form-Interaktion)
+
+        $(".profileinputhide").show();
+        $(".profileinputprefilled").hide();
+
+        $("#profileeditstart").hide();
+
+        $("#profileusername_span").addClass("wgcurnotallowed");
+
+        $("#profileeditend").show();
     });
 
-    $("#namechange").click(function () {
-        $("#profilname_show").hide();
-        $("#profilname_input").show();
-        console.log("Wir haben geklickt!");
+
+    $("#profileditbuttonabort").click(function (evt) {
+
+        evt.preventDefault();
+
+        $("#profilgivenname_input").val($("#profilgivenname_span").text().trim());
+        $("#profilname_input").val($("#profilname_span").text().trim());
+        $("#profilemail_input").val($("#profilemail_span").text().trim());
+
+        $(".profileinputhide").hide();
+        $(".profileinputprefilled").show();
+
+        $("#profileeditstart").show();
+
+        $("#profileusername_span").removeClass("wgcurnotallowed");
+
+        $("#profileeditend").hide();
+
     });
 
-    $("#emailchange").click(function () {
-        $("#email_show").hide();
-        $("#email_input").show();
-        console.log("Wir haben geklickt!");
+    $("#profileditbuttonsave").click(function (evt) {
+        evt.preventDefault();
+
+        let jsonData = {
+            action: 'updateProfile',
+            givenname: $("#profilgivenname_input").val(),
+            name: $("#profilname_input").val(),
+            email: $("#profilemail_input").val()
+        }
+
+        apiCall_UPDATE("user", $("#wgProfileUserId").val(), jsonData, wgprofilupdateCallback, xhr_updateuser)
+
     });
+
 
 });
+
+
+function wgprofilupdateCallback(data) {
+
+    let responseData = data.responseData;
+    let status = data.status;
+
+
+    if (status == "success") {
+
+        $("#profilgivenname_span").text(responseData.givenname);
+        $("#profilname_span").text(responseData.name);
+        $("#profilemail_span").text(responseData.email);
+        $("#profilupdatedat_span").text(wgDateTimeFormat(responseData.updated_at));
+
+        $("#profilgivenname_input").val($("#profilgivenname_span").text().trim());
+        $("#profilname_input").val($("#profilname_span").text().trim());
+        $("#profilemail_input").val($("#profilemail_span").text().trim());
+
+        $(".profileinputhide").hide();
+        $(".profileinputprefilled").show();
+
+        $("#profileeditstart").show();
+
+        $("#profileusername_span").removeClass("wgcurnotallowed");
+
+        $("#profileeditend").hide();
+
+
+    } else if (status == "error") {
+
+        // Fehlerbehandlung
+
+    }
+}

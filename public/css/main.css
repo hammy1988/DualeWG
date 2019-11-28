@@ -59,6 +59,10 @@ html, body {
     margin-bottom: 30px;
 }
 
+.wgcurnotallowed {
+    cursor: not-allowed;
+}
+
 .wgArrowBack {
     font-size: 100%;
     margin: 0 15px 0 0;

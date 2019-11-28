@@ -29,6 +29,14 @@ tbody tr:nth-child(even){
     display: none;
 }
 
+.profileinputprefilled {
+
+}
+
+.paragraphDiv {
+    margin: 80px 0 0 0;
+}
+
 #givennamechange:hover {
      cursor: pointer;
      color: #90EE90;
@@ -44,5 +52,7 @@ tbody tr:nth-child(even){
     cursor: pointer;
     color: #90EE90;
 }
+
+
 
 

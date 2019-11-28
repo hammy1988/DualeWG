@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Flatshare;
+use App\Http\Requests\CreateFlatshareRequest;
 use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class FlatshareController extends Controller
 {
@@ -44,8 +47,33 @@ class FlatshareController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-        return var_dump($request->getContent());
+    public function store(CreateFlatshareRequest $request) {
+
+        $createuser = Auth::user();
+
+        $flatfound = true;
+        $tagid = 1000;
+        while ($flatfound) {
+            $tagid = rand(1000, 9999);
+            $flatshare_search = Flatshare::where('name', $request->name)->where('tagid', $tagid)->get();
+
+            if (count($flatshare_search) == 0) {
+                $flatfound = false;
+            } else if (count($flatshare_search) > 8999) {
+                abort(406, 'Too much Flatshare entries');
+            }
+        }
+
+        $flatshare = new Flatshare();
+        $flatshare->name = $request->name;
+        $flatshare->tagid = $tagid;
+        $flatshare->admin_id = $createuser->id;
+        $flatshare->save();
+
+        $createuser->flatshare_id = $flatshare->id;
+        $createuser->save();
+
+        return response()->json($flatshare,201);
     }
 
     /**

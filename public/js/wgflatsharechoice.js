@@ -4,14 +4,14 @@ var xhr_getflat;
 
 $(document).ready(function() {
 
-    $(".wgJoinWaitWrapper").hide();
+    $(".wgWaitWrapper").hide();
 
     $("#wgsearch").on("input", function(e) {
         $("#wgsearchfail").hide();
         $("#wgsearchselectfail").hide();
         if ($("#wgsearch").val().length == 0) {
             emptyWGSearchInput = true;
-            wgsearchCallback(JSON.parse('[]'));
+            wgsearchCallback({"status": "success", "responseData": [] });
         } else {
             emptyWGSearchInput = false;
             xhr_flatchoice = apiCall_INDEX("flatshare", wgsearchCallback, xhr_flatchoice, "q=" +  encodeURIComponent($("#wgsearch").val()));
@@ -28,19 +28,17 @@ $(document).ready(function() {
 
             $(".wgJoinSearchWrapper").hide();
             $(".wgJoinSuccessWrapper").hide();
-            $(".wgJoinWaitWrapper").show();
+            $(".wgWaitWrapper").show();
 
             let jsonData = {
                 action: 'updateFlatshare',
                 flatshareid: flatshareid
             };
 
-            apiCall_STORE('user', $("#wgJoinUserId").val(), jsonData, wgjoinCallback, xhr_writeuser);
+            apiCall_UPDATE('user', $("#wgJoinUserId").val(), jsonData, wgjoinCallback, xhr_writeuser);
 
         }
     });
-
-    wgsearchWaitSpinnerColorChanger();
 
 });
 
@@ -53,7 +51,7 @@ function wgsearchCallback(data) {
 
     if (status == "success") {
 
-        if (responseData.length == 0) {
+        if (responseData.length == 0 || responseData.length === 'undefined') {
             wgsearchoutput = $("<span>", {class: "wgsearchnooutput"}).text("Keine WG gefunden.");
         } else {
             wgsearchoutput = $("<ul>", {class: "wgsearchoutput"});
@@ -93,7 +91,7 @@ function wgjoinCallback(data) {
 
     } else if (status == "error") {
 
-        $(".wgJoinWaitWrapper").hide();
+        $(".wgWaitWrapper").hide();
         $(".wgJoinSuccessWrapper").hide();
         $("#wgsearchfail").show();
         $(".wgJoinSearchWrapper").show();
@@ -113,22 +111,9 @@ function wgjoingetflatshareCallback(data) {
 
 
     $(".wgJoinSearchWrapper").hide();
-    $(".wgJoinWaitWrapper").hide();
+    $(".wgWaitWrapper").hide();
     $(".wgJoinSuccessWrapper").show();
 
 }
 
 
-function wgsearchWaitSpinnerColorChanger() {
-
-    var spinner = $("#wgsearchwaitspinner");
-
-        if (spinner.hasClass("wgJoinColorChange")) {
-            spinner.removeClass("wgJoinColorChange");
-        } else {
-            spinner.addClass("wgJoinColorChange");
-        }
-
-        setTimeout(wgsearchWaitSpinnerColorChanger, 5000);
-
-}

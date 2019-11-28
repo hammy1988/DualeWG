@@ -59,7 +59,10 @@ html, body {
     margin-bottom: 30px;
 }
 
-
+.wgArrowBack {
+    font-size: 100%;
+    margin: 0 15px 0 0;
+}
 
 .wgNavbar {
     background-image: linear-gradient(to right, #79ffff 0%, #e896ff 100%);

@@ -13,7 +13,12 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Einer WG beitreten') }}</div>
+                    <div class="card-header">
+                        <a href="{{ route("flatsharechoiceoptions") }}" class="wgArrowBack">
+                            <span class="fas fa-arrow-left"></span>
+                        </a>
+                        {{ __('Einer WG beitreten') }}
+                    </div>
 
                     <div class="card-body wgJoinSearchWrapper">
                         @csrf
@@ -34,11 +39,11 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="col-md-12 wgsearcherrormessages">
-                                <span id="wgsearchfail" class="invalid-feedback" role="alert">
+                            <div class="col-md-12 wgchoiceerrormessages">
+                                <span id="wgsearchfail" class="invalid-feedback wgchoicefail" role="alert">
                                         <strong>Da hat etwas nicht geklappt. Probiere es noch einmal.</strong>
                                 </span>
-                                <span id="wgsearchselectfail" class="invalid-feedback" role="alert">
+                                <span id="wgsearchselectfail" class="invalid-feedback wgchoicefail" role="alert">
                                         <strong>Bitte eine WG auswählen.</strong>
                                 </span>
                             </div>
@@ -57,15 +62,15 @@
 
                     </div>
 
-                    <div class="card-body wgJoinWaitWrapper">
-                        <span id="wgsearchwaitspinner" class="fas fa-spinner fa-pulse"></span>
+                    <div class="card-body wgWaitWrapper">
+                        <span id="wgwaitspinner" class="fas fa-spinner fa-pulse"></span>
                     </div>
 
                     <div class="card-body wgJoinSuccessWrapper">
                         <div class="form-group row">
                             <div class="col-md-12">
                                 <div class="wgJoinSuccessWelcome">
-                                    Willkommen in der WG <br /><br />
+                                    Willkommen in der WG <br />
                                     <span id="wgsearchsuccessflatsharename"></span>
                                 </div>
                                 <div class="wgJoinSuccessRedirect">

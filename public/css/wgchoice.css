@@ -24,7 +24,7 @@
     /*text-align: center;*/
 }
 
-.wgJoinSearchWrapper .wgsearcherrormessages {
+.wgchoiceerrormessages {
     text-align: center;
 }
 
@@ -61,7 +61,7 @@
     color: #fff;
 }
 
-#wgsearchfail {
+.wgchoicefail {
     display: none;
 }
 
@@ -69,44 +69,43 @@
     display: none;
 }
 
-.wgJoinWaitWrapper {
+.wgWaitWrapper  {
     text-align: center;
 }
 
-.wgJoinWaitWrapper span {
+.wgWaitWrapper span {
     font-size: 500%;
     margin: 40px 0 40px 0;
     color: #3c86f9;
     transition: color 5s linear;
 }
-.wgJoinWaitWrapper span.wgJoinColorChange {
+.wgWaitWrapper span.wgColorChange {
     color: #ed88f0;
 }
 
 
 
-.wgJoinSuccessWrapper {
+.wgJoinSuccessWrapper, .wgCreateSuccessWrapper {
     display: none;
     text-align: center;
 }
 
-.wgJoinSuccessWelcome {
+.wgJoinSuccessWelcome, .wgCreateSuccessWelcome {
     font-weight: bold;
     font-size: 200%;
     margin: 20px 0 30px 0;
 }
 
-.wgJoinSuccessWelcome .fa-smile-plus {
-    color: #eb0;
-    font-size: 300%;
-    margin: 0 0 0 30px;
-}
 
-.wgJoinSuccessRedirect {
+.wgJoinSuccessRedirect, .wgCreateSuccessRedirect {
     font-size: 150%;
 }
 
-.wgJoinSuccessRedirect .fa-chart-network {
+.wgJoinSuccessRedirect .fa-chart-network, .wgCreateSuccessRedirect .fa-chart-network {
     color: #c09;
     margin: 0 0 0 5px;
+}
+
+#wgsearchsuccessflatsharename, #wgcreatesuccessflatsharename {
+    margin: 10px 0 10px 0;
 }

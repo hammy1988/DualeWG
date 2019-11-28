@@ -133,18 +133,17 @@
 
                                 <div class="col-md-6">
                                     <div class="wgInputFieldWrapper_Show">
-                                        <span>{{ Auth::user()->flatshare()->first()->name }}</span>
+                                        <span>
+                                            @if(Auth::user()->hasActiveFlatshare())
+                                                {{ Auth::user()->flatshare()->first()->name }}
+                                            @else
+                                                Du bist aktuell in keiner WG
+                                            @endif
+                                        </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                            Meine WG:  @if(Auth::user()->hasActiveFlatshare())
-                            Ist in der WG: <b><u>{{Auth::user()->flatshare()->first()->name}}</u></b>
-                        @else
-                            Oh, leider scheinst du keiner WG beigetreten zu sein!
-                        @endif
-                        <br>
 
                      </div>
                     <div>

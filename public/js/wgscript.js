@@ -15,6 +15,7 @@ function apiCall_INDEX(api, callback, xhr, query = '') {
     if (xhr !== undefined) {
         xhr.abort();
     }
+
     xhr = $.ajax({
         type: "GET",
         dataType: "json",

@@ -123,6 +123,31 @@ html, body {
     background-position: left;
 }
 
+
+.wgInputFieldWrapper_Show {
+    background-color: #999;
+    transition: background-color 1s;
+    padding: 0px 0px 2px 0px;
+}
+.wgInputFieldWrapper_Show span {
+    background-color: #fff;
+    border-radius: 0px;
+    border: none;
+    display: block;
+    width: 100%;
+    height: calc(1.6em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #495057;
+    background-clip: padding-box;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.wgInputFieldWrapper_Show:hover {
+    background-color: #333;
+}
+
 .wgInputField {
     background-color: #fff;
     border-radius: 0px;
@@ -195,6 +220,14 @@ html, body {
 .wgNavMenu .wgNavLogout span {
     color:#f2235d;
 }
+
+/*
+###################
+###             ###
+###   Footer    ###
+###             ###
+###################
+ */
 
 .wgFooter {
     position: fixed;

@@ -19,15 +19,15 @@
                 <label for="task" class="col-sm-3 control-label">Neuer Artikel</label>
 
                 <div class="col-sm-6">
-                    <input type="text" name="name" id="task-name" class="form-control">
-                    <input type="text" name="name2" id="task-name2" class="form-control">
+                    <input type="text" name="name" id="task-name" class="form-control" placeholder="Artikel">
+                    <input type="text" name="menge" id="task-menge" class="form-control" placeholder="Menge">
                 </div>
             </div>
 
             <!-- Add Task Button -->
-            <div class="form-group">
+               <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-6">
-                    <button type="submit" class="btn btn-default">
+                     <button type="submit" class="btn btn-default">
                         <i class="fa fa-plus"></i> Artikel hinzufügen
                     </button>
                 </div>
@@ -48,7 +48,8 @@
                     <!-- Table Headings -->
                     <thead>
                     <th>Artikel</th>
-                    <th>&nbsp;</th>
+                    <th>&nbsp;Menge</th>
+                    <th>Gekauft</th>
                     </thead>
 
                     <!-- Table Body -->
@@ -60,9 +61,11 @@
                                 <div>{{ $task->name }}</div>
                             </td>
                             <td class="table-text">
-                                <div>{{ $task->name2 }}</div>
+                                <div>{{ $task->menge }}</div>
                             </td>
-
+                            <td>
+                                <input type="checkbox" name="gekauft">
+                            </td>
 
 
                             <!-- Delete Button -->

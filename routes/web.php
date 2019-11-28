@@ -54,6 +54,7 @@ Route::post('/grocerylist/task', function (Request $request) {
 
     $task = new Task;
     $task->name = $request->name;
+    $task->menge = $request->menge;
     $task->save();
 
     return redirect('/grocerylist');

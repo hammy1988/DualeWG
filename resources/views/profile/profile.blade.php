@@ -100,7 +100,7 @@
                                     {{ __('Profil speichern') }}
                                 </button>
                                 <input type="hidden" id="wgProfileUserId" name="wgProfileUserId" value="{{ Auth::id() }}" />
-                                <a href="{{ route("profile") }}" id="profileditbuttonabort" type="submit" class="btn btn-primary wgButton">
+                                <a href="{{ route("profile") }}" id="profileditbuttonabort" class="btn btn-primary wgButton">
                                     {{ __('Abbrechen') }}
                                 </a>
                             </div>

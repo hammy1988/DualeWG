@@ -54,7 +54,29 @@ class UserController extends Controller
         //
         $user = User::findOrFail($id);
 
-        if ($request->action == 'acceptFlatshare' || $request->action == 'deniedFlatshare') {
+        if ($request->action == 'deleteFlatshare') {
+            // Nur WG-Admin autorisiert, oder selbst
+
+
+            $actUser = Auth::user();
+            if (!(($actUser->isFlatshareAdmin() && $user->flatshare_id == $actUser->flatshare->id) ||
+                $user->id == Auth::id())) {
+
+                abort(403, 'Access denied');
+
+            } else {
+
+                if ($request->action == 'deleteFlatshare') {
+                    $user->flatshare_id = null;
+                    $user->flatsharejoin_at = null;
+                }
+                $user->save();
+
+            }
+
+        } else if ($request->action == 'acceptFlatshare' ||
+                   $request->action == 'deniedFlatshare') {
+            // Nur WG-Admin autorisiert
 
             $actUser = Auth::user();
             if (!($actUser->isFlatshareAdmin() &&
@@ -74,7 +96,10 @@ class UserController extends Controller
                 $user->save();
             }
 
-        } else {
+        } else if ($request->action == 'updateFlatshare' ||
+                   $request->action == 'updateProfile') {
+
+            // Nur selbst
 
             if ($user->id != Auth::id()) {
                 abort(403, 'Access denied');

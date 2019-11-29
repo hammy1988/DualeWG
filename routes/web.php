@@ -19,9 +19,11 @@ Route::get('/', 'FlatshareMainController@index')->name('dashboard');
 
 Route::prefix('/flatshare')->group(function() {
 
-    Route::get('choice', 'FlatshareChoiceController@index')->name('flatsharechoiceoptions');
-    Route::get('join', 'FlatshareChoiceController@join')->name('flatsharechoicejoin');
-    Route::get('create', 'FlatshareChoiceController@create')->name('flatsharechoicecreate');
+    Route::middleware('checkNoFlatshareRequest')->get('choice', 'FlatshareChoiceController@index')->name('flatsharechoiceoptions');
+    Route::middleware('checkNoFlatshareRequest')->get('join', 'FlatshareChoiceController@join')->name('flatsharechoicejoin');
+    Route::middleware('checkNoFlatshareRequest')->get('create', 'FlatshareChoiceController@create')->name('flatsharechoicecreate');
+    Route::middleware('checkFlatshareRequest')->get('request', 'FlatshareChoiceController@request')->name('flatsharerequest');
+
 
 });
 

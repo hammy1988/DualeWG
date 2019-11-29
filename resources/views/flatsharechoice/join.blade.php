@@ -70,8 +70,9 @@
                         <div class="form-group row">
                             <div class="col-md-12">
                                 <div class="wgJoinSuccessWelcome">
-                                    Willkommen in der WG <br />
+                                    Eine Beitrittsanfrage für die WG <br />
                                     <span id="wgsearchsuccessflatsharename"></span>
+                                    <br /> wurde versandt.
                                 </div>
                                 <div class="wgJoinSuccessRedirect">
                                     <a href="/">Weiter zur Übersicht <span class="fad fa-chart-network"></span></a>

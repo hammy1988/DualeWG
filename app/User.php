@@ -44,7 +44,14 @@ class User extends Authenticatable
     }
 
     public function hasActiveFlatshare() {
-        if ($this->flatshare()->exists()) {
+        if ($this->flatshare()->exists() && $this->flatsharejoin_at != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public function hasFlatshareRequest() {
+        if ($this->flatshare()->exists() && $this->flatsharejoin_at == null) {
             return true;
         }
         return false;

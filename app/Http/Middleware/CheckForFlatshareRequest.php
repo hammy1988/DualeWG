@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class CheckForActiveFlatshare
+class CheckForFlatshareRequest
 {
     /**
      * Handle an incoming request.
@@ -15,8 +15,8 @@ class CheckForActiveFlatshare
      */
     public function handle($request, Closure $next)
     {
-        if (!($request->user()->hasActiveFlatshare())) {
-            return redirect(route('flatsharechoiceoptions'));
+        if (!($request->user()->hasFlatshareRequest())) {
+            return redirect(route('dashboard'));
         }
         return $next($request);
     }

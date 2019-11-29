@@ -16,6 +16,7 @@ class FlatshareMainController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('checkFlatshare');
+        $this->middleware('checkNoFlatshareRequest');
     }
 
     /**

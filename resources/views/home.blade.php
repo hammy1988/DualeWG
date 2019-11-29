@@ -1,4 +1,12 @@
-@extends('layouts.app')
+@extends("layouts.app", ["title" => "Auswahl"])
+
+@section('headcss')
+    <link href="{{ asset('css/modules/dashboard.css') }}" rel="stylesheet">
+@endsection
+
+@section('headjs')
+    <script src="{{ asset('js/wgdashboard.js') }}"></script>
+@endsection
 
 @section('content')
 <div class="container">
@@ -40,13 +48,20 @@
                     Ist WG-Admin:
                     @if(Auth::user()->isFlatshareAdmin())
                         <b>ja</b>
+                        <br />
+                        <b style="font-weight: 800">&nbsp;&nbsp;WG-Anfragen: </b><br />
+                        <ul>
+                        @foreach ($flatshareUsers->users->where('flatsharejoin_at',null) as $wguser)
+                            <li id="wgcontroluserrequest_{{ $wguser->id }}">{{ $wguser->username }} (<a href="#" class="wgcontrolaccept" data-userid="{{ $wguser->id }}">annehmen</a> | <a href="#" class="wgcontroldenied" data-userid="{{ $wguser->id }}">verweigern</a>)</li>
+                        @endforeach
+                        </ul>
                     @else
                         <b>nein</b>
                     @endif
                     <br /><br />
                     WG-Datensatz:<br />
                     <code>
-                        {{Auth::user()->flatshare()->first()}}
+                        {{ Auth::user()->flatshare()->first() }}
                     </code>
                     <br /><br />
                     WG-Admin:
@@ -56,7 +71,7 @@
                     <br /><br />
                     Alle WG Mitglieder:<br />
                     <ul>
-                    @foreach ($flatshareUsers->users as $wguser)
+                    @foreach ($flatshareUsers->users->where("flatsharejoin_at","<>",null) as $wguser)
                             <li><code>{{ $wguser }}</code></li>
                     @endforeach
                     </ul>

@@ -63,6 +63,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'checkFlatshare' => \App\Http\Middleware\CheckForActiveFlatshare::class,
         'checkNoFlatshare' => \App\Http\Middleware\CheckForInactiveFlatshare::class,
+        'checkFlatshareRequest' => \App\Http\Middleware\CheckForFlatshareRequest::class,
+        'checkNoFlatshareRequest' => \App\Http\Middleware\CheckForNoFlatshareRequest::class,
     ];
 
     /**

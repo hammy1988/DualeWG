@@ -33,4 +33,8 @@ class FlatshareChoiceController extends Controller
     public function create() {
         return view('flatsharechoice.create');
     }
+
+    public function request() {
+        return view('flatsharechoice.request');
+    }
 }

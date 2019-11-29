@@ -54,34 +54,57 @@ class UserController extends Controller
         //
         $user = User::findOrFail($id);
 
-        if ($user->id != Auth::id()) {
-            abort(403, 'Access denied');
-        }
+        if ($request->action == 'acceptFlatshare' || $request->action == 'deniedFlatshare') {
 
-        if ($request->action == 'updateFlatshare') {
+            $actUser = Auth::user();
+            if (!($actUser->isFlatshareAdmin() &&
+                  $user->flatshare_id == $actUser->flatshare->id)) {
 
-            $flatshare = Flatshare::findOrFail($request->flatshareid);
-            $user->flatshare_id = $flatshare->id;
-            $user->save();
+                abort(403, 'Access denied');
 
-            if ($flatshare->admin_id == 0) {
-                $flatshare->admin_id = $user->id;
-                $flatshare->save();
+            } else {
+
+                if ($request->action == 'acceptFlatshare') {
+                    $user->flatsharejoin_at = new \DateTime("now", new \DateTimeZone("UTC"));
+                }
+                if ($request->action == 'deniedFlatshare') {
+                    $user->flatshare_id = null;
+                    $user->flatsharejoin_at = null;
+                }
+                $user->save();
             }
 
-            return response()->json($user,200);
+        } else {
+
+            if ($user->id != Auth::id()) {
+                abort(403, 'Access denied');
+            }
+
+            if ($request->action == 'updateFlatshare') {
+
+                $flatshare = Flatshare::findOrFail($request->flatshareid);
+                $user->flatshare_id = $flatshare->id;
+                $user->save();
+
+                if ($flatshare->admin_id == 0) {
+                    $flatshare->admin_id = $user->id;
+                    $flatshare->save();
+                }
+
+                return response()->json($user,200);
+            }
+
+            if ($request->action == 'updateProfile') {
+
+                $user->givenname = $request->givenname;
+                $user->name = $request->name;
+                $user->email = $request->email;
+                $user->save();
+
+                return response()->json($user,200);
+            }
+
         }
-
-        if ($request->action == 'updateProfile') {
-
-            $user->givenname = $request->givenname;
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->save();
-
-            return response()->json($user,200);
-        }
-
 
         return $user;
 

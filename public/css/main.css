@@ -242,11 +242,11 @@ html, body {
 
 
 
-#wgwaitspinner {
+.wgwaitspinner {
     color: #3c86f9;
     transition: color 5s linear;
 }
-#wgwaitspinner.wgColorChange {
+.wgwaitspinner.wgColorChange {
     color: #ed88f0;
 }
 

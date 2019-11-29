@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="card-body wgWaitWrapper">
-                        <span id="wgwaitspinner" class="fas fa-spinner fa-pulse"></span>
+                        <span class="fas fa-spinner fa-pulse wgwaitspinner"></span>
                     </div>
 
                     <div class="card-body wgCreateSuccessWrapper">

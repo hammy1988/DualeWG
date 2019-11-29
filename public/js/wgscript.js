@@ -247,13 +247,15 @@ function wgDateTimeFormatDate(conDate) {
 
 function wgWaitSpinnerColorChanger() {
 
-    var spinner = $("#wgwaitspinner");
+    var spinner = $(".wgwaitspinner");
 
-    if (spinner.hasClass("wgColorChange")) {
-        spinner.removeClass("wgColorChange");
-    } else {
-        spinner.addClass("wgColorChange");
-    }
+    spinner.each(function() {
+        if ($(this).hasClass("wgColorChange")) {
+            $(this).removeClass("wgColorChange");
+        } else {
+            $(this).addClass("wgColorChange");
+        }
+    });
 
     setTimeout(wgWaitSpinnerColorChanger, 5000);
 

@@ -1,20 +1,19 @@
 var xhr_updateuser;
 
-
 $(document).ready(function() {
 
     $("#profileditbuttonstart").click(function (evt) {
 
         evt.preventDefault();   // unterdrückt die Funktionen von einem Button (Form-Interaktion)
 
-        $(".profileinputhide").show();
-        $(".profileinputprefilled").hide();
+            $(".profileinputhide").show();
+            $(".profileinputprefilled").hide();
 
-        $("#profileeditstart").hide();
+            $("#profileeditstart").hide();
 
-        $("#profileusername_span").addClass("wgcurnotallowed");
+            $("#profileusername_span").addClass("wgcurnotallowed");
 
-        $("#profileeditend").show();
+            $("#profileeditend").show();
     });
 
 
@@ -80,6 +79,7 @@ function wgprofilupdateCallback(data) {
         $("#profileusername_span").removeClass("wgcurnotallowed");
 
         $("#profileeditend").hide();
+
 
 
     } else if (status == "error") {

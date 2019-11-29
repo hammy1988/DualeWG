@@ -240,6 +240,16 @@ html, body {
     color:#f2235d;
 }
 
+
+
+#wgwaitspinner {
+    color: #3c86f9;
+    transition: color 5s linear;
+}
+#wgwaitspinner.wgColorChange {
+    color: #ed88f0;
+}
+
 /*
 ###################
 ###             ###

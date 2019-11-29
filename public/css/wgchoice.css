@@ -72,15 +72,9 @@
 .wgWaitWrapper  {
     text-align: center;
 }
-
 .wgWaitWrapper span {
     font-size: 500%;
     margin: 40px 0 40px 0;
-    color: #3c86f9;
-    transition: color 5s linear;
-}
-.wgWaitWrapper span.wgColorChange {
-    color: #ed88f0;
 }
 
 

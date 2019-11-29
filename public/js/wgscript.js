@@ -207,40 +207,45 @@ function apiCall_STORE(api, data, callback, xhr) {
     });
 }
 
-function wgDateTimeFormat(conString) {
-    return wgDateTimeFormatDate(new Date(conString));
+function wgDateTimeFormat(conUTCDateTime) {
+
+    let localDateTime = new Date(conUTCDateTime);
+    localDateTime.setHours(localDateTime.getHours()+(localDateTime.getTimezoneOffset()/60*-1));
+
+    return wgDateTimeFormatDate(localDateTime);
 }
 
-function wgDateTimeFormatDate(conDate) {
+function wgDateTimeFormatDate(conLocalDateTime) {
 
 
-    var dd = conDate.getDay();
+    var dd = conLocalDateTime.getDay();
     if (dd < 10) {
         dd =  "0" + dd;
     }
 
-    var mm = conDate.getMonth();
+    var mm = conLocalDateTime.getMonth();
     if (mm < 10) {
         mm =  "0" + mm;
     }
-    var yy = conDate.getFullYear();
+    var yy = conLocalDateTime.getFullYear();
 
-    var hh = conDate.getHours();
+    var hh = conLocalDateTime.getHours();
 
     if (hh < 10) {
         hh =  "0" + hh;
     }
-    var ss = conDate.getMinutes();
+    var ss = conLocalDateTime.getMinutes();
     if (ss < 10) {
         ss =  "0" + ss;
     }
 
-
-    return dd + "." +
+    var localDateTimeFormated = dd + "." +
         mm + "." +
         yy + " " +
         hh + ":" +
         ss;
+
+    return localDateTimeFormated;
 
 
 }

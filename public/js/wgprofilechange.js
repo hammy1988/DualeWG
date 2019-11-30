@@ -86,7 +86,7 @@ function wgprofilupdateCallback(data) {
 
         // Fehlerbehandlung
         if (responseData.status == 422) {
-            let errorJSON = responseData.responseJSON.error;
+            let errorJSON = responseData.responseJSON.errors;
 
             let errorText = "Fehler:\n"
             for (var err in errorJSON) {

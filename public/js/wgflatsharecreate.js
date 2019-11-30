@@ -50,10 +50,33 @@ function wgcreateCallback(data) {
 
     } else if (status == "error") {
 
+        // Fehlerbehandlung
+
         $(".wgWaitWrapper").hide();
         $(".wgCreateSuccessWrapper").hide();
+
+        if (responseData.status == 422) {
+            let errorJSON = responseData.responseJSON.errors;
+
+            let errorText = "Fehler:\n"
+            for (var err in errorJSON) {
+
+                if (err == 'name') {
+                    $("#wgcreatefail").html(errorJSON[err]);
+                } else {
+                    console.log(err);
+                }
+
+                errorText += "  - " + err + ": " + errorJSON[err] + "\n";
+            }
+            console.error(errorText)
+        } else {
+            $("#wgcreatefail").text("Da hat etwas nicht geklappt. Probiere es noch einmal.");
+        }
+
         $("#wgcreatefail").show();
         $(".wgCreateWrapper").show();
+
 
     }
 

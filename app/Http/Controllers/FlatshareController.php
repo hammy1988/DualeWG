@@ -7,6 +7,7 @@ use App\Http\Requests\CreateFlatshareRequest;
 use Illuminate\Http\Request;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class FlatshareController extends Controller
 {
@@ -50,6 +51,25 @@ class FlatshareController extends Controller
     public function store(CreateFlatshareRequest $request) {
 
         $createuser = Auth::user();
+
+
+        /*$validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'regex:/^[0-9a-zA-ZöäüÖÄÜ_\-.]+$/m', 'max:255'],
+        ]);*/
+
+        $rules = [
+            'name' => ['required', 'string', 'regex:/^[0-9a-zA-ZöäüÖÄÜ_\-.]+$/m', 'max:255'],
+        ];
+        $customMessages = [
+            'name.regex' => 'Der WG Name entspricht nicht den Voraussetzung. <br />Erlaubte Eingaben sind Buchstaben, Zahlen, Punkt, Unterstrich, Bindestrich.',
+            'name.required' => 'Bitte einen WG Namen angeben.',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $customMessages);
+
+        if ($validator->fails()) {
+            return response()->json(['errors'=>$validator->errors()], 422);
+        }
 
         $flatfound = true;
         $tagid = 1000;

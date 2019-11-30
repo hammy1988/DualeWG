@@ -86,5 +86,12 @@ function wgprofilupdateCallback(data) {
 
         // Fehlerbehandlung
 
+        let errorJSON = responseData.responseJSON.error;
+
+        console.log("Fehler:")
+        for (var err in errorJSON) {
+            console.log("  - " + err + ": " + errorJSON[err]);
+        }
+
     }
 }

@@ -4,6 +4,12 @@ $(document).ready(function() {
 
     wgWaitSpinnerColorChanger();
 
+    console[console.info ? 'info' : 'log'](
+        "Willkommen auf der Dualen WG Seite ♥\n" +
+        "Die Seite ist nun geladen, und du darfst Sachen machen ツ\n\n" +
+        "https://www.dualewg.de/\n\n" +
+        "Viel Spaß wünschen Andi, Luca, Basti, Martin und Ölf"
+    );
 });
 
 function apiCall_INDEX(api, callback, xhr, query = '') {

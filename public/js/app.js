@@ -6302,7 +6302,8 @@ __webpack_require__.r(__webpack_exports__);
   Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
-//# sourceMappingURL=bootstrap.js.map
+//#
+// sourceMappingURL=bootstrap.js.map
 
 
 /***/ }),
@@ -36679,7 +36680,8 @@ Popper.placements = placements;
 Popper.Defaults = Defaults;
 
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
-//# sourceMappingURL=popper.js.map
+//#
+// sourceMappingURL=popper.js.map
 
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
@@ -46359,20 +46361,20 @@ if (inBrowser) {
       if (devtools) {
         devtools.emit('init', Vue);
       } else {
-        console[console.info ? 'info' : 'log'](
+        /*console[console.info ? 'info' : 'log'](
           'Download the Vue Devtools extension for a better development experience:\n' +
           'https://github.com/vuejs/vue-devtools'
-        );
+        );*/
       }
     }
     if (config.productionTip !== false &&
       typeof console !== 'undefined'
     ) {
-      console[console.info ? 'info' : 'log'](
+      /*console[console.info ? 'info' : 'log'](
         "You are running Vue in development mode.\n" +
         "Make sure to turn on production mode when deploying for production.\n" +
         "See more tips at https://vuejs.org/guide/deployment.html"
-      );
+      );*/
     }
   }, 0);
 }

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\View;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class FlatshareMainController extends Controller
+class FlatshareViewController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,9 +25,12 @@ class FlatshareMainController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
+    public function index() {
         $flatshareUsers = Auth::user()->flatshare()->first();
         return view('home', compact('flatshareUsers'));
+    }
+
+    public function flatsharemanagemeint() {
+        return view('management.flatsharemain');
     }
 }

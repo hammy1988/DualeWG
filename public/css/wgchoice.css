@@ -71,6 +71,7 @@
 
 .wgWaitWrapper  {
     text-align: center;
+    display: none;
 }
 .wgWaitWrapper span {
     font-size: 500%;

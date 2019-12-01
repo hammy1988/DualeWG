@@ -15,19 +15,26 @@ use App\Task;
 use Illuminate\Http\Request;
 
 
-Route::get('/', 'FlatshareMainController@index')->name('dashboard');
+Route::get('/', 'View\FlatshareViewController@index')->name('dashboard');
 
 Route::prefix('/flatshare')->group(function() {
 
-    Route::middleware('checkNoFlatshareRequest')->get('choice', 'FlatshareChoiceController@index')->name('flatsharechoiceoptions');
-    Route::middleware('checkNoFlatshareRequest')->get('join', 'FlatshareChoiceController@join')->name('flatsharechoicejoin');
-    Route::middleware('checkNoFlatshareRequest')->get('create', 'FlatshareChoiceController@create')->name('flatsharechoicecreate');
-    Route::middleware('checkFlatshareRequest')->get('request', 'FlatshareChoiceController@request')->name('flatsharerequest');
+    Route::middleware('checkNoFlatshareRequest')->get('choice', 'View\FlatshareChoiceViewController@index')->name('flatsharechoiceoptions');
+    Route::middleware('checkNoFlatshareRequest')->get('join', 'View\FlatshareChoiceViewController@join')->name('flatsharechoicejoin');
+    Route::middleware('checkNoFlatshareRequest')->get('create', 'View\FlatshareChoiceViewController@create')->name('flatsharechoicecreate');
+    Route::middleware('checkFlatshareRequest')->get('request', 'View\FlatshareChoiceViewController@request')->name('flatsharerequest');
 
 
 });
 
-Route::get('/profile', 'ProfileController@index')->name('profile');
+Route::prefix('/management')->group(function() {
+
+    Route::get('profile', 'View\UserViewController@index')->name('profile');
+    Route::get('flatshare', 'View\FlatshareViewController@flatsharemanagemeint')->name('flatsharemanagement');
+
+
+});
+
 
 /**
  * Display All Tasks

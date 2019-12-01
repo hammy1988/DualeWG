@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\View;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class FlatshareChoiceController extends Controller
+class FlatshareChoiceViewController extends Controller
 {
     /**
      * Create a new controller instance.

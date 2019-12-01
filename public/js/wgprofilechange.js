@@ -99,6 +99,17 @@ function wgprofilupdateCallback(data) {
     } else if (status == "error") {
 
         // Fehlerbehandlung
+        if (responseData.status == 422) {
+            let errorJSON = responseData.responseJSON.errors;
+
+            let errorText = "Fehler:\n"
+            for (var err in errorJSON) {
+                errorText += "  - " + err + ": " + errorJSON[err] + "\n";
+            }
+            console.error(errorText)
+        } else {
+            console.error("Fehler: " + responseData.status + " - " + responseData.statusText);
+        }
 
     }
 }

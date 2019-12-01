@@ -15,12 +15,11 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" />
     <link href="{{ asset('css/fontawesome_all.css')  }}" rel="stylesheet" />
-    <link href="{{ asset('css/fontawesome_duotone.css')  }}" rel="stylesheet" />
+    <link href="{{ asset('css/fontawesome_duotone.css') }}" rel="stylesheet" />
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
-    <link href="{{ asset('lib/font-awesome-4.7.0/css/font-awesome.min.css') }}" rel="stylesheet" />
     @yield('headcss')
 
     <!-- Scripts -->
@@ -67,37 +66,48 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right wgNavMenu" aria-labelledby="navbarDropdown">
+                                    <div class="wgNavSection wgNavSectionGold">
+                                        <a class="dropdown-item wgNavProfile" href="{{ route('profile') }}">
+                                            <span class="fad fa-beer" aria-hidden="true"></span>
+                                            {{ __('Profil') }}
+                                        </a>
+                                        @if(Auth::user()->hasActiveFlatshare())
+                                        <a class="dropdown-item wgNavFlatsharemanagement" href="{{ route('flatsharemanagement') }}">
+                                            <span class="fad fa-home" aria-hidden="true"></span>
+                                            {{ __('Deine WG') }}
+                                        </a>
+                                        @endif
+                                    </div>
 
-                                    <a class="dropdown-item wgNavProfile border-bottom" href="{{ route('profile') }}">
-                                        <span class="fad fa-beer" aria-hidden="true"></span>
-                                        {{ __('Profil') }}
-                                    </a>
+                                    @if(Auth::user()->hasActiveFlatshare())
+                                    <div class="wgNavSection wgNavSectionBlue">
+                                        <a class="dropdown-item wgNavDashboard" href="{{ route('dashboard') }}">
+                                            <span class="fad fa-newspaper" aria-hidden="true"></span>
+                                            {{ __('Dashboard') }}
+                                        </a>
+                                            <a class="dropdown-item wgNavGroceryList" href="{{ route('grocerylist') }}">
+                                            <span class="fad fa-list"></span>
+                                            {{ __('Einkaufsliste') }}
+                                        </a>
+                                        <a class="dropdown-item wgNavAppointment" href="{{ route('dashboard') }}">
+                                            <span class="fad fa-calendar-week"></span>
+                                            {{ __('Kalender') }}
+                                        </a>
+                                    </div>
+                                    @endif
 
-                                    <a class="dropdown-item wgNavDashboard" href="{{ route('profile') }}">
-                                        <span class="fad fa-newspaper" aria-hidden="true"></span>
-                                        {{ __('Dashboard') }}
-                                    </a>
+                                    <div class="wgNavSection wgNavSectionRed">
+                                        <a class="dropdown-item wgNavLogout" id="wgLogoutButton" href="{{ route('logout') }}">
+                                            <span class="fad fa-sign-out" aria-hidden="true"></span>
+                                            {{ __('Abmelden') }}
+                                        </a>
+                                    </div>
 
-                                    <a class="dropdown-item wgNavGroceryList" href="{{ route('grocerylist') }}">
-                                        <span class="fad fa-list"></span>
-                                        {{ __('Einkaufsliste') }}
-                                    </a>
-                                    <a class="dropdown-item wgNavAppointment" href="{{ route('profile') }}">
-                                        <span class="fad fa-calendar-week"></span>
-                                        {{ __('Kalender') }}
-                                    </a>
-
-                                    <a class="dropdown-item wgNavLogout border-top" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        <span class="fad fa-sign-out" aria-hidden="true"></span>
-                                        {{ __('Abmelden') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
                                 </div>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                             </li>
                         @endguest
                     </ul>
@@ -125,7 +135,7 @@
 
     <footer class="wgFooter text-center mt-auto py-3">
         <div class="container">
-            <span class="text-muted">{{ __('©2019 /  CreativeInformatics / ')}} <a href=""> Impressum</a></span>
+            <span class="text-muted">{{ __('© ') . date("Y") . __(' ')}}<img class="wgcisLogo" src="{{ asset('img/creativeInformatics.png')  }}" alt="Creative Informatics Logo" /></span>
         </div>
     </footer>
 </body>

@@ -5,7 +5,7 @@
 @endsection
 
 @section('headjs')
-
+    <script src="{{ asset('js/wgflatsharerequest.js') }}"></script>
 @endsection
 
 @section("content")
@@ -19,7 +19,8 @@
 
 
                         <div class="wgRequest">
-                            WG ANFRAGE STEHT AUS.
+                            WG ANFRAGE STEHT AUS.<br />
+                            <a href="#" id="delWgRequest" data-userid="{{ Auth::id() }}">Anfrage löschen</a>
                         </div>
                     </div>
                 </div>

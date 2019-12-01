@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\View;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class UserViewController extends Controller
 {
     public function __construct()
     {
@@ -14,6 +15,6 @@ class ProfileController extends Controller
     //
     public function index()
     {
-        return view('profile.profile');
+        return view('management.profilemain');
     }
 }

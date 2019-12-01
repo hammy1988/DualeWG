@@ -5,32 +5,61 @@ $(document).ready(function() {
     $(".wgWaitWrapper").hide();
 
 
-    $("#createWG").click(function(evt) {
-        evt.preventDefault();
-        let flatsharename = $('input[name=wgname]', '#wgcreateinput').val();
 
-        $("#wgcreatenamefail").hide();
+    $("#wgname").on("keypress", function (evt) {
+        if(evt.which === 13){
 
-        if (flatsharename == "") {
-            $("#wgcreatenamefail").show();
-        } else {
+            //Disable textbox to prevent multiple submit
+            $(this).attr("disabled", "disabled");
 
-            $(".wgCreateWrapper").hide();
-            $(".wgCreateSuccessWrapper").hide();
-            $(".wgWaitWrapper").show();
+            wgFormAjaxSubmit()
 
-            let jsonData = {
-                name: flatsharename
-            };
+            //Enable the textbox again if needed.
+            $(this).removeAttr("disabled");
+        }
+    });
 
+<<<<<<< HEAD
 
 
             apiCall_STORE('flatshare', jsonData, wgcreateCallback, xhr_createflat);
 
         }
+=======
+
+    $("#createWG").click(function(evt) {
+        evt.preventDefault();
+
+        wgFormAjaxSubmit()
+
+>>>>>>> b4576dc62d15171658de33b9795a24bc8214942e
     });
 
 });
+
+function wgFormAjaxSubmit() {
+
+    let flatsharename = $('input[name=wgname]', '#wgcreateinput').val();
+
+    $("#wgcreatenamefail").hide();
+
+    if (flatsharename == "") {
+        $("#wgcreatenamefail").show();
+    } else {
+
+        $(".wgCreateWrapper").hide();
+        $(".wgCreateSuccessWrapper").hide();
+        $(".wgWaitWrapper").show();
+
+        let jsonData = {
+            name: flatsharename
+        };
+
+        apiCall_STORE('flatshare', jsonData, wgcreateCallback, xhr_createflat);
+
+    }
+
+}
 
 
 function wgcreateCallback(data) {
@@ -51,10 +80,33 @@ function wgcreateCallback(data) {
 
     } else if (status == "error") {
 
+        // Fehlerbehandlung
+
         $(".wgWaitWrapper").hide();
         $(".wgCreateSuccessWrapper").hide();
+
+        if (responseData.status == 422) {
+            let errorJSON = responseData.responseJSON.errors;
+
+            let errorText = "Fehler:\n"
+            for (var err in errorJSON) {
+
+                if (err == 'name') {
+                    $("#wgcreatefail").html(errorJSON[err]);
+                } else {
+                    console.log(err);
+                }
+
+                errorText += "  - " + err + ": " + errorJSON[err] + "\n";
+            }
+            console.error(errorText)
+        } else {
+            $("#wgcreatefail").text("Da hat etwas nicht geklappt. Probiere es noch einmal.");
+        }
+
         $("#wgcreatefail").show();
         $(".wgCreateWrapper").show();
+
 
     }
 

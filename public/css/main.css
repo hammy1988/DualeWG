@@ -200,47 +200,34 @@ html, body {
 
 }
 
-.wgNavMenu .wgNavProfile {
-    margin: 0 0 15px 0;
+.wgNavMenu .wgNavSection {
+    border-bottom: 1px solid #dee2e6 !important;
+    padding: 6px 0 6px 0;
+}
+.wgNavMenu .wgNavSection:first-child {
+    padding: 0 0 6px 0;
+}
+.wgNavMenu .wgNavSection:last-child {
+    border-bottom: 0px solid #fff !important;
+    padding: 6px 0 0 0;
 }
 
-.wgNavMenu .wgNavProfile span {
+.wgNavMenu .wgNavSection a span {
+    width: 20px;
+    text-align: center;
+}
+
+.wgNavMenu .wgNavSectionGold a span {
     color:#f28e1c;
 }
 
-.wgNavMenu .wgNavDashboard {
-
-}
-
-.wgNavMenu .wgNavDashboard span {
+.wgNavMenu .wgNavSectionBlue a span {
     color:#3f95f3;
 }
 
-.wgNavMenu .wgNavGroceryList {
-
-}
-
-.wgNavMenu .wgNavGroceryList span {
-    color:#3f95f3;
-}
-
-.wgNavMenu .wgNavAppointment {
-
-}
-
-.wgNavMenu .wgNavAppointment span {
-    color:#3f95f3;
-}
-
-.wgNavMenu .wgNavLogout {
-    margin: 15px 0 0 0;
-}
-
-.wgNavMenu .wgNavLogout span {
+.wgNavMenu .wgNavSectionRed a span {
     color:#f2235d;
 }
-
-
 
 .wgwaitspinner {
     color: #3c86f9;
@@ -262,4 +249,12 @@ html, body {
     width: 100%;
     height: 60px;
     background-color:#f5f5f5;
+    padding: 11px 0 !important;
+}
+
+.wgFooter .wgcisLogo {
+    height: 30px;
+    width: auto;
+    vertical-align: top;
+    margin: 2px 5px 0 5px
 }

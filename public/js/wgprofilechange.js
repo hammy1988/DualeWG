@@ -17,7 +17,8 @@ $(document).ready(function() {
     });
 
 
-    $("#profileditbuttonabort").click(function (evt) {
+
+    $("#profileditbuttonabort").click(function (evt) {  //Abbruch Button
 
         evt.preventDefault();
 
@@ -36,17 +37,30 @@ $(document).ready(function() {
 
     });
 
-    $("#profileditbuttonsave").click(function (evt) {
-        evt.preventDefault();
+    $("#profileditbuttonsave").click(function (evt) { //speicherbutton
+        evt.preventDefault(); //Unterdrückt die Funktion eines Buttons
 
-        let jsonData = {
-            action: 'updateProfile',
-            givenname: $("#profilgivenname_input").val(),
-            name: $("#profilname_input").val(),
-            email: $("#profilemail_input").val()
-        }
+            let givenname = $('input[name=profilgivenname]').val();
 
-        apiCall_UPDATE("user", $("#wgProfileUserId").val(), jsonData, wgprofilupdateCallback, xhr_updateuser)
+            $("#givennameworkonfail").hide();
+
+            if (givenname == "") {
+                $("#givennameworkonfail").show();
+            } else {
+
+                let jsonData = {
+                    action: 'updateProfile',
+                    givenname: $("#profilgivenname_input").val(),
+                    name: $("#profilname_input").val(),
+                    email: $("#profilemail_input").val()
+                }
+
+                apiCall_UPDATE("user", $("#wgProfileUserId").val(), jsonData, wgprofilupdateCallback, xhr_updateuser)
+
+            }
+
+
+
 
     });
 

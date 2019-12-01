@@ -19,20 +19,12 @@ $(document).ready(function() {
         }
     });
 
-<<<<<<< HEAD
-
-
-            apiCall_STORE('flatshare', jsonData, wgcreateCallback, xhr_createflat);
-
-        }
-=======
 
     $("#createWG").click(function(evt) {
         evt.preventDefault();
 
         wgFormAjaxSubmit()
 
->>>>>>> b4576dc62d15171658de33b9795a24bc8214942e
     });
 
 });
@@ -41,10 +33,11 @@ function wgFormAjaxSubmit() {
 
     let flatsharename = $('input[name=wgname]', '#wgcreateinput').val();
 
-    $("#wgcreatenamefail").hide();
+    $("#wgcreatefail").hide();
 
     if (flatsharename == "") {
-        $("#wgcreatenamefail").show();
+        $("#wgcreatefail").text("Bitte einen WG Namen angeben.");
+        $("#wgcreatefail").show();
     } else {
 
         $(".wgCreateWrapper").hide();

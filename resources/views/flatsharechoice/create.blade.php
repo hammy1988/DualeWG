@@ -44,9 +44,6 @@
                                 <span id="wgcreatefail" class="invalid-feedback wgchoicefail" role="alert">
                                         <strong>Da hat etwas nicht geklappt. Probiere es noch einmal.</strong>
                                 </span>
-                                <span id="wgcreatenamefail" class="invalid-feedback wgchoicefail" role="alert">
-                                        <strong>Bitte einen WG Namen angeben.</strong>
-                                </span>
                             </div>
                         </div>
 

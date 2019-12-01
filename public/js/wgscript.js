@@ -4,6 +4,11 @@ $(document).ready(function() {
 
     wgWaitSpinnerColorChanger();
 
+    $("#wgLogoutButton").click(function(evt) {
+        evt.preventDefault();
+        document.getElementById('logout-form').submit();
+    });
+
     console[console.info ? 'info' : 'log'](
         "Willkommen auf der Dualen WG Seite ♥\n" +
         "Die Seite ist nun geladen, und du darfst Sachen machen ツ\n\n" +

@@ -49,6 +49,7 @@
                     </div>
                     <div class="form-group row">
 
+
                         <ul class="wgFlatshareMemberList">
                         @foreach (Auth::user()->flatshare()->first()->users->sortBy('givenname')->where("flatsharejoin_at","<>",null) as $wguser)
                             <li>

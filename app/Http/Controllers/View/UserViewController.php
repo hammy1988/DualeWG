@@ -17,4 +17,8 @@ class UserViewController extends Controller
     {
         return view('management.profilemain');
     }
+
+    public function password(){
+        return view('management.profilepassword');
+    }
 }

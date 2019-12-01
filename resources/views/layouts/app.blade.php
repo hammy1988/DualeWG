@@ -66,18 +66,6 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right wgNavMenu" aria-labelledby="navbarDropdown">
-                                    <div class="wgNavSection wgNavSectionGold">
-                                        <a class="dropdown-item wgNavProfile" href="{{ route('profile') }}">
-                                            <span class="fad fa-beer" aria-hidden="true"></span>
-                                            {{ __('Profil') }}
-                                        </a>
-                                        @if(Auth::user()->hasActiveFlatshare())
-                                        <a class="dropdown-item wgNavFlatsharemanagement" href="{{ route('flatsharemanagement') }}">
-                                            <span class="fad fa-home" aria-hidden="true"></span>
-                                            {{ __('Deine WG') }}
-                                        </a>
-                                        @endif
-                                    </div>
 
                                     @if(Auth::user()->hasActiveFlatshare())
                                     <div class="wgNavSection wgNavSectionBlue">
@@ -95,6 +83,19 @@
                                         </a>
                                     </div>
                                     @endif
+
+                                    <div class="wgNavSection wgNavSectionGold">
+                                        <a class="dropdown-item wgNavProfile" href="{{ route('profile') }}">
+                                            <span class="fad fa-beer" aria-hidden="true"></span>
+                                            {{ __('Profil') }}
+                                        </a>
+                                        @if(Auth::user()->hasActiveFlatshare())
+                                            <a class="dropdown-item wgNavFlatsharemanagement" href="{{ route('flatsharemanagement') }}">
+                                                <span class="fad fa-home" aria-hidden="true"></span>
+                                                {{ __('Deine WG') }}
+                                            </a>
+                                        @endif
+                                    </div>
 
                                     <div class="wgNavSection wgNavSectionRed">
                                         <a class="dropdown-item wgNavLogout" id="wgLogoutButton" href="{{ route('logout') }}">

@@ -5,31 +5,53 @@ $(document).ready(function() {
     $(".wgWaitWrapper").hide();
 
 
+
+    $("#wgname").on("keypress", function (evt) {
+        if(evt.which === 13){
+
+            //Disable textbox to prevent multiple submit
+            $(this).attr("disabled", "disabled");
+
+            wgFormAjaxSubmit()
+
+            //Enable the textbox again if needed.
+            $(this).removeAttr("disabled");
+        }
+    });
+
+
     $("#createWG").click(function(evt) {
         evt.preventDefault();
-        let flatsharename = $('input[name=wgname]', '#wgcreateinput').val();
 
-        $("#wgcreatenamefail").hide();
-
-        if (flatsharename == "") {
-            $("#wgcreatenamefail").show();
-        } else {
-
-            $(".wgCreateWrapper").hide();
-            $(".wgCreateSuccessWrapper").hide();
-            $(".wgWaitWrapper").show();
-
-            let jsonData = {
-                name: flatsharename
-            };
-
-            apiCall_STORE('flatshare', jsonData, wgcreateCallback, xhr_createflat);
-
-        }
+        wgFormAjaxSubmit()
 
     });
 
 });
+
+function wgFormAjaxSubmit() {
+
+    let flatsharename = $('input[name=wgname]', '#wgcreateinput').val();
+
+    $("#wgcreatenamefail").hide();
+
+    if (flatsharename == "") {
+        $("#wgcreatenamefail").show();
+    } else {
+
+        $(".wgCreateWrapper").hide();
+        $(".wgCreateSuccessWrapper").hide();
+        $(".wgWaitWrapper").show();
+
+        let jsonData = {
+            name: flatsharename
+        };
+
+        apiCall_STORE('flatshare', jsonData, wgcreateCallback, xhr_createflat);
+
+    }
+
+}
 
 
 function wgcreateCallback(data) {

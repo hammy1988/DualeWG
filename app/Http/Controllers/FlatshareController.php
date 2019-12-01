@@ -46,7 +46,7 @@ class FlatshareController extends Controller
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(CreateFlatshareRequest $request) {
 
@@ -61,8 +61,9 @@ class FlatshareController extends Controller
             'name' => ['required', 'string', 'regex:/^[0-9a-zA-ZöäüÖÄÜ_\-.]+$/m', 'max:255'],
         ];
         $customMessages = [
-            'name.regex' => 'Der WG Name entspricht nicht den Voraussetzung. <br />Erlaubte Eingaben sind Buchstaben, Zahlen, Punkt, Unterstrich, Bindestrich.',
-            'name.required' => 'Bitte einen WG Namen angeben.',
+            'name.regex' => 'Der WG Name entspricht nicht den Voraussetzung. <br />
+                             Erlaubte Eingaben sind Buchstaben, Zahlen, Punkt, Unterstrich, Bindestrich.',
+            'required' => 'Bitte einen WG Namen angeben.'
         ];
 
         $validator = Validator::make($request->all(), $rules, $customMessages);

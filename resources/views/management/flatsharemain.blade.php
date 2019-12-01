@@ -45,12 +45,18 @@
                 <div class="card-body">
 
                     <div class="form-group row">
-                        <label class="col-md-12 col-form-label text-md-left">{{ __('Folgende Mitbewohner sind zusammen mit dir in der WG:') }}</label>
+                        <label class="col-md-12 col-form-label text-md-left">{{ __('Deine WG hat folgende Mitbewohner:') }}</label>
                     </div>
                     <div class="form-group row">
-                        {{}}
-                        <ul class="wgFlatshareMemberList">
 
+                        <ul class="wgFlatshareMemberList">
+                        @foreach (Auth::user()->flatshare()->first()->users->sortBy('givenname')->where("flatsharejoin_at","<>",null) as $wguser)
+                            <li>
+                                <span class="wgFlatshareMemberGivenname">{{ $wguser->givenname }}</span>
+                                <span class="wgFlatshareMemberName">{{ $wguser->name }}</span>
+                                <span class="wgFlatshareMemberUsername">({{ $wguser->username }})</span>
+                            </li>
+                        @endforeach
                         </ul>
                     </div>
 
@@ -62,8 +68,20 @@
 
                 <div class="card-body">
 
-                    Deine WG
-
+                    <div class="form-group row">
+                        <label class="col-md-12 col-form-label text-md-left">{{ __('WG-Anfragen kann nur der WG-König beantworten.') }}</label>
+                    </div>
+                    <div class="form-group row">
+                        <ul class="wgFlatshareMemberList">
+                            @foreach (Auth::user()->flatshare()->first()->users->where("flatsharejoin_at", null) as $wguser)
+                                <li>
+                                    <span class="wgFlatshareMemberGivenname">{{ $wguser->givenname }}</span>
+                                    <span class="wgFlatshareMemberName">{{ $wguser->name }}</span>
+                                    <span class="wgFlatshareMemberUsername">({{ $wguser->username }})</span>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

@@ -23,9 +23,22 @@ class FlatshareController extends Controller
             if ($tagIdPos) {
                 $wgName = substr($request['q'], 0, $tagIdPos);
                 $tagId = substr($request['q'], $tagIdPos + 1, strlen($request['q']));
-                return response()->json(Flatshare::where('name', $wgName)->where('tagid', 'like', $tagId . '%')->get(), 200);
+                return response()->json(
+                    Flatshare::where('name', $wgName)
+                        ->where('tagid', 'like', $tagId . '%')
+                        ->orderBy('name', 'ASC')
+                        ->orderBy('tagid', 'ASC')
+                        ->get()
+                        ->take(3), 200
+                );
             } else {
-                return response()->json(Flatshare::where('name', 'like', $request['q'] . '%')->get(), 200);
+                return response()->json(
+                    Flatshare::where('name', 'like', $request['q'] . '%')
+                        ->orderBy('name', 'ASC')
+                        ->orderBy('tagid', 'ASC')
+                        ->get()
+                        ->take(3), 200
+                );
             }
         } else {
             return response()->json(Flatshare::all(), 200);

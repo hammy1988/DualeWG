@@ -48,7 +48,7 @@
                         <label class="col-md-12 col-form-label text-md-left">{{ __('Folgende Mitbewohner sind zusammen mit dir in der WG:') }}</label>
                     </div>
                     <div class="form-group row">
-                        {{}}
+
                         <ul class="wgFlatshareMemberList">
 
                         </ul>

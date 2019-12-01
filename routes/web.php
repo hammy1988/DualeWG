@@ -31,6 +31,7 @@ Route::prefix('/management')->group(function() {
 
     Route::get('profile', 'View\UserViewController@index')->name('profile');
     Route::get('flatshare', 'View\FlatshareViewController@flatsharemanagemeint')->name('flatsharemanagement');
+    Route::get('profilepassword', 'View\UserViewController@password')->name('profilepassword');
 
 
 });

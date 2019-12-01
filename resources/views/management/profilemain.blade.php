@@ -113,6 +113,13 @@
                                 </a>
                             </div>
                         </div>
+                        <div class="form-group row mb-1">
+                            <div class="col-md-9 offset-md-4" id="passwordchange">
+                                <a href="{{ route("profilepassword") }}" id="passwordchangebutton" class="btn btn-primary wgButton">
+                                    {{ __('Passwort ändern') }}
+                                </a>
+                            </div>
+                        </div>
                         <!-- Ab hier sind die nicht bearbeitbaren Auflistungen  -->
 
                         <div class="paragraphDiv">          <!-- gibt den Abstand zu den bearbeitbaren Listeneinträgen an -->

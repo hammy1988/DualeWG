@@ -38,6 +38,13 @@
                                 @enderror
                             </div>
                         </div>
+                        <div id="givennameworkonfail" class="form-group row profilechoiceerrormessages">
+                            <div class="col-md-6 ">
+                                 <span  class="invalid-feedback givennameworkonfail" role="alert">
+                                        <strong>Dieses Feld darf nicht leer sein!</strong>
+                                </span>
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
@@ -88,6 +95,7 @@
                                 @enderror
                             </div>
                         </div>
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4" id="profileeditstart">

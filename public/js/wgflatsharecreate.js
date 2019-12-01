@@ -23,10 +23,11 @@ $(document).ready(function() {
                 name: flatsharename
             };
 
+
+
             apiCall_STORE('flatshare', jsonData, wgcreateCallback, xhr_createflat);
 
         }
-
     });
 
 });

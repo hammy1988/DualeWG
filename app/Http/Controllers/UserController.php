@@ -74,7 +74,8 @@ class UserController extends Controller
             }
 
         } else if ($request->action == 'acceptFlatshare' ||
-                   $request->action == 'deniedFlatshare') {
+                   $request->action == 'deniedFlatshare' ||
+                   $request->action == 'removeFlatshareUser') {
             // Nur WG-Admin autorisiert
 
             $actUser = Auth::user();
@@ -88,6 +89,11 @@ class UserController extends Controller
                 $user->save();
             }
             if ($request->action == 'deniedFlatshare') {
+                $user->flatshare_id = null;
+                $user->flatsharejoin_at = null;
+                $user->save();
+            }
+            if ($request->action == 'removeFlatshareUser') {
                 $user->flatshare_id = null;
                 $user->flatsharejoin_at = null;
                 $user->save();

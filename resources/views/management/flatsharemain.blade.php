@@ -1,11 +1,11 @@
 @extends("layouts.app", ["title" => "Auswahl"])
 
 @section('headcss')
-    <link href="{{ asset('css/wgchoice.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/management/flatshare.css') }}" rel="stylesheet">
 @endsection
 
 @section('headjs')
-
+    <script src="{{ asset('js/wgflatsharemanagement.js') }}"></script>
 @endsection
 
 @section("content")
@@ -51,11 +51,35 @@
 
 
                         <ul class="wgFlatshareMemberList">
-                        @foreach (Auth::user()->flatshare()->first()->users->sortBy('username', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('givenname', SORT_NATURAL|SORT_FLAG_CASE)->where("flatsharejoin_at","<>",null) as $wguser)
-                            <li>
-                                <span class="wgFlatshareMemberGivenname">{{ $wguser->givenname }}</span>
-                                <span class="wgFlatshareMemberName">{{ $wguser->name }}</span>
-                                <span class="wgFlatshareMemberUsername">({{ $wguser->username }})</span>
+                        @foreach (Auth::user()->flatshare()->first()->users->sortBy('username', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('givenname', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('flatsharejoin_at')->where("flatsharejoin_at","<>",null) as $wguser)
+                            <li id="wgUserCard_{{ $wguser->id }}" class="wgUserCard">
+                                @if($wguser->isFlatshareAdmin())
+                                    <div class="wgUserCrown"><span class="fad fa-crown"></span></div>
+                                @endif
+                                <div class="wgUserTitle">
+                                    <span class="wgUserGivenname">{{ $wguser->givenname }}</span>
+                                    <span class="wgUserName">{{ $wguser->name }}</span>
+                                    <span class="wgUserUsername">({{ $wguser->username }})</span>
+                                </div>
+                                <div class="wgUserInfos">
+                                    <span>In der WG seit: </span><span>{{ ((new DateTime($wguser->flatsharejoin_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone('Europe/Berlin')))->format('d.m.Y H:i') }}</span>
+                                </div>
+                                @if(Auth::user()->id == $wguser->id)
+                                <div class="wgUserActions">
+                                    <a href="#" class="wguserleave" data-userid="{{ $wguser->id }}"><span class="fad fa-user-times"></span> austreten</a>
+                                </div>
+                                @else
+                                    @if(Auth::user()->isFlatshareAdmin())
+                                    <div class="wgUserActions">
+                                        <a href="#" class="wguserremove" data-userid="{{ $wguser->id }}"><span class="fad fa-user-times"></span> entfernen</a>
+                                    </div>
+                                    @endif
+                                @endif
+                                <div class="wgremoveerrormessages">
+                                    <span id="wgremovefail_{{ $wguser->id }}" class="invalid-feedback wgremovefail" role="alert">
+                                            <strong>Da hat etwas nicht geklappt. Probiere es noch einmal.</strong>
+                                    </span>
+                                </div>
                             </li>
                         @endforeach
                         </ul>
@@ -73,12 +97,34 @@
                         <label class="col-md-12 col-form-label text-md-left">{{ __('WG-Anfragen kann nur der WG-König beantworten.') }}</label>
                     </div>
                     <div class="form-group row">
-                        <ul class="wgFlatshareMemberList">
+                        <ul class="wgFlatshareRequestList">
                             @foreach (Auth::user()->flatshare()->first()->users->sortBy('username', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('givenname', SORT_NATURAL|SORT_FLAG_CASE)->where("flatsharejoin_at", null) as $wguser)
-                                <li>
-                                    <span class="wgFlatshareMemberGivenname">{{ $wguser->givenname }}</span>
-                                    <span class="wgFlatshareMemberName">{{ $wguser->name }}</span>
-                                    <span class="wgFlatshareMemberUsername">({{ $wguser->username }})</span>
+                                <li id="wgUserCard_{{ $wguser->id }}" class="wgUserCard">
+                                    @if($wguser->isFlatshareAdmin())
+                                        <div class="wgUserAdmin"><span class="fad fa-crown"></span></div>
+                                    @endif
+                                    <div class="wgUserTitle">
+                                        <span class="wgUserGivenname">{{ $wguser->givenname }}</span>
+                                        <span class="wgUserName">{{ $wguser->name }}</span>
+                                        <span class="wgUserUsername">({{ $wguser->username }})</span>
+                                    </div>
+                                    <div class="wgUserActions">
+                                        @if(Auth::user()->isFlatshareAdmin())
+                                            <a href="#" class="wgrequestaccept" data-userid="{{ $wguser->id }}">
+                                                <span class="fad fa-user-plus"></span>
+                                                annehmen
+                                            </a>
+                                            <a href="#" class="wgrequestdenied" data-userid="{{ $wguser->id }}">
+                                                <span class="fad fa-user-times"></span>
+                                                ablehnen
+                                            </a>
+                                        @endif
+                                    </div>
+                                    <div class="wgrequesterrormessages">
+                                        <span id="wgrequestfail_{{ $wguser->id }}" class="invalid-feedback wgrequestfail" role="alert">
+                                                <strong>Da hat etwas nicht geklappt. Probiere es noch einmal.</strong>
+                                        </span>
+                                    </div>
                                 </li>
                             @endforeach
                         </ul>

@@ -1,0 +1,135 @@
+.wgFlatshareMemberList, .wgFlatshareRequestList {
+    list-style: none;
+    margin: 0 0 0 30px;
+    width: 80%;
+}
+.wgUserCard {
+    margin: 3px;
+    padding: 3px 13px;
+    position: relative;
+    border-bottom: 1px solid #999;
+}
+.wgUserCard:last-child {
+    /*border-bottom: 0px solid #fff;*/
+}
+.wgUserCard .wgUserCrown {
+    position: absolute;
+    top: -3px;
+    left: 10px;
+}
+.wgUserCard .wgUserCrown span {
+    font-size: 130%;
+    color: #ffe82e;
+    left: -50%;
+    top: -50%;
+    transform: rotate(320deg);
+    transition: font-size 1s;
+}
+.wgUserCard:hover .wgUserCrown span {
+    font-size: 150%;
+}
+.wgUserCard .wgUserTitle {
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.wgUserCard:hover .wgUserTitle span {
+    transition: color 1s;
+}
+.wgUserCard:hover .wgUserTitle .wgUserGivenname {
+    color: #ed88f0;
+}
+.wgUserCard:hover .wgUserTitle .wgUserName {
+    color: #8d86f2;
+}
+.wgUserCard:hover .wgUserTitle .wgUserUsername {
+    color: #3c86f9;
+}
+
+.wgUserCard .wgUserInfos {
+    margin: 0 0 0 15px;
+    color: #999;
+}
+.wgUserCard .wgUserActions {
+    margin: 0 0 0 0px;
+    text-align: center;
+}
+
+.wgUserCard .wgUserActions a {
+    color: #999;
+    padding: 5px;
+    margin: 5px 10px;
+    display: inline-block;
+    transition: color 1s;
+}
+
+.wgUserCard .wgUserActions a span {
+    font-weight: normal;
+}
+.wgUserCard .wgUserActions a:hover {
+    text-decoration: none;
+}
+
+.wgUserCard .wgUserActions a.wgrequestaccept span {
+    color: #25b75f;
+}
+.wgUserCard .wgUserActions a.wgrequestaccept:hover {
+    color: #25b75f;
+}
+
+.wgUserCard .wgUserActions a.wgrequestdenied span {
+    color: #d73939;
+}
+.wgUserCard .wgUserActions a.wgrequestdenied:hover {
+    color: #d73939;
+}
+
+.wgUserCard .wgUserActions a.wguserremove {
+    margin: 5px 0;
+}
+.wgUserCard .wgUserActions a.wguserremove:hover {
+    color: #d73939;
+}
+.wgUserCard .wgUserActions a.wguserremove span {
+    color: #d73939;
+}
+
+.wgUserCard .wgUserActions a.wguserleave {
+    margin: 5px 0;
+}
+.wgUserCard .wgUserActions a.wguserleave:hover {
+    color: #8658bf;
+}
+.wgUserCard .wgUserActions a.wguserleave span {
+    color: #8658bf;
+}
+
+.wgUserCard .wgUserActions .wgresponseacceped span.fad {
+    color: #f00;
+    margin: 0 4px 0 0;
+}
+.wgUserCard .wgUserActions .wgresponsedenied span.fad {
+    color: #8658bf;
+    margin: 0 4px 0 0;
+}
+
+.wgUserCard .wgUserActions a.wgrequestdisable,
+.wgUserCard .wgUserActions a.wgrequestdisable:hover,
+.wgUserCard .wgUserActions a.wgrequestdisable span,
+.wgUserCard .wgUserActions a.wgremovedisable,
+.wgUserCard .wgUserActions a.wgremovedisable:hover,
+.wgUserCard .wgUserActions a.wgremovedisable span,
+.wgUserCard .wgUserActions a.wgleavedisable,
+.wgUserCard .wgUserActions a.wgleavedisable:hover,
+.wgUserCard .wgUserActions a.wgleavedisable span {
+    color: #999;
+    cursor: default;
+}
+
+.wgrequesterrormessages, .wgremoveerrormessages {
+    text-align: center;
+}
+.wgrequestfail, .wgremovefail {
+    display: none;
+}
+

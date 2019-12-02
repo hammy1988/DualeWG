@@ -21,7 +21,7 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    Du wurdest erfolgreich eingeloggt!
                 </div>
             </div>
             <div class="card">

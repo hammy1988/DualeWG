@@ -220,7 +220,7 @@ function apiCall_STORE(api, data, callback, xhr) {
 
 function wgDateTimeFormat(conUTCDateTime) {
 
-    let localDateTime = new Date(conUTCDateTime);
+    let localDateTime = new Date(conUTCDateTime.toString());
     localDateTime.setHours(localDateTime.getHours()+(localDateTime.getTimezoneOffset()/60*-1));
 
     return wgDateTimeFormatDate(localDateTime);

@@ -257,6 +257,7 @@ html, body {
     height: 60px;
     background-color:#f5f5f5;
     padding: 11px 0 !important;
+    box-shadow: 0px 0px 10px #999;
 }
 
 .wgFooter .wgcisLogo {

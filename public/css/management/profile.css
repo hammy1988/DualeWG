@@ -62,6 +62,81 @@ tbody tr:nth-child(even){
 .givennameworkonfail{
     text-align: center;
 }
+
+
+.wgInputFieldWrapper_Show span.wgProfileUserActions,
+.wgInputFieldWrapper_Show span.wgProfileUserActions span {
+    background-color: unset;
+    border-radius: unset;
+    border: unset;
+    display: inline-block;
+    width: unset;
+    height: unset;
+    padding: unset;
+    font-size: unset;
+    font-weight: unset;
+    line-height: unset;
+    color: unset;
+    background-clip: unset;
+    transition: unset;
+    float: right;
+}
+
+.wgInputFieldWrapper_Show span.wgProfileUserActions a.wguserleave {
+    float: none;
+    color: #999;
+    padding: 0 0 0 5px;
+    display: inline-block;
+    transition: color 1s;
+}
+.wgInputFieldWrapper_Show span.wgProfileUserActions a.wguserleave:hover {
+    color: #8658bf;
+    text-decoration: none;
+}
+.wgInputFieldWrapper_Show span.wgProfileUserActions a.wguserleave span {
+    color: #8658bf;
+    float: none;
+
+}
+
+.wgInputFieldWrapper_Show span.wgProfileUserActions a.wguserleave.wgleavedisable,
+.wgInputFieldWrapper_Show span.wgProfileUserActions a.wguserleave.wgleavedisable:hover,
+.wgInputFieldWrapper_Show span.wgProfileUserActions a.wguserleave.wgleavedisable span {
+    color: #999;
+    cursor: default;
+}
+
+.wgInputFieldWrapper_Show span.wgProfileUserActions span {
+    line-height: 1;
+    font-weight: 900;
+}
+
+
 .profilechoiceerrormessages{
     text-align: center;
+}
+
+
+#wgProfileFlatshareLeaveSuccess {
+    display: none;
+}
+
+#wgProfileFlatshareLeaveSuccess .wgLeaveSuccessWrapper {
+    text-align: center;
+}
+
+#wgProfileFlatshareLeaveSuccess .wgLeaveSuccessWelcome {
+    font-weight: bold;
+    font-size: 200%;
+    margin: 20px 0 30px 0;
+}
+
+
+#wgProfileFlatshareLeaveSuccess .wgLeaveSuccessRedirect {
+    font-size: 150%;
+}
+
+#wgProfileFlatshareLeaveSuccess .wgLeaveSuccessRedirect .fa-chart-network {
+    color: #c09;
+    margin: 0 0 0 5px;
 }

@@ -49,8 +49,8 @@ function wgLeave(actionStr, userid) {
 
     if (!(removemember_sent) && !(leavemember_sent) && !(changeadmin_sent)) {
 
-        removemember_sent = true;
-        lastleavememberid = userid
+        leavemember_sent = true;
+        lastleavememberid = userid;
 
         $("#wgremovefail_" + lastleavememberid).hide();
 
@@ -83,7 +83,7 @@ function wgleaveCallback(data) {
         // Fehlerbehandlung
         $("#wgremovefail_" + lastremovememberid).show();
 
-        removemember_sent = false;
+        leavemember_sent = false;
         lastremovememberid = 0;
 
         $(".wguserremove").removeClass("wgremovedisable");

@@ -40,6 +40,55 @@
 
                 </div>
             </div>
+
+
+            @if(Auth::user()->flatshare()->first()->users->where("flatsharejoin_at", null)->count() > 0)
+            <div class="card">
+                <div class="card-header">{{ __('WG Anfragen') }}</div>
+
+                <div class="card-body">
+
+                    <div class="form-group row">
+                        <label class="col-md-12 col-form-label text-md-left">{{ __('WG-Anfragen kann nur der WG-König beantworten.') }}</label>
+                    </div>
+                    <div class="form-group row">
+                        <ul class="wgFlatshareRequestList">
+                            @foreach (Auth::user()->flatshare()->first()->users->sortBy('username', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('givenname', SORT_NATURAL|SORT_FLAG_CASE)->where("flatsharejoin_at", null) as $wguser)
+                                <li id="wgUserCard_{{ $wguser->id }}" class="wgUserCard">
+                                    @if($wguser->isFlatshareAdmin())
+                                        <div class="wgUserAdmin"><span class="fad fa-crown"></span></div>
+                                    @endif
+                                    <div class="wgUserTitle">
+                                        <span class="wgUserGivenname">{{ $wguser->givenname }}</span>
+                                        <span class="wgUserName">{{ $wguser->name }}</span>
+                                        <span class="wgUserUsername">({{ $wguser->username }})</span>
+                                    </div>
+                                    <div class="wgUserActions">
+                                        @if(Auth::user()->isFlatshareAdmin())
+                                            <a href="#" class="wgrequestaccept" data-userid="{{ $wguser->id }}">
+                                                <span class="fad fa-user-plus"></span>
+                                                annehmen
+                                            </a>
+                                            <a href="#" class="wgrequestdenied" data-userid="{{ $wguser->id }}">
+                                                <span class="fad fa-user-times"></span>
+                                                ablehnen
+                                            </a>
+                                        @endif
+                                    </div>
+                                    <div class="wgrequesterrormessages">
+                                        <span id="wgrequestfail_{{ $wguser->id }}" class="invalid-feedback wgrequestfail" role="alert">
+                                                <strong>Da hat etwas nicht geklappt. Probiere es noch einmal.</strong>
+                                        </span>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            @endif
+
+
             <div class="card">
                 <div class="card-header">{{ __('Deine Mitbewohner') }}</div>
 
@@ -87,50 +136,6 @@
                         </ul>
                     </div>
 
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-header">{{ __('WG Anfragen') }}</div>
-
-                <div class="card-body">
-
-                    <div class="form-group row">
-                        <label class="col-md-12 col-form-label text-md-left">{{ __('WG-Anfragen kann nur der WG-König beantworten.') }}</label>
-                    </div>
-                    <div class="form-group row">
-                        <ul class="wgFlatshareRequestList">
-                            @foreach (Auth::user()->flatshare()->first()->users->sortBy('username', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('givenname', SORT_NATURAL|SORT_FLAG_CASE)->where("flatsharejoin_at", null) as $wguser)
-                                <li id="wgUserCard_{{ $wguser->id }}" class="wgUserCard">
-                                    @if($wguser->isFlatshareAdmin())
-                                        <div class="wgUserAdmin"><span class="fad fa-crown"></span></div>
-                                    @endif
-                                    <div class="wgUserTitle">
-                                        <span class="wgUserGivenname">{{ $wguser->givenname }}</span>
-                                        <span class="wgUserName">{{ $wguser->name }}</span>
-                                        <span class="wgUserUsername">({{ $wguser->username }})</span>
-                                    </div>
-                                    <div class="wgUserActions">
-                                        @if(Auth::user()->isFlatshareAdmin())
-                                            <a href="#" class="wgrequestaccept" data-userid="{{ $wguser->id }}">
-                                                <span class="fad fa-user-plus"></span>
-                                                annehmen
-                                            </a>
-                                            <a href="#" class="wgrequestdenied" data-userid="{{ $wguser->id }}">
-                                                <span class="fad fa-user-times"></span>
-                                                ablehnen
-                                            </a>
-                                        @endif
-                                    </div>
-                                    <div class="wgrequesterrormessages">
-                                        <span id="wgrequestfail_{{ $wguser->id }}" class="invalid-feedback wgrequestfail" role="alert">
-                                                <strong>Da hat etwas nicht geklappt. Probiere es noch einmal.</strong>
-                                        </span>
-                                    </div>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>

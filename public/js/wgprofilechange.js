@@ -1,4 +1,6 @@
 var xhr_updateuser;
+var xhr_updatepassword;
+
 
 $(document).ready(function() {
 
@@ -64,6 +66,33 @@ $(document).ready(function() {
 
     });
 
+    $("#passwordchangesubmitbutton").click(function(evt) {
+        evt.preventDefault();
+        wgPasswordchangeFormAjaxSubmit();
+    });
+
+    $("#oldpassword").on("keypress", function (evt) {
+        if(evt.which === 13){
+            $(this).attr("disabled", "disabled");
+            wgPasswordchangeFormAjaxSubmit();
+            $(this).removeAttr("disabled");
+        }
+    });
+    $("#newpassword").on("keypress", function (evt) {
+        if(evt.which === 13){
+            $(this).attr("disabled", "disabled");
+            wgPasswordchangeFormAjaxSubmit();
+            $(this).removeAttr("disabled");
+        }
+    });
+    $("#newpassword_confirmation").on("keypress", function (evt) {
+        if(evt.which === 13){
+            $(this).attr("disabled", "disabled");
+            wgPasswordchangeFormAjaxSubmit();
+            $(this).removeAttr("disabled");
+        }
+    });
+
 
 });
 
@@ -97,6 +126,57 @@ function wgprofilupdateCallback(data) {
 
 
     } else if (status == "error") {
+
+        // Fehlerbehandlung
+        if (responseData.status == 422) {
+            let errorJSON = responseData.responseJSON.errors;
+
+            let errorText = "Fehler:\n"
+            for (var err in errorJSON) {
+                errorText += "  - " + err + ": " + errorJSON[err] + "\n";
+            }
+            console.error(errorText)
+        } else {
+            console.error("Fehler: " + responseData.status + " - " + responseData.statusText);
+        }
+
+    }
+}
+
+function wgPasswordchangeFormAjaxSubmit() {
+
+    let oldpassword = $('input[name=oldpassword]', '#wgpasswortchangeinput').val();
+    let newpassword = $('input[name=newpassword]', '#wgpasswortchangeinput').val();
+    let newpassword_confirmation = $('input[name=newpassword_confirmation]', '#wgpasswortchangeinput').val();
+
+
+    let jsonData = {
+        action: 'updatePassword',
+        oldpassword: oldpassword,
+        newpassword: newpassword,
+        newpassword_confirmation: newpassword_confirmation,
+    };
+
+    apiCall_UPDATE("user", $("#wgProfileUserId").val(), jsonData, wgpasswordupdateCallback, xhr_updatepassword)
+
+}
+
+
+function wgpasswordupdateCallback(data) {
+
+    let responseData = data.responseData;
+    let status = data.status;
+
+
+    if (status == "success") {
+
+        console.log(responseData);
+
+
+
+    } else if (status == "error") {
+
+        console.error(responseData);
 
         // Fehlerbehandlung
         if (responseData.status == 422) {

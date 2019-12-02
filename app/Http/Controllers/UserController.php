@@ -8,6 +8,7 @@ use App\Flatshare;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -57,6 +58,7 @@ class UserController extends Controller
         //
         $user = User::findOrFail($id);
 
+
         if ($request->action == 'deleteFlatshare') {
             // Nur WG-Admin autorisiert, oder selbst
 
@@ -92,7 +94,8 @@ class UserController extends Controller
             }
 
         } else if ($request->action == 'updateFlatshare' ||
-                   $request->action == 'updateProfile') {
+                   $request->action == 'updateProfile' ||
+                   $request->action == 'updatePassword') {
 
             // Nur selbst
 
@@ -105,6 +108,9 @@ class UserController extends Controller
             }
             if ($request->action == 'updateProfile') {
                 return $this->updateProfile($request, $id, $user);
+            }
+            if ($request->action == 'updatePassword') {
+                return $this->updatePassword($request, $id, $user);
             }
 
         }
@@ -158,6 +164,30 @@ class UserController extends Controller
         $user->givenname = $request->givenname;
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->save();
+
+        return response()->json($user,200);
+
+    }
+
+    private function updatePassword(Request $request, $id, $user)
+    {
+
+
+        $validator = Validator::make($request->all(), [
+            'oldpassword' => ['required', 'string'],
+            'newpassword' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors'=>$validator->errors()], 422);
+        }
+
+        if (!(Hash::check($request->oldpassword, $user->password))) {
+            return response()->json(['errors'=> ['oldpassword'=>'Geben Sie das korrekte Passwort ein' ]], 422);
+        }
+
+        $user->password = Hash::make($request->newpassword);
         $user->save();
 
         return response()->json($user,200);

@@ -51,7 +51,7 @@
 
 
                         <ul class="wgFlatshareMemberList">
-                        @foreach (Auth::user()->flatshare()->first()->users->sortBy('givenname')->where("flatsharejoin_at","<>",null) as $wguser)
+                        @foreach (Auth::user()->flatshare()->first()->users->sortBy('username', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('givenname', SORT_NATURAL|SORT_FLAG_CASE)->where("flatsharejoin_at","<>",null) as $wguser)
                             <li>
                                 <span class="wgFlatshareMemberGivenname">{{ $wguser->givenname }}</span>
                                 <span class="wgFlatshareMemberName">{{ $wguser->name }}</span>
@@ -74,7 +74,7 @@
                     </div>
                     <div class="form-group row">
                         <ul class="wgFlatshareMemberList">
-                            @foreach (Auth::user()->flatshare()->first()->users->where("flatsharejoin_at", null) as $wguser)
+                            @foreach (Auth::user()->flatshare()->first()->users->sortBy('username', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('givenname', SORT_NATURAL|SORT_FLAG_CASE)->where("flatsharejoin_at", null) as $wguser)
                                 <li>
                                     <span class="wgFlatshareMemberGivenname">{{ $wguser->givenname }}</span>
                                     <span class="wgFlatshareMemberName">{{ $wguser->name }}</span>

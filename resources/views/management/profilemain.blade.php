@@ -12,7 +12,7 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-8" id="wgProfileMain">
                 <div class="card">
                     <div class="card-header">
                         {{ __('Deine Profil Informationen') }}</div>
@@ -145,13 +145,16 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">{{ __('WG-Zuordnung:') }}</label>
+                                <label class="col-md-4 col-form-label text-md-right">{{ __('Deine WG:') }}</label>
 
                                 <div class="col-md-6">
                                     <div class="wgInputFieldWrapper_Show">
                                         <span>
                                             @if(Auth::user()->hasActiveFlatshare())
-                                                {{ Auth::user()->flatshare()->first()->name }}
+                                                {{ Auth::user()->flatshare->name . '#' . Auth::user()->flatshare->tagid }}
+                                                <span class="wgProfileUserActions">
+                                                    <a href="#" class="wguserleave" data-userid="{{ Auth::user()->id }}"><span class="fad fa-user-times"></span> austreten</a>
+                                                </span>
                                             @else
                                                 Du bist aktuell in keiner WG
                                             @endif
@@ -162,8 +165,24 @@
                         </div>
 
                      </div>
-                    <div>
                  </div>
+            </div>
+
+            <div class="col-md-8" id="wgProfileFlatshareLeaveSuccess">
+                <div class="card">
+                    <div class="card-body wgLeaveSuccessWrapper">
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <div class="wgLeaveSuccessWelcome">
+                                    Du bist aus der WG ausgetreten.
+                                </div>
+                                <div class="wgLeaveSuccessRedirect">
+                                    <a href="/">Weiter <span class="fad fa-chart-network"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

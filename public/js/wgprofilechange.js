@@ -1,6 +1,8 @@
 var xhr_updateuser;
 var xhr_updatepassword;
+var xhr_leaveflatshare;
 
+var leavemember_sent = false;
 
 $(document).ready(function() {
 
@@ -61,10 +63,13 @@ $(document).ready(function() {
 
             }
 
-
-
-
     });
+
+    $(".wguserleave").click(function(evt) {
+        evt.preventDefault();
+        wgProfileLeave("leaveFlatshare", $(this).attr("data-userid"));
+    });
+
 
     $("#passwordchangesubmitbutton").click(function(evt) {
         evt.preventDefault();
@@ -92,6 +97,8 @@ $(document).ready(function() {
             $(this).removeAttr("disabled");
         }
     });
+
+
 
 
 });
@@ -141,6 +148,46 @@ function wgprofilupdateCallback(data) {
         }
 
     }
+}
+
+
+function wgProfileLeave(actionStr, userid) {
+
+    if (!(leavemember_sent)) {
+
+        leavemember_sent = true;
+
+        $(".wguserleave").addClass("wgleavedisable");
+
+        let jsonData = {
+            action: actionStr
+        };
+        apiCall_UPDATE("user", userid, jsonData, wgleaveCallback, xhr_leaveflatshare)
+    }
+
+}
+
+function wgleaveCallback(data) {
+
+    let responseData = data.responseData;
+    let status = data.status;
+
+    if (status == "success") {
+
+        if (responseData.flatsharejoin_at == null) {
+            $("#wgProfileMain").remove();
+            $("#wgProfileFlatshareLeaveSuccess").show();
+        }
+
+    } else if (status == "error") {
+
+        // Fehlerbehandlung
+        leavemember_sent = false;
+
+        $(".wguserleave").removeClass("wgleavedisable");
+    }
+
+
 }
 
 function wgPasswordchangeFormAjaxSubmit() {

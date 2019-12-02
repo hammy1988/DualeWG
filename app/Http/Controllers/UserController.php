@@ -75,10 +75,13 @@ class UserController extends Controller
 
         } else if ($request->action == 'acceptFlatshare' ||
                    $request->action == 'deniedFlatshare' ||
-                   $request->action == 'removeFlatshareUser') {
+                   $request->action == 'removeFlatshareUser' ||
+                   $request->action == 'changeFlatshareAdmin') {
             // Nur WG-Admin autorisiert
 
+
             $actUser = Auth::user();
+
             if (!($actUser->isFlatshareAdmin() &&
                   $user->flatshare_id == $actUser->flatshare->id)) {
                 abort(403, 'Access denied');
@@ -98,10 +101,16 @@ class UserController extends Controller
                 $user->flatsharejoin_at = null;
                 $user->save();
             }
+            if ($request->action == 'changeFlatshareAdmin') {
+                $flatshare = $user->flatshare()->first();
+                $flatshare->admin_id = $user->id;
+                $flatshare->save();
+            }
 
         } else if ($request->action == 'updateFlatshare' ||
                    $request->action == 'updateProfile' ||
-                   $request->action == 'updatePassword') {
+                   $request->action == 'updatePassword' ||
+                   $request->action == 'leaveFlatshare') {
 
             // Nur selbst
 
@@ -117,6 +126,9 @@ class UserController extends Controller
             }
             if ($request->action == 'updatePassword') {
                 return $this->updatePassword($request, $id, $user);
+            }
+            if ($request->action == 'leaveFlatshare') {
+                return $this->leaveFlatshare($request, $id, $user);
             }
 
         }
@@ -194,6 +206,31 @@ class UserController extends Controller
         }
 
         $user->password = Hash::make($request->newpassword);
+        $user->save();
+
+        return response()->json($user,200);
+
+    }
+
+    private function leaveFlatshare(Request $request, $id, $user)
+    {
+
+        if ($user->flatshare()->first()->users->count() == 1) {
+            $user->flatshare()->first()->delete();
+        } else if ($user->isFlatshareAdmin()) {
+            $newAdmin = $user->flatshare()
+                ->first()->users
+                ->sortBy('username', SORT_NATURAL|SORT_FLAG_CASE)
+                ->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE)
+                ->sortBy('flatsharejoin_at')
+                ->where("id", "<>", $user->id)->first();
+            $flatshare = $user->flatshare()->first();
+            $flatshare->admin_id = $newAdmin->id;
+            $flatshare->save();
+        }
+
+        $user->flatshare_id = null;
+        $user->flatsharejoin_at = null;
         $user->save();
 
         return response()->json($user,200);

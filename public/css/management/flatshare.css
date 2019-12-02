@@ -94,6 +94,16 @@
     color: #d73939;
 }
 
+.wgUserCard .wgUserActions a.wgadminchange {
+    margin: 5px 0;
+}
+.wgUserCard .wgUserActions a.wgadminchange:hover {
+    color: #e6bb10;
+}
+.wgUserCard .wgUserActions a.wgadminchange span {
+    color: #e6bb10;
+}
+
 .wgUserCard .wgUserActions a.wguserleave {
     margin: 5px 0;
 }
@@ -113,6 +123,16 @@
     margin: 0 4px 0 0;
 }
 
+.wgUserCard .wgUserActions .wgresponsechangeadmin{
+    padding: 5px;
+    display: inline-block;
+    margin: 5px 0;
+}
+.wgUserCard .wgUserActions .wgresponsechangeadmin span.fad {
+    color: #e6bb10;
+    margin: 0 4px 0 0;
+}
+
 .wgUserCard .wgUserActions a.wgrequestdisable,
 .wgUserCard .wgUserActions a.wgrequestdisable:hover,
 .wgUserCard .wgUserActions a.wgrequestdisable span,
@@ -121,7 +141,10 @@
 .wgUserCard .wgUserActions a.wgremovedisable span,
 .wgUserCard .wgUserActions a.wgleavedisable,
 .wgUserCard .wgUserActions a.wgleavedisable:hover,
-.wgUserCard .wgUserActions a.wgleavedisable span {
+.wgUserCard .wgUserActions a.wgleavedisable span,
+.wgUserCard .wgUserActions a.wgchangeadmindisable,
+.wgUserCard .wgUserActions a.wgchangeadmindisable:hover,
+.wgUserCard .wgUserActions a.wgchangeadmindisable span {
     color: #999;
     cursor: default;
 }
@@ -131,5 +154,35 @@
 }
 .wgrequestfail, .wgremovefail {
     display: none;
+}
+
+
+#wgFlatshareLeaveSuccess {
+    display: none;
+}
+
+
+#wgFlatshareLeaveSuccess .wgLeaveSuccessWrapper {
+    text-align: center;
+}
+
+#wgFlatshareLeaveSuccess .wgLeaveSuccessWelcome {
+    font-weight: bold;
+    font-size: 200%;
+    margin: 20px 0 30px 0;
+}
+
+
+#wgFlatshareLeaveSuccess .wgLeaveSuccessRedirect {
+    font-size: 150%;
+}
+
+#wgFlatshareLeaveSuccess .wgLeaveSuccessRedirect .fa-chart-network {
+    color: #c09;
+    margin: 0 0 0 5px;
+}
+
+#wgleavesuccessflatsharename {
+    margin: 10px 0 10px 0;
 }
 

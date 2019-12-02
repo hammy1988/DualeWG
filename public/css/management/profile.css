@@ -59,6 +59,14 @@ tbody tr:nth-child(even){
 
     width: 100%;
 }
+
+#nameworkonfail{
+    display: none;
+}
+
+#emailworkonfail{
+    display: none;
+}
 .givennameworkonfail{
     text-align: center;
 }

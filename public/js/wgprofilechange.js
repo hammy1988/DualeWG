@@ -45,12 +45,23 @@ $(document).ready(function() {
         evt.preventDefault(); //Unterdrückt die Funktion eines Buttons
 
             let givenname = $('input[name=profilgivenname]').val();
+            let name = $('input[name=profilname]').val();
+            let email = $('input[name=profilemail]').val();
 
             $("#givennameworkonfail").hide();
+            $("#nameworkonfail").hide();
+            $("#emailworkonfail").hide();
 
             if (givenname == "") {
                 $("#givennameworkonfail").show();
-            } else {
+            }
+            if(name == ""){
+                $("#nameworkonfail").show();
+            }
+            if(email == ""){
+                $("#emailworkonfail").show();
+            }
+            else {
 
                 let jsonData = {
                     action: 'updateProfile',

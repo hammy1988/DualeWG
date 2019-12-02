@@ -14,7 +14,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ route("flatsharechoiceoptions") }}" class="wgArrowBack">
+                        <a href="{{ route("flatsharechoiceoptions") }}" class="wgArrowBack" title="zurück">
                             <span class="fas fa-arrow-left"></span>
                         </a>
                         {{ __('Einer WG beitreten') }}

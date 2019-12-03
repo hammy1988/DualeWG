@@ -42,7 +42,7 @@ class ResetPassword extends ResetPasswordNotification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Passwort zurücksetzen' . config('app.name'))
+            ->subject('Passwort zurücksetzen - ' . config('app.name'))
             ->line('Sie haben einen Link zum ändern Ihrer Zugangsdaten angefordert. Klicken Sie dafür auf folgenden Link:')
             ->action('Hier klicken, um Passwort zurückzusetzen', url('password/reset', $this->token))
             ->line('Der Link wird in 60 Minuten ungültig.')

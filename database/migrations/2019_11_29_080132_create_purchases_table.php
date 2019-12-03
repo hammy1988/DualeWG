@@ -15,7 +15,11 @@ class CreatePurchasesTable extends Migration
     {
         Schema::create('purchases', function (Blueprint $table) {
             $table->bigIncrements('id');
-
+            $table->bigInteger('flatshare_id')->unsigned();
+            $table->string('name');
+            $table->integer('count')->unsigned();
+            $table->bigInteger('user_id')->unsigned()->nullable()->default(null);
+            $table->dateTime('paid_at')->nullable()->default(null);
             $table->timestamps();
         });
     }

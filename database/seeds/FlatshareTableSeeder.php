@@ -24,8 +24,10 @@ class FlatshareTableSeeder extends Seeder
         $flatshare_erste->save();
 
         $user_wg->flatshare_id = Flatshare::where('name', 'Erste')->first()->id;
+        $user_wg->flatsharejoin_at = new \DateTime("now", new \DateTimeZone("UTC"));
         $user_wg->save();
         $user_admin->flatshare_id = Flatshare::where('name', 'Erste')->first()->id;
+        $user_admin->flatsharejoin_at = new \DateTime("now", new \DateTimeZone("UTC"));
         $user_admin->save();
 
 

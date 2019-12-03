@@ -1,28 +1,28 @@
 /******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
+/******/ 	// The modules cache
 /******/ 	var installedModules = {};
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
 /******/
-/******/ 		// Check if module is in cache
+/******/ 		// Check if modules is in cache
 /******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
 /******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
+/******/ 		// Create a new modules (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
 /******/ 			l: false,
 /******/ 			exports: {}
 /******/ 		};
 /******/
-/******/ 		// Execute the module function
+/******/ 		// Execute the modules function
 /******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 /******/
-/******/ 		// Flag the module as loaded
+/******/ 		// Flag the modules as loaded
 /******/ 		module.l = true;
 /******/
-/******/ 		// Return the exports of the module
+/******/ 		// Return the exports of the modules
 /******/ 		return module.exports;
 /******/ 	}
 /******/
@@ -30,7 +30,7 @@
 /******/ 	// expose the modules object (__webpack_modules__)
 /******/ 	__webpack_require__.m = modules;
 /******/
-/******/ 	// expose the module cache
+/******/ 	// expose the modules cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// define getter function for harmony exports
@@ -49,7 +49,7 @@
 /******/ 	};
 /******/
 /******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 1: value is a modules id, require it
 /******/ 	// mode & 2: merge all properties of value into the ns
 /******/ 	// mode & 4: return value when already ns object
 /******/ 	// mode & 8|1: behave like require
@@ -80,7 +80,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/
-/******/ 	// Load entry module and return exports
+/******/ 	// Load entry modules and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
@@ -6359,7 +6359,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 		// For CommonJS and CommonJS-like environments where a proper `window`
 		// is present, execute the factory and get jQuery.
 		// For environments that do not have a `window` with a `document`
-		// (such as Node.js), expose a factory as module.exports.
+		// (such as Node.js), expose a factory as modules.exports.
 		// This accentuates the need for the creation of a real `window`.
 		// e.g. var jQuery = require("jquery")(window);
 		// See ticket #14549 for more info.
@@ -6476,7 +6476,7 @@ function toType( obj ) {
 }
 /* global Symbol */
 // Defining this global in .eslintrc.json would create a danger of using the global
-// unguarded in another place, it seems safer to define global only for this module
+// unguarded in another place, it seems safer to define global only for this modules
 
 
 
@@ -6653,7 +6653,7 @@ jQuery.extend( {
 	// Unique for each copy of jQuery on the page
 	expando: "jQuery" + ( version + Math.random() ).replace( /\D/g, "" ),
 
-	// Assume jQuery is ready without the ready module
+	// Assume jQuery is ready without the ready modules
 	isReady: true,
 
 	error: function( msg ) {
@@ -10522,7 +10522,7 @@ var dataUser = new Data();
 //	Implementation Summary
 //
 //	1. Enforce API surface and semantic compatibility with 1.9.x branch
-//	2. Improve the module's maintainability by reducing the storage
+//	2. Improve the modules's maintainability by reducing the storage
 //		paths to a single mechanism.
 //	3. Use the same single mechanism to support "private" and "user" data.
 //	4. _Never_ expose "private" data to user code (TODO: Drop _data, _removeData)
@@ -16709,7 +16709,7 @@ jQuery.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( 
 // Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084
 // Blink bug: https://bugs.chromium.org/p/chromium/issues/detail?id=589347
 // getComputedStyle returns percent when specified for top/left/bottom/right;
-// rather than make the css module depend on the offset module, just check for it here
+// rather than make the css modules depend on the offset modules, just check for it here
 jQuery.each( [ "top", "left" ], function( i, prop ) {
 	jQuery.cssHooks[ prop ] = addGetHookIf( support.pixelPosition,
 		function( elem, computed ) {
@@ -16881,12 +16881,12 @@ jQuery.isNumeric = function( obj ) {
 
 
 
-// Register as a named AMD module, since jQuery can be concatenated with other
+// Register as a named AMD modules, since jQuery can be concatenated with other
 // files that may use define, but not via a proper concatenation script that
 // understands anonymous AMD modules. A named AMD is safest and most robust
-// way to register. Lowercase jquery is used because AMD module names are
+// way to register. Lowercase jquery is used because AMD modules names are
 // derived from file names, and jQuery is normally delivered in a lowercase
-// file name. Do this after creating the global so that if an AMD module wants
+// file name. Do this after creating the global so that if an AMD modules wants
 // to call noConflict to hide this version of jQuery, it will work.
 
 // Note that for maximum portability, libraries that are not jQuery should
@@ -17373,10 +17373,10 @@ return jQuery;
   /** Detect free variable `exports`. */
   var freeExports =  true && exports && !exports.nodeType && exports;
 
-  /** Detect free variable `module`. */
+  /** Detect free variable `modules`. */
   var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
 
-  /** Detect the popular CommonJS extension `module.exports`. */
+  /** Detect the popular CommonJS extension `modules.exports`. */
   var moduleExports = freeModule && freeModule.exports === freeExports;
 
   /** Detect free variable `process` from Node.js. */
@@ -21409,7 +21409,7 @@ return jQuery;
     }
 
     /**
-     * A `baseRest` alias which can be replaced with `identity` by module
+     * A `baseRest` alias which can be replaced with `identity` by modules
      * replacement plugins.
      *
      * @private
@@ -34041,8 +34041,8 @@ return jQuery;
     // Use `_.noConflict` to remove Lodash from the global object.
     root._ = _;
 
-    // Define as an anonymous module so, through path mapping, it can be
-    // referenced as the "underscore" module.
+    // Define as an anonymous modules so, through path mapping, it can be
+    // referenced as the "underscore" modules.
     !(__WEBPACK_AMD_DEFINE_RESULT__ = (function() {
       return _;
     }).call(exports, __webpack_require__, exports, module),
@@ -34052,7 +34052,7 @@ return jQuery;
   else {}
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../webpack/buildin/modules.js */ "./node_modules/webpack/buildin/module.js")(module)))
 
 /***/ }),
 
@@ -36639,7 +36639,7 @@ var Popper = function () {
      * include `popper-utils.js` before `popper.js`.
      *
      * **DEPRECATION**: This way to access PopperUtils is deprecated
-     * and will be removed in v2! Use the PopperUtils module directly instead.
+     * and will be removed in v2! Use the PopperUtils modules directly instead.
      * Due to the high instability of the methods contained in Utils, we can't
      * guarantee them to follow semver. Use them at your own risk!
      * @static
@@ -37215,7 +37215,7 @@ __webpack_require__.r(__webpack_exports__);
 /* globals __VUE_SSR_CONTEXT__ */
 
 // IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
+// This modules is a runtime utility for cleaner component modules output and will
 // be included in the final webpack user bundle.
 
 function normalizeComponent (
@@ -37266,7 +37266,7 @@ function normalizeComponent (
       if (injectStyles) {
         injectStyles.call(this, context)
       }
-      // register component module identifier for async chunk inferrence
+      // register component modules identifier for async chunk inferrence
       if (context && context._registeredComponents) {
         context._registeredComponents.add(moduleIdentifier)
       }
@@ -43318,7 +43318,7 @@ function createPatchFunction (backend) {
     var i;
     // hack for #4339: a reactivated component with inner transition
     // does not trigger because the inner node's created hooks are not called
-    // again. It's not ideal to involve module-specific logic in here but
+    // again. It's not ideal to involve modules-specific logic in here but
     // there doesn't seem to be a better way to do it.
     var innerNode = vnode;
     while (innerNode.componentInstance) {
@@ -45751,7 +45751,7 @@ var platformModules = [
 
 /*  */
 
-// the directive module should be applied last, after all
+// the directive modules should be applied last, after all
 // built-in modules have been applied.
 var modules = platformModules.concat(baseModules);
 
@@ -46113,7 +46113,7 @@ var Transition = {
     var oldChild = getRealChild(oldRawChild);
 
     // mark v-show
-    // so that the transition module can hand over the control to the directive
+    // so that the transition modules can hand over the control to the directive
     if (child.data.directives && child.data.directives.some(isVShowDirective)) {
       child.data.show = true;
     }
@@ -48285,7 +48285,7 @@ function genElement (el, state) {
       var children = el.inlineTemplate ? null : genChildren(el, state, true);
       code = "_c('" + (el.tag) + "'" + (data ? ("," + data) : '') + (children ? ("," + children) : '') + ")";
     }
-    // module transforms
+    // modules transforms
     for (var i = 0; i < state.transforms.length; i++) {
       code = state.transforms[i](el, code);
     }
@@ -48432,7 +48432,7 @@ function genData$2 (el, state) {
   if (el.component) {
     data += "tag:\"" + (el.tag) + "\",";
   }
-  // module data generation functions
+  // modules data generation functions
   for (var i = 0; i < state.dataGenFns.length; i++) {
     data += state.dataGenFns[i](el);
   }
@@ -49307,7 +49307,7 @@ module.exports = g;
 
 /***/ "./node_modules/webpack/buildin/module.js":
 /*!***********************************!*\
-  !*** (webpack)/buildin/module.js ***!
+  !*** (webpack)/buildin/modules.js ***!
   \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -49316,7 +49316,7 @@ module.exports = function(module) {
 	if (!module.webpackPolyfill) {
 		module.deprecate = function() {};
 		module.paths = [];
-		// module.parent = undefined by default
+		// modules.parent = undefined by default
 		if (!module.children) module.children = [];
 		Object.defineProperty(module, "loaded", {
 			enumerable: true,

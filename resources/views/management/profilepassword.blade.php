@@ -69,7 +69,7 @@
                                 </div>
 
                             </div>
-                            <div class="col-md-6 offset-4 wgerrormessages">
+                            <div class="col-md-6 offset-4">
                                      <span id="newpasswordcomfirmerrorfield" class="invalid-feedback wgerrormessages" role="alert">
                                             <strong>Dieses Feld darf nicht leer sein!</strong>
                                     </span>

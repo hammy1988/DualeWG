@@ -42,10 +42,12 @@ class ResetPassword extends ResetPasswordNotification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject('Reset Password Notification - ' . config('app.name'))
-            ->line('You are receiving this email because we received a password reset request for your account.')
-            ->action('Reset Password', url('password/reset', $this->token))
-            ->line('This password reset link will expire in 60 minutes.');
+            ->subject('Passwort zurücksetzen' . config('app.name'))
+            ->line('Sie haben einen Link zum ändern Ihrer Zugangsdaten angefordert. Klicken Sie dafür auf folgenden Link:')
+            ->action('Hier klicken, um Passwort zurückzusetzen', url('password/reset', $this->token))
+            ->line('Der Link wird in 60 Minuten ungültig.')
+            ->line('Diese E-Mail wurde automatisch generiert. Antworten ist zwecklos...')
+             ->line('Sollten Sie das Zurücksetzen Ihrer Zugangsdaten nicht angefordert haben, betrachen Sie diese E-Mail bitte als gegenstandslos!');
     }
 
     /**

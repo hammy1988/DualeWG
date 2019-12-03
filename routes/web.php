@@ -24,7 +24,6 @@ Route::prefix('/flatshare')->group(function() {
     Route::middleware('checkNoFlatshareRequest')->get('create', 'View\FlatshareChoiceViewController@create')->name('flatsharechoicecreate');
     Route::middleware('checkFlatshareRequest')->get('request', 'View\FlatshareChoiceViewController@request')->name('flatsharerequest');
 
-
 });
 
 Route::prefix('/management')->group(function() {

@@ -15,7 +15,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        <a href="{{ route("gobacktoprofile") }}" class="wgArrowBack" title="zurück">
+                        <a href="{{ route("profile") }}" class="wgArrowBack" title="zurück">
                             <span class="fas fa-arrow-left"></span>
                         </a>
                         {{ __('Passwort ändern') }}</div>

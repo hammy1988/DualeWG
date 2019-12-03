@@ -32,18 +32,9 @@
                                            class="form-control wgInputField" name="profilgivenname"
                                            value="{{ Auth::user()->givenname }}"autofocus autocomplete="off" />
                                 </div>
-                                @error('givenname')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
                             </div>
-                        </div>
-                        <div id="givennameworkonfail" class="form-group row profilechoiceerrormessages">
-                            <div class="col-md-6 ">
-                                 <span  class="invalid-feedback givennameworkonfail" role="alert">
-                                        <strong>Dieses Feld darf nicht leer sein!</strong>
-                                </span>
+                            <div class="col-md-6 offset-4">
+                                <span id="givennameerrorfield" class="invalid-feedback wgerrormessages"></span>
                             </div>
                         </div>
 
@@ -59,23 +50,15 @@
                                            class="form-control wgInputField " name="profilname"
                                            value="{{Auth::user()->name}}" autofocus autocomplete="off" />
                                 </div>
-                                @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                            </div>
+                            <div class="col-md-6 offset-4">
+                                <span id="nameerrorfield" class="invalid-feedback wgerrormessages"></span>
                             </div>
                         </div>
-                        <div id="nameworkonfail" class="form-group row profilechoiceerrormessages">
-                            <div class="col-md-6 ">
-                                 <span  class="invalid-feedback nameworkonfail" role="alert">
-                                        <strong>Dieses Feld darf nicht leer sein!</strong>
-                                </span>
-                            </div>
-                        </div>
+
+
                         <div class="form-group row">
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Benutzername') }}</label>
-
                             <div class="col-md-6">
                                 <div class="wgInputFieldWrapper_Show">
                                     <span id="profileusername_span">{{ Auth::user()->username }}</span>
@@ -95,20 +78,12 @@
                                            class="form-control wgInputField " name="profilemail"
                                            value="{{Auth::user()->email}}" autofocus autocomplete="off" />
                                 </div>
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                            </div>
+                            <div class="col-md-6 offset-4">
+                                <span id="emailerrorfield" class="invalid-feedback wgerrormessages"></span>
                             </div>
                         </div>
-                        <div id="emailworkonfail" class="form-group row profilechoiceerrormessages">
-                            <div class="col-md-6 ">
-                                 <span  class="invalid-feedback emailworkonfail" role="alert">
-                                        <strong>Dieses Feld darf nicht leer sein!</strong>
-                                </span>
-                            </div>
-                        </div>
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4" id="profileeditstart">

@@ -73,7 +73,7 @@
                                             <span class="fad fa-newspaper" aria-hidden="true"></span>
                                             {{ __('Dashboard') }}
                                         </a>
-                                            <a class="dropdown-item wgNavGroceryList" href="{{ route('grocerylist') }}">
+                                            <a class="dropdown-item wgNavGroceryList" href="{{ route('purchaselist') }}">
                                             <span class="fad fa-list"></span>
                                             {{ __('Einkaufsliste') }}
                                         </a>

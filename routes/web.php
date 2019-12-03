@@ -33,7 +33,11 @@ Route::prefix('/management')->group(function() {
     Route::get('profilepassword', 'View\UserViewController@password')->name('profilepassword');
 
 });
+Route::prefix('/modules')->group(function() {
 
+    Route::get('purchase', 'View\PurchaseViewController@index')->name('purchaselist');
+
+});
 
 /**
  * Display All Tasks

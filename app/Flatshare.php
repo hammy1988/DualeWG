@@ -17,6 +17,9 @@ class Flatshare extends Model
         return $this->hasMany(User::class);
     }
 
+    public function purchases(){
+        return $this->hasMany(Purchase::class);
+    }
 
     public function admin() {
         return $this->belongsTo(User::class, 'admin_id');

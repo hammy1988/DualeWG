@@ -6,6 +6,8 @@ var leavemember_sent = false;
 
 $(document).ready(function() {
 
+    $(".wgerrormessages").hide();
+
     $("#profileditbuttonstart").click(function (evt) {
 
         evt.preventDefault();   // unterdrückt die Funktionen von einem Button (Form-Interaktion)
@@ -83,6 +85,9 @@ $(document).ready(function() {
 
 
     $("#passwordchangesubmitbutton").click(function(evt) {
+
+        $("#oldpassworderrorcontent").hide();
+        $("#newpassworderrorcontent").hide();
         evt.preventDefault();
         wgPasswordchangeFormAjaxSubmit();
     });
@@ -231,7 +236,6 @@ function wgpasswordupdateCallback(data) {
         console.log(responseData);
 
 
-
     } else if (status == "error") {
 
         console.error(responseData);
@@ -245,9 +249,22 @@ function wgpasswordupdateCallback(data) {
                 errorText += "  - " + err + ": " + errorJSON[err] + "\n";
             }
             console.error(errorText)
-        } else {
-            console.error("Fehler: " + responseData.status + " - " + responseData.statusText);
-        }
+
+            for (var err in errorJSON) {
+
+                if (err == 'oldpassword') {
+                    $("#oldpassworderrorfield").html(errorJSON[err]);
+                    $("#oldpassworderrorfield").show();
+                } else if (err == 'newpassword') {
+                    $("#newpassworderrorfield").html(errorJSON[err]);
+                    $("#newpassworderrorfield").show();
+                }
+                    console.log(err);
+                }
+
+            } else {
+                console.error("Fehler: " + responseData.status + " - " + responseData.statusText);
+            }
 
     }
 }

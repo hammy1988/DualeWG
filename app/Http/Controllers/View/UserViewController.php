@@ -22,8 +22,4 @@ class UserViewController extends Controller
         return view('management.profilepassword');
     }
 
-    public function back(){
-
-        return view('management.profilemain');
-    }
 }

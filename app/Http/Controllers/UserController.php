@@ -191,11 +191,18 @@ class UserController extends Controller
     private function updatePassword(Request $request, $id, $user)
     {
 
-
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'oldpassword' => ['required', 'string'],
             'newpassword' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        ];
+        $customMessages = [
+            'oldpassword.required' => 'Bitte geben Sie Ihr Passwort an',
+            'newpassword.required' => 'Bitte geben Sie ein neues Passwort an.',
+            'newpassword.min' => 'Das neue Passwort muss mindestens 8 Zeichen lang sein.',
+            'newpassword.confirmed' => 'Die Passwörter stimmten nicht überein.',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $customMessages);
 
         if ($validator->fails()) {
             return response()->json(['errors'=>$validator->errors()], 422);

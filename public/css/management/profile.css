@@ -124,6 +124,10 @@ tbody tr:nth-child(even){
     text-align: center;
 }
 
+.wgerrormessages{
+    display: none;
+}
+
 
 #wgProfileFlatshareLeaveSuccess {
     display: none;

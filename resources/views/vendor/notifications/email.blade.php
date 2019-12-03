@@ -51,8 +51,8 @@
 @isset($actionText)
 @slot('subcopy')
 @lang(
-    "Falls der Link bei dir nicht funktioniert, klicke auf den \":actionText\" Button und kopiere die Internetadresse darunter\n".
-    'in Ihren Webrowser: [:actionURL](:actionURL)',
+    "Falls der Button bei dir nicht funktioniert, kopiere folgenden Link und füge ihn in die URL Leiste deines Webbrowsers ein:\n".
+    '[:actionURL](:actionURL)',
     [
         'actionText' => $actionText,
         'actionURL' => $actionUrl,

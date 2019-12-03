@@ -86,8 +86,8 @@ $(document).ready(function() {
 
     $("#passwordchangesubmitbutton").click(function(evt) {
 
-        $("#oldpassworderrorcontent").hide();
-        $("#newpassworderrorcontent").hide();
+        $("#oldpassworderrorfield").hide();
+        $("#newpassworderrorfield").hide();
         evt.preventDefault();
         wgPasswordchangeFormAjaxSubmit();
     });

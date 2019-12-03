@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Purchase extends Model
 {
@@ -14,10 +15,13 @@ class Purchase extends Model
 
     ];
 
-    public function flatshares() {
+    public function flatshare() {
         return $this->belongsTo(Flatshare::class);
     }
 
+    public function user() {
+        return $this->belongsTo(User::class, "user_id");
+    }
 
     public function admin() {
         return $this->belongsTo(User::class, 'admin_id');

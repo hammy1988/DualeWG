@@ -4,6 +4,7 @@ namespace App\Http\Controllers\View;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Support\Facades\Auth;
 
 class PurchaseViewController extends Controller
@@ -26,7 +27,8 @@ class PurchaseViewController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index() {
-        return view('modules.purchase.purchasemain');
+        $allUsers = User::all();
+        return view('modules.purchase.purchasemain', compact('allUsers'));
     }
 
 }

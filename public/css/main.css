@@ -194,6 +194,19 @@ html, body {
     margin: 15px 0 15px 0;
 }
 
+.wgtable {
+    display: table;
+    border-collapse:collapse;
+}
+.wgtable .wgtr {
+    display:table-row;
+}
+.wgtable .wgtr .wgtd {
+    display:table-cell;
+    border:thin solid darkgray;
+    padding:5px;
+}
+
 
 /*
 ###################

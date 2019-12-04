@@ -139,5 +139,14 @@ class PurchaseController extends Controller
     public function destroy(Purchase $purchase)
     {
         //
+        $actUser = Auth::user();
+        if (!($actUser->flatshare->id == $purchase->flatshare->id)) {
+            abort(403, 'Access denied');
+        }
+
+        $purchase->delete();
+
+        return response()->json($purchase,200);
+
     }
 }

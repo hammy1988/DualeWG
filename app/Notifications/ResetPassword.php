@@ -13,13 +13,22 @@ class ResetPassword extends ResetPasswordNotification
     use Queueable;
 
     /**
-     * Create a new notification instance.
+     * The password reset token.
      *
+     * @var string
+     */
+    public $token;
+
+
+    /**
+     * Create a notification instance.
+     *
+     * @param  string  $token
      * @return void
      */
-    public function __construct()
+    public function __construct($token)
     {
-        //
+        $this->token = $token;
     }
 
     /**
@@ -41,13 +50,15 @@ class ResetPassword extends ResetPasswordNotification
      */
     public function toMail($notifiable)
     {
+
         return (new MailMessage)
             ->subject('Passwort zurücksetzen - ' . config('app.name'))
             ->line('Sie haben einen Link zum ändern Ihrer Zugangsdaten angefordert. Klicken Sie dafür auf folgenden Link:')
-            ->action('Hier klicken, um Passwort zurückzusetzen', url('password/reset', $this->token))
+            ->action('Hier klicken, um Passwort zurückzusetzen', url(config('app.url').route('password.reset', ['token' => $this->token, 'email' => $notifiable->getEmailForPasswordReset()], false)))
             ->line('Der Link wird in 60 Minuten ungültig.')
             ->line('Diese E-Mail wurde automatisch generiert. Antworten ist zwecklos...')
-             ->line('Sollten Sie das Zurücksetzen Ihrer Zugangsdaten nicht angefordert haben, betrachen Sie diese E-Mail bitte als gegenstandslos!');
+            ->line('Sollten Sie das Zurücksetzen Ihrer Zugangsdaten nicht angefordert haben, betrachen Sie diese E-Mail bitte als gegenstandslos!');
+
     }
 
     /**

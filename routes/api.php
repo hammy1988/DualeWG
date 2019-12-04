@@ -22,6 +22,7 @@ Route::middleware('auth:api')->group(function() {
 
     Route::resource('flatshare', 'FlatshareController');
     Route::resource('user', 'UserController');
+    Route::resource('purchase', 'PurchaseController');
 
 });
 

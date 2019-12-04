@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Purchase;
+use App\User;
+use App\Flatshare;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PurchaseController extends Controller
 {
@@ -12,9 +16,17 @@ class PurchaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if ($request['q'] != null) {
+            if ($request['q'] == 'list') {
+                return response()->json(Purchase::where("flatshare_id", Auth::User()->flatshare->id)->where("user_id", null)->get(), 200);
+            }
+            if ($request['q'] == 'paid') {
+                return response()->json(Purchase::where("flatshare_id", Auth::User()->flatshare->id)->where("user_id", "<>", null)->get(), 200);
+            }
+        }
+        return response()->json(Purchase::where("flatshare_id", Auth::User()->flatshare->id)->get(), 200);
     }
 
     /**
@@ -25,6 +37,7 @@ class PurchaseController extends Controller
     public function create()
     {
         //
+
     }
 
     /**
@@ -36,6 +49,31 @@ class PurchaseController extends Controller
     public function store(Request $request)
     {
         //
+
+        $createflatshare = Auth::user()->flatshare;
+
+        $rules = [
+            'name' => ['required', 'string', 'max:255'],
+            'count' => ['required', 'numeric'],
+        ];
+        $customMessages = [
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $customMessages);
+
+        if ($validator->fails()) {
+            return response()->json(['errors'=>$validator->errors()], 422);
+        }
+
+
+        $purchase = new Purchase();
+        $purchase->flatshare_id = $createflatshare->id;
+        $purchase->name = $request->name;
+        $purchase->count = $request->count;
+        $purchase->save();
+
+
+        return response()->json($purchase,201);
     }
 
     /**

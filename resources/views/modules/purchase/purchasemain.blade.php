@@ -46,7 +46,7 @@
                                     <div class="wgtd">{{ ((new DateTime($purchaseitem->created_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone('Europe/Berlin')))->format('d.m.Y H:i') }}</div>
                                     <div class="wgtd">
                                         <a href="#" class="purchaseboughtbutton" data-purchaseid="{{ $purchaseitem->id }}"><span class="fad fa-cart-arrow-down"></span></a>
-                                        <a href="#" class="purchasedeletebutton" data-purchaseid="{{ $purchaseitem->id }}"><span class="fad fa-times-circle"></span></a>
+                                        <a href="#" class="purchasedeletebutton" data-purchaselist="notpaid" data-purchaseid="{{ $purchaseitem->id }}"><span class="fad fa-trash-alt"></span></a>
                                     </div>
 
                                 </div>
@@ -73,7 +73,7 @@
                                     <div class="wgtd">{{ $purchaseitem->user->username }}</div>
                                     <div class="wgtd">{{ ((new DateTime($purchaseitem->paid_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone('Europe/Berlin')))->format('d.m.Y H:i') }}</div>
                                     <div class="wgtd">
-                                        <a href="#" class="purchasedeletebutton" data-purchaseid="{{ $purchaseitem->id }}"><span class="fad fa-times-circle"></span></a>
+                                        <a href="#" class="purchasedeletebutton" data-purchaselist="paid" data-purchaseid="{{ $purchaseitem->id }}"><span class="fad fa-trash-alt"></span></a>
                                     </div>
                                 </div>
                             @endforeach

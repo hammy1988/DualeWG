@@ -1,8 +1,12 @@
 var xhr_purchaseadd;
 var xhr_purchasepaid;
+var xhr_purchasedelete;
 
 var purchaseadd_sent = false;
 var purchasepaid_sent = false;
+
+var purchasedelete_sent = false;
+var purchaselastdeletelist = -1;
 
 $(document).ready(function() {
 
@@ -29,6 +33,14 @@ $(document).ready(function() {
         }
     });
 
+    wgPurchaseReloadButtons();
+
+
+});
+
+function wgPurchaseReloadButtons() {
+
+    $(".purchaseboughtbutton").unbind("click");
     $(".purchaseboughtbutton").click(function(evt) {
         evt.preventDefault();
 
@@ -38,7 +50,21 @@ $(document).ready(function() {
         }
     });
 
-});
+    $(".purchasedeletebutton").unbind("click");
+    $(".purchasedeletebutton").click(function(evt) {
+        evt.preventDefault();
+
+        if (purchasedelete_sent == false) {
+            let purchaseid = $(this).attr("data-purchaseid");
+            if ($(this).attr("data-purchaselist") == "notpaid") {
+                purchaselastdeletelist = 0;
+            } else if ($(this).attr("data-purchaselist") == "paid") {
+                purchaselastdeletelist = 1;
+            }
+            wgPurchaseDelete(purchaseid);
+        }
+    });
+}
 
 function wgPurchaseAdd() {
 
@@ -82,8 +108,8 @@ function wgPurchaseAddCallback(data) {
                     $("<span>",{class:"fad fa-cart-arrow-down"})
                 )
             ).append(
-                $("<a>", { href:"#",class:"purchasedeletebutton", "data-purchaseid": responseData.id }).append(
-                    $("<span>",{class:"fad fa-times-circle"})
+                $("<a>", { href:"#",class:"purchasedeletebutton", "data-purchaseid": responseData.id, "data-purchaselist": "notpaid" }).append(
+                    $("<span>",{class:"fad fa-trash-alt"})
                 )
             )
         );
@@ -91,15 +117,7 @@ function wgPurchaseAddCallback(data) {
         $(".wgpurchaseitemlist.wgtable").append(responseText);
 
 
-        $(".purchaseboughtbutton").unbind("click");
-        $(".purchaseboughtbutton").click(function(evt) {
-            evt.preventDefault();
-
-            if (purchasepaid_sent == false) {
-                let purchaseid = $(this).attr("data-purchaseid");
-                wgPurchaseBought(purchaseid);
-            }
-        });
+        wgPurchaseReloadButtons();
 
 
     } else if (status == "error") {
@@ -134,7 +152,7 @@ function wgPurchaseBoughtCallback(data) {
 
         $("#purchaserownotpaid_" + responseData.id).remove();
 
-        var responseText = $("<div>", { class: "wgtr" }).append(
+        var responseText = $("<div>", { class: "wgtr", id: ("purchaserowpaid_" + responseData.id) }).append(
             $("<div>", { class: "wgtd"}).append(
                 responseData.name
             )
@@ -152,13 +170,15 @@ function wgPurchaseBoughtCallback(data) {
             )
         ).append(
             $("<div>", { class: "wgtd"}).append(
-                $("<a>", { href:"#",class:"purchasedeletebutton", "data-purchaseid": responseData.id }).append(
-                    $("<span>",{class:"fad fa-times-circle"})
+                $("<a>", { href:"#",class:"purchasedeletebutton", "data-purchaseid": responseData.id, "data-purchaselist": "paid" }).append(
+                    $("<span>",{class:"fad fa-trash-alt"})
                 )
             )
         );
 
         $(".wgboughtitemlist.wgtable .wgtitle").after(responseText);
+
+        wgPurchaseReloadButtons();
 
     } else if (status == "error") {
 
@@ -168,7 +188,40 @@ function wgPurchaseBoughtCallback(data) {
     }
 
 
-    purchaseadd_sent = false;
+    purchasedelete_sent = false;
+
+}
+
+function wgPurchaseDelete(purchaseid) {
+
+    apiCall_DESTROY("purchase", purchaseid, wgPurchaseDeleteCallback, xhr_purchasedelete);
+
+}
+
+function wgPurchaseDeleteCallback(data) {
+
+    let responseData = data.responseData;
+    let status = data.status;
+
+    console.log("callsback: " + purchaselastdeletelist);
+
+    if (status == "success") {
+
+        console.log(responseData);
+        if (purchaselastdeletelist == 0) {
+            $("#purchaserownotpaid_" + responseData.id).remove();
+        } else if (purchaselastdeletelist == 1) {
+            $("#purchaserowpaid_" + responseData.id).remove();
+        }
+
+    } else if (status == "error") {
+
+        // Fehlerbehandlung
+
+
+    }
+
+    purchasedelete_sent = false;
 
 }
 

@@ -29,8 +29,8 @@
                                        class="form-control wgInputField" name="purchaseaddcount" placeholder="Anzahl"
                                        value=""autofocus autocomplete="off" />
                             </div>
-                            <a href="" class="purchaseaddbutton"><span class="fad fa-cart-plus"></span></a>
-                            <a href="" class="purchasecancelbutton"><span class="fad fa-ban"></span></a>
+                            <a href="#" id="purchaseaddbutton" class="purchaseaddbutton"><span class="fad fa-cart-plus"></span></a>
+                            <a href="#" id="purchasecancelbutton" class="purchasecancelbutton"><span class="fad fa-ban"></span></a>
                         </div>
                         <div class="wgpurchaseitemlist wgtable">
                             <div class="wgtr wgtitle">
@@ -44,7 +44,11 @@
                                     <div class="wgtd">{{ $purchaseitem->name }}</div>
                                     <div class="wgtd">{{ $purchaseitem->count }}</div>
                                     <div class="wgtd">{{ ((new DateTime($purchaseitem->created_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone('Europe/Berlin')))->format('d.m.Y H:i') }}</div>
-                                    <div class="wgtd">-</div>
+                                    <div class="wgtd">
+                                        <a href="#" class="purchaseboughtbutton" data-purchaseid="{{ $purchaseitem->id }}"><span class="fad fa-cart-arrow-down"></span></a>
+                                        <a href="#" class="purchasedeletebutton" data-purchaseid="{{ $purchaseitem->id }}"><span class="fad fa-times-circle"></span></a>
+                                    </div>
+
                                 </div>
                             @endforeach
                         </div>

@@ -7,7 +7,6 @@
     display: inline-block;
 }
 
-
 .purchaseaddname{
     display: inline-block;
 }
@@ -16,7 +15,7 @@
     margin-left: 5px;
 
 }
-.purchaseaddbutton{
+.purchaseaddbutton {
     display: inline-block;
     margin-left: 5px;
     font-size: 160%;
@@ -27,7 +26,17 @@
     font-size: 160%;
     color: #f00;
 }
-
+.purchaseboughtbutton{
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 160%;
+}
+.purchasedeletebutton{
+    color: #ff0000;
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 160%;
+}
 .wgpurchaseitemlist {
     margin: 20px 0 0 0;
     width: 100%

@@ -218,6 +218,55 @@ function apiCall_STORE(api, data, callback, xhr) {
     });
 }
 
+
+function apiCall_DESTROY(api, id, callback, xhr) {
+
+    let url = "/api/" + api + "/" + id;
+
+
+    if (xhr !== undefined) {
+        xhr.abort();
+    }
+    xhr = $.ajax({
+        type: "DELETE",
+        dataType: "json",
+        url: url,
+        headers: {
+            'Authorization': 'Bearer ' + $('meta[name="api_token"]').attr('content'),
+            //'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        },
+        success: function(data){
+
+            let callbackData = {
+                "status": "success",
+                "responseData": data,
+            }
+
+            callback(callbackData);
+        },
+        error: function(data) {
+
+            let callbackData;
+
+            if (data.statusText == "abort") {
+                callbackData = {
+                    "status": "abort",
+                    "responseData": data,
+                }
+            } else {
+                callbackData = {
+                    "status": "error",
+                    "responseData": data,
+                }
+            }
+
+
+            callback(callbackData);
+        }
+
+    });
+}
+
 function wgDateTimeFormat(conUTCDateTime) {
 
     let localDateTime = new Date(conUTCDateTime.toString());

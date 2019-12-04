@@ -108,6 +108,26 @@ class PurchaseController extends Controller
     public function update(Request $request, Purchase $purchase)
     {
         //
+        $actUser = Auth::user();
+        if (!($actUser->flatshare->id == $purchase->flatshare->id)) {
+            abort(403, 'Access denied');
+        }
+
+        if ($request->action == 'paidPurchase') {
+            return $this->updatePaidPurchase($request, $purchase, $actUser);
+        }
+
+    }
+
+    private function updatePaidPurchase(Request $request, Purchase $purchase, User $actUser)
+    {
+        $purchase->user_id = $actUser->id;
+        $purchase->paid_at = new \DateTime("now", new \DateTimeZone("UTC"));
+        $purchase->save();
+
+
+        return response()->json($purchase,200);
+
     }
 
     /**

@@ -1,6 +1,8 @@
 var xhr_purchaseadd;
+var xhr_purchasepaid;
 
 var purchaseadd_sent = false;
+var purchasepaid_sent = false;
 
 $(document).ready(function() {
 
@@ -24,6 +26,15 @@ $(document).ready(function() {
 
         if (purchaseadd_sent == false) {
             wgPurchaseAdd();
+        }
+    });
+
+    $(".purchaseboughtbutton").click(function(evt) {
+        evt.preventDefault();
+
+        if (purchasepaid_sent == false) {
+            let purchaseid = $(this).attr("data-purchaseid");
+            wgPurchaseBought(purchaseid);
         }
     });
 
@@ -52,9 +63,8 @@ function wgPurchaseAddCallback(data) {
 
     if (status == "success") {
 
-        console.log(responseData);
 
-        var responseText = $("<div>", { class: "wgtr wgtitle" }).append(
+        var responseText = $("<div>", { class: "wgtr", id: ("purchaserownotpaid_" + responseData.id) }).append(
             $("<div>", { class: "wgtd"}).append(
                 responseData.name
             )
@@ -80,6 +90,75 @@ function wgPurchaseAddCallback(data) {
 
         $(".wgpurchaseitemlist.wgtable").append(responseText);
 
+
+        $(".purchaseboughtbutton").unbind("click");
+        $(".purchaseboughtbutton").click(function(evt) {
+            evt.preventDefault();
+
+            if (purchasepaid_sent == false) {
+                let purchaseid = $(this).attr("data-purchaseid");
+                wgPurchaseBought(purchaseid);
+            }
+        });
+
+
+    } else if (status == "error") {
+
+        // Fehlerbehandlung
+
+
+    }
+
+
+    purchaseadd_sent = false;
+
+}
+
+function wgPurchaseBought(purchaseid) {
+
+    let jsonData = {
+        action: "paidPurchase",
+    }
+
+    apiCall_UPDATE("purchase", purchaseid, jsonData, wgPurchaseBoughtCallback, xhr_purchasepaid);
+
+}
+
+function wgPurchaseBoughtCallback(data) {
+
+    let responseData = data.responseData;
+    let status = data.status;
+
+    if (status == "success") {
+
+
+        $("#purchaserownotpaid_" + responseData.id).remove();
+
+        var responseText = $("<div>", { class: "wgtr" }).append(
+            $("<div>", { class: "wgtd"}).append(
+                responseData.name
+            )
+        ).append(
+            $("<div>", { class: "wgtd"}).append(
+                responseData.count
+            )
+        ).append(
+            $("<div>", { class: "wgtd"}).append(
+                responseData.user_id
+            )
+        ).append(
+            $("<div>", { class: "wgtd"}).append(
+                wgDateTimeFormat(responseData.paid_at.date)
+            )
+        ).append(
+            $("<div>", { class: "wgtd"}).append(
+                $("<a>", { href:"#",class:"purchasedeletebutton", "data-purchaseid": responseData.id }).append(
+                    $("<span>",{class:"fad fa-times-circle"})
+                )
+            )
+        );
+
+        $(".wgboughtitemlist.wgtable .wgtitle").after(responseText);
 
     } else if (status == "error") {
 

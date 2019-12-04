@@ -25,7 +25,8 @@
 
                         <div class="form-group row">
                             <label for="oldpassword"
-                                   class="col-md-4 col-form-label text-md-right">{{ __('Altes Passwort') }}</label>
+                                   class="col-md-4 col-form-label text-md-right">
+                                {{ __('Altes Passwort') }}</label>
                             <div class="col-md-6">
                                 <div class="wgInputFieldWrapper">
                                     <input id="oldpassword" type="password"
@@ -50,9 +51,7 @@
                                 </div>
                             </div>
                             <div class="col-md-6 offset-4">
-                                     <span id="newpassworderrorfield" class="invalid-feedback wgerrormessages" role="alert">
-                                            <strong>Dieses Feld darf nicht leer sein!</strong>
-                                    </span>
+                                     <span id="newpassworderrorfield" class="invalid-feedback wgerrormessages">s</span>
                             </div>
                         </div>
 
@@ -70,9 +69,7 @@
 
                             </div>
                             <div class="col-md-6 offset-4">
-                                     <span id="newpasswordcomfirmerrorfield" class="invalid-feedback wgerrormessages" role="alert">
-                                            <strong>Dieses Feld darf nicht leer sein!</strong>
-                                    </span>
+                                     <span id="newpasswordcomfirmerrorfield" class="invalid-feedback wgerrormessages"></span>
                             </div>
                         </div>
 

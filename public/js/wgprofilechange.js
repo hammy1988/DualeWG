@@ -46,35 +46,23 @@ $(document).ready(function() {
     $("#profileditbuttonsave").click(function (evt) { //speicherbutton
         evt.preventDefault(); //Unterdrückt die Funktion eines Buttons
 
-            let givenname = $('input[name=profilgivenname]').val();
-            let name = $('input[name=profilname]').val();
-            let email = $('input[name=profilemail]').val();
+        let givenname = $('input[name=profilgivenname]').val();
+        let name = $('input[name=profilname]').val();
+        let email = $('input[name=profilemail]').val();
 
-            $("#givennameworkonfail").hide();
-            $("#nameworkonfail").hide();
-            $("#emailworkonfail").hide();
+        $("#givennameworkonfail").hide();
+        $("#nameworkonfail").hide();
+        $("#emailworkonfail").hide();
 
-            if (givenname == "") {
-                $("#givennameworkonfail").show();
-            }
-            if(name == ""){
-                $("#nameworkonfail").show();
-            }
-            if(email == ""){
-                $("#emailworkonfail").show();
-            }
-            else {
+        let jsonData = {
+            action: 'updateProfile',
+            givenname: $("#profilgivenname_input").val(),
+            name: $("#profilname_input").val(),
+            email: $("#profilemail_input").val()
+        }
 
-                let jsonData = {
-                    action: 'updateProfile',
-                    givenname: $("#profilgivenname_input").val(),
-                    name: $("#profilname_input").val(),
-                    email: $("#profilemail_input").val()
-                }
+        apiCall_UPDATE("user", $("#wgProfileUserId").val(), jsonData, wgprofilupdateCallback, xhr_updateuser)
 
-                apiCall_UPDATE("user", $("#wgProfileUserId").val(), jsonData, wgprofilupdateCallback, xhr_updateuser)
-
-            }
 
     });
 
@@ -84,7 +72,7 @@ $(document).ready(function() {
     });
 
 
-    $("#passwordchangesubmitbutton").click(function(evt) {
+    $("#passwordchangesubmitbutton").click(function (evt) {
 
         $("#oldpassworderrorfield").hide();
         $("#newpassworderrorfield").hide();
@@ -99,6 +87,7 @@ $(document).ready(function() {
             $(this).removeAttr("disabled");
         }
     });
+
     $("#newpassword").on("keypress", function (evt) {
         if(evt.which === 13){
             $(this).attr("disabled", "disabled");
@@ -106,6 +95,7 @@ $(document).ready(function() {
             $(this).removeAttr("disabled");
         }
     });
+
     $("#newpassword_confirmation").on("keypress", function (evt) {
         if(evt.which === 13){
             $(this).attr("disabled", "disabled");
@@ -113,10 +103,6 @@ $(document).ready(function() {
             $(this).removeAttr("disabled");
         }
     });
-
-
-
-
 });
 
 
@@ -147,7 +133,6 @@ function wgprofilupdateCallback(data) {
         $("#profileeditend").hide();
 
 
-
     } else if (status == "error") {
 
         // Fehlerbehandlung
@@ -159,112 +144,140 @@ function wgprofilupdateCallback(data) {
                 errorText += "  - " + err + ": " + errorJSON[err] + "\n";
             }
             console.error(errorText)
-        } else {
-            console.error("Fehler: " + responseData.status + " - " + responseData.statusText);
-        }
 
+            for (var err in errorJSON) {
+
+                var errTextShow = "";
+
+                for (let i = 0; i < errorJSON[err].length; i++) {
+                    errTextShow += errorJSON[err][i];
+                    if (i < (errorJSON[err].length - 1)) {
+                        errTextShow += "<br />";
+                    }
+                }
+
+                if (err == 'givenname') {
+                    $("#givennameerrorfield").html(errTextShow);
+                    $("#givennameerrorfield").show();
+                } else if (err == 'name') {
+                    $("#nameerrorfield").html(errTextShow);
+                    $("#nameerrorfield").show();
+                } else if (err == 'email') {
+                    $("#emailerrorfield").html(errTextShow);
+                    $("#emailerrorfield").show();
+
+                } else {
+                    console.error("Fehler: " + responseData.status + " - " + responseData.statusText);
+                }
+            }
+        }
     }
 }
 
+    function wgProfileLeave(actionStr, userid) {
 
-function wgProfileLeave(actionStr, userid) {
+        if (!(leavemember_sent)) {
 
-    if (!(leavemember_sent)) {
+            leavemember_sent = true;
 
-        leavemember_sent = true;
+            $(".wguserleave").addClass("wgleavedisable");
 
-        $(".wguserleave").addClass("wgleavedisable");
+            let jsonData = {
+                action: actionStr
+            };
+            apiCall_UPDATE("user", userid, jsonData, wgleaveCallback, xhr_leaveflatshare)
+        }
+
+    }
+
+    function wgleaveCallback(data) {
+
+        let responseData = data.responseData;
+        let status = data.status;
+
+        if (status == "success") {
+
+            if (responseData.flatsharejoin_at == null) {
+                $("#wgProfileMain").remove();
+                $("#wgProfileFlatshareLeaveSuccess").show();
+            }
+
+        } else if (status == "error") {
+
+            // Fehlerbehandlung
+            leavemember_sent = false;
+
+            $(".wguserleave").removeClass("wgleavedisable");
+        }
+
+
+    }
+
+    function wgPasswordchangeFormAjaxSubmit() {
+
+        let oldpassword = $('input[name=oldpassword]', '#wgpasswortchangeinput').val();
+        let newpassword = $('input[name=newpassword]', '#wgpasswortchangeinput').val();
+        let newpassword_confirmation = $('input[name=newpassword_confirmation]', '#wgpasswortchangeinput').val();
+
 
         let jsonData = {
-            action: actionStr
+            action: 'updatePassword',
+            oldpassword: oldpassword,
+            newpassword: newpassword,
+            newpassword_confirmation: newpassword_confirmation,
         };
-        apiCall_UPDATE("user", userid, jsonData, wgleaveCallback, xhr_leaveflatshare)
-    }
 
-}
+        apiCall_UPDATE("user", $("#wgProfileUserId").val(), jsonData, wgpasswordupdateCallback, xhr_updatepassword)
 
-function wgleaveCallback(data) {
-
-    let responseData = data.responseData;
-    let status = data.status;
-
-    if (status == "success") {
-
-        if (responseData.flatsharejoin_at == null) {
-            $("#wgProfileMain").remove();
-            $("#wgProfileFlatshareLeaveSuccess").show();
-        }
-
-    } else if (status == "error") {
-
-        // Fehlerbehandlung
-        leavemember_sent = false;
-
-        $(".wguserleave").removeClass("wgleavedisable");
     }
 
 
-}
+    function wgpasswordupdateCallback(data) {
 
-function wgPasswordchangeFormAjaxSubmit() {
-
-    let oldpassword = $('input[name=oldpassword]', '#wgpasswortchangeinput').val();
-    let newpassword = $('input[name=newpassword]', '#wgpasswortchangeinput').val();
-    let newpassword_confirmation = $('input[name=newpassword_confirmation]', '#wgpasswortchangeinput').val();
+        let responseData = data.responseData;
+        let status = data.status;
 
 
-    let jsonData = {
-        action: 'updatePassword',
-        oldpassword: oldpassword,
-        newpassword: newpassword,
-        newpassword_confirmation: newpassword_confirmation,
-    };
+        if (status == "success") {
 
-    apiCall_UPDATE("user", $("#wgProfileUserId").val(), jsonData, wgpasswordupdateCallback, xhr_updatepassword)
-
-}
+            console.log(responseData);
 
 
-function wgpasswordupdateCallback(data) {
+        } else if (status == "error") {
 
-    let responseData = data.responseData;
-    let status = data.status;
+            console.error(responseData);
 
+            // Fehlerbehandlung
+            if (responseData.status == 422) {
+                let errorJSON = responseData.responseJSON.errors;
 
-    if (status == "success") {
-
-        console.log(responseData);
-
-
-    } else if (status == "error") {
-
-        console.error(responseData);
-
-        // Fehlerbehandlung
-        if (responseData.status == 422) {
-            let errorJSON = responseData.responseJSON.errors;
-
-            let errorText = "Fehler:\n"
-            for (var err in errorJSON) {
-                errorText += "  - " + err + ": " + errorJSON[err] + "\n";
-            }
-            console.error(errorText)
-
-            for (var err in errorJSON) {
-
-                if (err == 'oldpassword') {
-                    $("#oldpassworderrorfield").html(errorJSON[err]);
-                    $("#oldpassworderrorfield").show();
-                } else if (err == 'newpassword') {
-                    $("#newpassworderrorfield").html(errorJSON[err]);
-                    $("#newpassworderrorfield").show();
+                let errorText = "Fehler:\n"
+                for (var err in errorJSON) {
+                    errorText += "  - " + err + ": " + errorJSON[err] + "\n";
                 }
+                console.error(errorText)
+
+                for (var err in errorJSON) {
+
+                    if (err == 'oldpassword') {
+
+                        $("#oldpassworderrorfield").html(errorJSON[err]);
+                        $("#oldpassworderrorfield").show();
+
+                    } else if (err == 'newpassword') {
+
+                        $("#newpassworderrorfield").html(errorJSON[err]);
+                        $("#newpassworderrorfield").show();
+
+
+                    }
                     console.log(err);
-                }
 
-            } else {
+                }
+            }
+                else {
                 console.error("Fehler: " + responseData.status + " - " + responseData.statusText);
             }
 
+        }
     }
-}

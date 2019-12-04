@@ -169,11 +169,19 @@ class UserController extends Controller
     private function updateProfile(Request $request, $id, $user)
     {
 
-        $validator = Validator::make($request->all(), [
+        $rules = [
             'givenname' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', ('unique:users,email,' . $user->id)],
-        ]);
+        ];
+        $customMessages = [
+            'givenname.required' => 'Bitte geben Sie Ihren Vornamen an.',
+            'givenname.max' => 'Der Vorname darf maximal 255 Zeichen lang sein.',
+            'name.required' => 'Bitte geben Sie Ihren Namen an.',
+            'name.max' => 'Der Name darf maximal 255 Zeichen lang sein.',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $customMessages);
 
         if ($validator->fails()) {
             return response()->json(['errors'=>$validator->errors()], 422);
@@ -198,7 +206,7 @@ class UserController extends Controller
         $customMessages = [
             'oldpassword.required' => 'Bitte geben Sie Ihr Passwort an',
             'newpassword.required' => 'Bitte geben Sie ein neues Passwort an.',
-            'newpassword.min' => 'Das neue Passwort muss mindestens 8 Zeichen lang sein.',
+            'newpassword.min' => 'Das neue Passwort muss mindestens 8 Zeichen lang sein. <br>',
             'newpassword.confirmed' => 'Die Passwörter stimmten nicht überein.',
         ];
 

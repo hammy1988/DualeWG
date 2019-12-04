@@ -1,0 +1,34 @@
+#wgaddpurchase {
+    display: none;
+    margin: 3px 0;
+}
+
+#wgaddpurchase.wgpurchaseaddshow {
+    display: inline-block;
+}
+
+
+.purchaseaddname{
+    display: inline-block;
+}
+.purchaseaddcount{
+    display: inline-block;
+    margin-left: 5px;
+
+}
+.purchaseaddbutton{
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 160%;
+}
+.purchasecancelbutton{
+    display: inline-block;
+    margin-left: 5px;
+    font-size: 160%;
+    color: #f00;
+}
+
+.wgpurchaseitemlist {
+    margin: 20px 0 0 0;
+    width: 100%
+}

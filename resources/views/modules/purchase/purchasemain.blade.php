@@ -15,23 +15,23 @@
                 <div class="card wgpurchaselist">
                     <div class="card-header">{{ __('Einkaufsliste') }}</div>
                     <div class="card-body">
-                        <a href="{{ route("purchaselist") }}" id="purchaseaddbutton" class="btn btn-primary wgButton">
-                            {{ __('Neues Zeug hinzufügen') }}
+                        <a href="{{ route("purchaselist") }}" id="newproductbutton" class="btn btn-primary wgButton">
+                            {{ __('Neues Produkt hinzufügen') }}
                         </a>
                         <div id="wgaddpurchase">
-                            <div class="wgInputFieldWrapper profileinputhide" style="float: left">
-                                <input id="profilgivenname_input" type="text"
-                                       class="form-control wgInputField" name="profilgivenname"
+                            <div class="wgInputFieldWrapper purchaseaddname">
+                                <input id="purchaseaddname_input" type="text"
+                                       class="form-control wgInputField" name="purchaseaddname" placeholder="Produkt"
                                        value=""autofocus autocomplete="off" />
                             </div>
-                            <div class="wgInputFieldWrapper profileinputhide" style="float: left; margin-left: 2%">
-                                <input id="profilgivenname_input" type="text"
-                                       class="form-control wgInputField" name="profilgivenname"
+                            <div class="wgInputFieldWrapper purchaseaddcount">
+                                <input id="purchaseaddcount_input" type="text"
+                                       class="form-control wgInputField" name="purchaseaddcount" placeholder="Anzahl"
                                        value=""autofocus autocomplete="off" />
                             </div>
-                            <a href=""><span class="fad fa-cart-plus"></span></a>
+                            <a href="" class="purchaseaddbutton"><span class="fad fa-cart-plus"></span></a>
+                            <a href="" class="purchasecancelbutton"><span class="fad fa-ban"></span></a>
                         </div>
-                        <br />
                         <div class="wgpurchaseitemlist wgtable">
                             <div class="wgtr wgtitle">
                                 <div class="wgtd">Name</div>
@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="card wgpurchaseboughtlist">
-                    <div class="card-header">{{ __('Gekauftes Zeug') }}</div>
+                    <div class="card-header">{{ __('Gekaufte Produkte') }}</div>
                     <div class="card-body">
                         <div class="wgboughtitemlist wgtable">
                             <div class="wgtr wgtitle">

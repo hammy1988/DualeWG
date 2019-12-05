@@ -269,8 +269,17 @@ function apiCall_DESTROY(api, id, callback, xhr) {
 
 function wgDateTimeFormat(conUTCDateTime) {
 
-    let localDateTime = new Date(conUTCDateTime.toString());
-    localDateTime.setHours(localDateTime.getHours()+(localDateTime.getTimezoneOffset()/60*-1));
+    console.log(conUTCDateTime);
+
+    //let localDateTime = new Date(conUTCDateTime.toString());
+
+    let localDateTime = new Date(Date.parse(conUTCDateTime.toString().replace(" ", "T"), "yyyy-MM-dd hh:mm:ss"));
+    console.log(localDateTime);
+
+    //localDateTime.setHours(localDateTime.getHours()+(localDateTime.getTimezoneOffset()/60*-1));
+
+    console.log(localDateTime);
+
 
     return wgDateTimeFormatDate(localDateTime);
 }

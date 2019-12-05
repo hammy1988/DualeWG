@@ -273,7 +273,7 @@ function wgDateTimeFormat(conUTCDateTime) {
 
     //let localDateTime = new Date(conUTCDateTime.toString());
 
-    let localDateTime = new Date(Date.parse(conUTCDateTime.toString().replace(" ", "T"), "yyyy-MM-dd hh:mm:ss"));
+    let localDateTime = new Date(Date.parse((conUTCDateTime.toString().replace(" ", "T") + "+01:00"), "yyyy-MM-dd hh:mm:ss"));
     console.log(localDateTime);
 
     //localDateTime.setHours(localDateTime.getHours()+(localDateTime.getTimezoneOffset()/60*-1));

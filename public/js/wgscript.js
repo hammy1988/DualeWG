@@ -277,13 +277,12 @@ function wgDateTimeFormat(conUTCDateTime) {
 
 function wgDateTimeFormatDate(conLocalDateTime) {
 
-
-    var dd = conLocalDateTime.getDay();
+    var dd = conLocalDateTime.getDay() + 1;
     if (dd < 10) {
         dd =  "0" + dd;
     }
 
-    var mm = conLocalDateTime.getMonth();
+    var mm = conLocalDateTime.getMonth() + 1;
     if (mm < 10) {
         mm =  "0" + mm;
     }

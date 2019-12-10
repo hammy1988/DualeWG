@@ -1,4 +1,5 @@
 var emptyWGSearchInput = true;
+moment.locale("de");
 
 $(document).ready(function() {
 
@@ -269,54 +270,9 @@ function apiCall_DESTROY(api, id, callback, xhr) {
 
 function wgDateTimeFormat(conUTCDateTime) {
 
-    console.log(conUTCDateTime);
-
-    //let localDateTime = new Date(conUTCDateTime.toString());
-
-    let localDateTime = new Date(Date.parse(conUTCDateTime.toString().replace(" ", "T"), "yyyy-MM-dd hh:mm:ss"));
-    console.log(localDateTime);
-
-    //localDateTime.setHours(localDateTime.getHours()+(localDateTime.getTimezoneOffset()/60*-1));
-
-    console.log(localDateTime);
-
-
-    return wgDateTimeFormatDate(localDateTime);
+    return moment.utc(conUTCDateTime).local().format("L LT");
 }
 
-function wgDateTimeFormatDate(conLocalDateTime) {
-
-    var dd = conLocalDateTime.getDay() + 1;
-    if (dd < 10) {
-        dd =  "0" + dd;
-    }
-
-    var mm = conLocalDateTime.getMonth() + 1;
-    if (mm < 10) {
-        mm =  "0" + mm;
-    }
-    var yy = conLocalDateTime.getFullYear();
-
-    var hh = conLocalDateTime.getHours();
-
-    if (hh < 10) {
-        hh =  "0" + hh;
-    }
-    var ss = conLocalDateTime.getMinutes();
-    if (ss < 10) {
-        ss =  "0" + ss;
-    }
-
-    var localDateTimeFormated = dd + "." +
-        mm + "." +
-        yy + " " +
-        hh + ":" +
-        ss;
-
-    return localDateTimeFormated;
-
-
-}
 
 function wgWaitSpinnerColorChanger() {
 

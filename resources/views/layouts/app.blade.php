@@ -21,6 +21,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
     <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
     @yield('headcss')
+    <link href="{{ asset('css/responsive.css') }}" rel="stylesheet" />
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -119,19 +120,19 @@
 
         <main class="py-4 wgMainContainer">
             @yield('content')
-        </main>
 
-        @auth
-            <div class="logininfo">
+            @auth
+                <div class="logininfo">
 
-                Sie sind angemeldet als:&nbsp;<a href="{{ route('profile') }}">{{ Auth::user()->givenname }} {{ Auth::user()->name }}</a>&nbsp;| (<a href="{{ route('logout') }}"  onclick="event.preventDefault();
+                    Sie sind angemeldet als:&nbsp;<a href="{{ route('profile') }}">{{ Auth::user()->givenname }} {{ Auth::user()->name }}</a>&nbsp;| (<a href="{{ route('logout') }}"  onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>)
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
 
-            </div>
-        @endauth
+                </div>
+            @endauth
+        </main>
 
     </div>
 

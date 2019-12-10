@@ -270,7 +270,7 @@ function apiCall_DESTROY(api, id, callback, xhr) {
 
 function wgDateTimeFormat(conUTCDateTime) {
 
-	return moment.utc(conUTCDateTime).local().format("L LT");
+    return moment.utc(conUTCDateTime).local().format("L LT");
 
 }
 

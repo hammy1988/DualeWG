@@ -19,11 +19,15 @@
 }
 .wgUserCard .wgUserCrown span {
     font-size: 130%;
-    color: #ffe82e;
+    color: hsl(53, 100%, 59%);
     left: -50%;
     top: -50%;
     transform: rotate(320deg);
-    transition: font-size 1s;
+    transition: font-size 1s, color 0.7s;
+}
+.wgUserCard .wgUserCrown span.blue {
+    color: #5558c0 !important;
+    transition: color 0.3s;
 }
 .wgUserCard:hover .wgUserCrown span {
     font-size: 150%;

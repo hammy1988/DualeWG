@@ -18,6 +18,7 @@ var changeadmin_sent = false;
 var lastuseridchangeadmin = 0;
 
 var crownclick_sent = false;
+var crownclick_animation = false;
 
 $(document).ready(function() {
 
@@ -45,10 +46,12 @@ $(document).ready(function() {
         wgRequest("deniedFlatshare", $(this).attr("data-userid"));
     });
 
+
+    wgcrownAnimation($("#wgAuthUserCrownCnd").val(), true);
+
     $("#wgCrown").click(function() {
         wgCrownClick("crownClick");
     });
-
 
 });
 
@@ -129,8 +132,6 @@ function wgremoveMemberCallback(data) {
 
     if (status == "success") {
 
-        console.log(responseData);
-
         if (responseData.flatsharejoin_at == null) {
             var responseText = $("<span>", { class: "wgresponsedenied" }).append(
                 $("<span>", { class: "fad fa-heart-broken"})
@@ -191,7 +192,6 @@ function wgchangeAdminCallback(data) {
 
     if (status == "success") {
 
-        console.log(responseData);
 
             var responseText = $("<span>", { class: "wgresponsechangeadmin" }).append(
                 $("<span>", { class: "fad fa-user-crown"})
@@ -345,9 +345,10 @@ function wgrequestCallback(data) {
 
 function wgCrownClick(actionStr) {
 
-    if (!(crownclick_sent)) {
+    if (!(crownclick_sent) && !(crownclick_animation)) {
 
         crownclick_sent = true;
+        crownclick_animation = true;
 
         let jsonData = {
             action: actionStr
@@ -363,10 +364,19 @@ function wgcrownCallback(data) {
     let responseData = data.responseData;
     let status = data.status;
 
-    console.log(responseData);
-    console.log(status);
-
     if (status == "success") {
+
+        if (responseData.id != parseInt($("#wgAuthUserId").val())) {
+
+            $(".wgFlatshareMemberList .wgUserActions:not(.wgFlatshareMemberList #wgUserCard_" + $("#wgAuthUserId").val() + " .wgUserActions)").remove();
+            $(".wgUserCrown").remove();
+            $(".wgFlatshareRequestList .wgUserActions").remove();;
+
+        } else {
+
+            wgcrownAnimation(responseData.crowncnt, false);
+
+        }
 
     } else if (status == "error") {
 
@@ -375,5 +385,20 @@ function wgcrownCallback(data) {
     }
 
 
+}
+
+function wgcrownAnimation(colorNumber, docReadyCall) {
+
+    $(".wgUserCrown").css("font-size", "" + (100 + 2.3*colorNumber) + "%");
+    $("#wgCrown").css("color", "hsl(" + (53 - (colorNumber * 1)) + ", 100%, 59%)");
+
+    if (!(docReadyCall)) {
+        $("#wgCrown").addClass("blue");
+        setTimeout(function() {
+            $("#wgCrown").removeClass("blue");
+        }, 300);
+    }
     crownclick_sent = false;
+    crownclick_animation = false;
+
 }

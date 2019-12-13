@@ -103,6 +103,8 @@ class UserController extends Controller
                 $user->save();
             }
             if ($request->action == 'changeFlatshareAdmin') {
+                $user->crowncnt = 0;
+                $user->save();
                 $flatshare = $user->flatshare()->first();
                 $flatshare->admin_id = $user->id;
                 $flatshare->save();

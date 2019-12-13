@@ -2,6 +2,7 @@ var xhr_requestanswer;
 var xhr_removemember;
 var xhr_leaveflatshare;
 var xhr_changeadmin;
+var xhr_crownclick;
 
 
 var leavemember_sent = false;
@@ -15,6 +16,8 @@ var lastuseridrequest = 0;
 
 var changeadmin_sent = false;
 var lastuseridchangeadmin = 0;
+
+var crownclick_sent = false;
 
 $(document).ready(function() {
 
@@ -40,6 +43,10 @@ $(document).ready(function() {
     $(".wgrequestdenied").click(function(evt) {
         evt.preventDefault();
         wgRequest("deniedFlatshare", $(this).attr("data-userid"));
+    });
+
+    $("#wgCrown").click(function() {
+        wgCrownClick("crownClick");
     });
 
 
@@ -99,7 +106,7 @@ function wgRemoveMember(actionStr, userid) {
     if (!(removemember_sent) && !(leavemember_sent) && !(changeadmin_sent)) {
 
         removemember_sent = true;
-        lastremovememberid = userid
+        lastremovememberid = userid;
 
         $("#wgremovefail_" + lastremovememberid).hide();
 
@@ -161,7 +168,7 @@ function wgChangeAdmin(actionStr, userid) {
     if (!(removemember_sent) && !(leavemember_sent) && !(changeadmin_sent)) {
 
         changeadmin_sent = true;
-        lastuseridchangeadmin = userid
+        lastuseridchangeadmin = userid;
 
         $("#wgremovefail_" + lastuseridchangeadmin).hide();
 
@@ -222,7 +229,7 @@ function wgRequest(actionStr, userid) {
     if (!(requestanswer_sent)) {
 
         requestanswer_sent = true;
-        lastuseridrequest = userid
+        lastuseridrequest = userid;
 
         $("#wgrequestfail_" + lastuseridrequest).hide();
 
@@ -333,4 +340,40 @@ function wgrequestCallback(data) {
     lastuseridrequest = 0;
     $(".wgrequestaccept").removeClass("wgrequestdisable");
     $(".wgrequestdenied").removeClass("wgrequestdisable");
+}
+
+
+function wgCrownClick(actionStr) {
+
+    if (!(crownclick_sent)) {
+
+        crownclick_sent = true;
+
+        let jsonData = {
+            action: actionStr
+        };
+        apiCall_UPDATE("user", $("#wgAuthUserId").val(), jsonData, wgcrownCallback, xhr_crownclick)
+    }
+
+}
+
+
+function wgcrownCallback(data) {
+
+    let responseData = data.responseData;
+    let status = data.status;
+
+    console.log(responseData);
+    console.log(status);
+
+    if (status == "success") {
+
+    } else if (status == "error") {
+
+        // Fehlerbehandlung
+
+    }
+
+
+    crownclick_sent = false;
 }

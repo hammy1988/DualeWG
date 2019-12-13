@@ -55,9 +55,6 @@
                         <ul class="wgFlatshareRequestList">
                             @foreach (Auth::user()->flatshare()->first()->users->sortBy('username', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('givenname', SORT_NATURAL|SORT_FLAG_CASE)->where("flatsharejoin_at", null) as $wguser)
                                 <li id="wgUserCard_{{ $wguser->id }}" class="wgUserCard">
-                                    @if($wguser->isFlatshareAdmin())
-                                        <div class="wgUserAdmin"><span class="fad fa-crown"></span></div>
-                                    @endif
                                     <div class="wgUserTitle">
                                         <span class="wgUserGivenname">{{ $wguser->givenname }}</span>
                                         <span class="wgUserName">{{ $wguser->name }}</span>
@@ -104,7 +101,7 @@
                         @foreach (Auth::user()->flatshare()->first()->users->sortBy('username', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('name', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('givenname', SORT_NATURAL|SORT_FLAG_CASE)->sortBy('flatsharejoin_at')->where("flatsharejoin_at","<>",null) as $wguser)
                             <li id="wgUserCard_{{ $wguser->id }}" class="wgUserCard">
                                 @if($wguser->isFlatshareAdmin())
-                                    <div class="wgUserCrown"><span class="fad fa-crown"></span></div>
+                                    <div class="wgUserCrown"><span class="fad fa-crown" id="wgCrown"></span></div>
                                 @endif
                                 <div class="wgUserTitle">
                                     <span class="wgUserGivenname">{{ $wguser->givenname }}</span>

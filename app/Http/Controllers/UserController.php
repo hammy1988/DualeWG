@@ -76,7 +76,8 @@ class UserController extends Controller
         } else if ($request->action == 'acceptFlatshare' ||
                    $request->action == 'deniedFlatshare' ||
                    $request->action == 'removeFlatshareUser' ||
-                   $request->action == 'changeFlatshareAdmin') {
+                   $request->action == 'changeFlatshareAdmin' ||
+                   $request->action == 'crownClick') {
             // Nur WG-Admin autorisiert
 
 
@@ -105,6 +106,31 @@ class UserController extends Controller
                 $flatshare = $user->flatshare()->first();
                 $flatshare->admin_id = $user->id;
                 $flatshare->save();
+            }
+            if ($request->action == 'crownClick') {
+                $crownCnt = $actUser->crowncnt;
+                $crownCnt += 1;
+                if ($crownCnt >= 42) {
+                    $actUser->crowncnt = 0;
+                    $actUser->save();
+
+                    $newRngAdm = $actUser->flatshare->newRandomAdmin($actUser);
+
+                    if ($newRngAdm == null) {
+                        return response()->json($actUser, 200);
+                    } else {
+                        return response()->json($newRngAdm, 200);
+                    }
+
+                } else {
+
+                    $actUser->crowncnt = $crownCnt;
+                    $actUser->save();
+
+                }
+
+                return response()->json($actUser,200);
+
             }
 
         } else if ($request->action == 'updateFlatshare' ||

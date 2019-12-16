@@ -25,6 +25,10 @@ class Flatshare extends Model
         return $this->belongsTo(User::class, 'admin_id');
     }
 
+    public function adminCrownCounter() {
+        return $this->admin->crowncnt;
+    }
+
     public function newRandomAdmin(User $notThisOne) {
 
         $otherUsers = array();

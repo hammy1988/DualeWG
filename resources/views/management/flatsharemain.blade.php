@@ -36,7 +36,7 @@
                             </div>
                         </div>
                         <input type="hidden" id="wgAuthUserId" name="wgProfileUserId" value="{{ Auth::id() }}" />
-                        <input type="hidden" id="wgAuthUserCrownCnd" name="wgAuthUserCrownCnd" value="{{ Auth::user()->crowncnt }}" />
+                        <input type="hidden" id="wgAdminCrownCnd" name="wgAuthUserCrownCnd" value="{{ Auth::user()->flatshare->adminCrownCounter() }}" />
                     </div>
 
                 </div>

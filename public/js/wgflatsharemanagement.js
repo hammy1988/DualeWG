@@ -47,7 +47,7 @@ $(document).ready(function() {
     });
 
 
-    wgcrownAnimation($("#wgAuthUserCrownCnd").val(), true);
+    wgcrownAnimation($("#wgAdminCrownCnd").val(), true);
 
     $("#wgCrown").click(function() {
         wgCrownClick("crownClick");

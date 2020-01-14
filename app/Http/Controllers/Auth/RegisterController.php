@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'username' => ['required', 'string', 'regex:/^[0-9a-zA-ZöäüÖÄÜ_\-.]+$/m', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'captcha' => 'required|captcha'
         ]);
     }
 
@@ -75,5 +76,9 @@ class RegisterController extends Controller
             'api_token' => Str::random(80),
             'crowncnt' => 0,
         ]);
+    }
+
+    public function refreshCaptcha() {
+        return response()->json(['captcha' => captcha_img()]);
     }
 }

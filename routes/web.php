@@ -15,6 +15,7 @@ use Illuminate\Http\Request;
 
 
 Route::get('/', 'View\FlatshareViewController@index')->name('dashboard');
+Route::get('refreshcaptcha', 'Auth\RegisterController@refreshCaptcha');
 
 Route::prefix('/flatshare')->group(function() {
 

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends("layouts.app", ["title" => "Registrieren"])
 
 @section('headcss')
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
@@ -106,16 +106,32 @@
                         <div class="row">
                             <div class="col-md-4"></div>
                             <div class="form-group col-md-4">
-                                <div class="captcha">
-                                    <span class="captchImg">{!! captcha_img() !!}</span>
-                                    <button type="button" class="btn btn-success" id="refreshCap"><span class="fa fa-refresh"></span></button>
-                                </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-4"></div>
-                            <div class="form-group col-md-4">
-                                <input id="captcha" type="text" class="form-control" placeholder="Enter Captcha" name="captcha"></div>
+
+
+
+
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __(' ') }}</label>
+
+                            <div class="col-md-6">
+
+                                <div class="captcha">
+                                    <span class="captchImg">{!! captcha_img('flat') !!}</span>
+                                    <button type="button" class="btn btn-success" id="refreshCap"><span class="fa fa-sync"></span></button>
+                                </div>
+
+                                <div class="wgInputFieldWrapper captchaWrapper">
+                                    <input id="captcha" type="text" class="form-control @error('captcha') is-invalid @enderror wgInputField" placeholder="Captcha eingeben" name="captcha" required="required" />
+                                </div>
+                                @error('captcha')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
 
                         <div class="form-group row mb-0">

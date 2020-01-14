@@ -1,2 +1,9 @@
+.captcha .captchImg {
+    width: 160px;
+    height: 40px;
+    display: inline-block;
+}
 
-
+.captchaWrapper {
+    width: 50%;
+}

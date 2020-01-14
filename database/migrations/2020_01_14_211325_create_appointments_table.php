@@ -15,11 +15,12 @@ class CreateAppointmentsTable extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('flatshare_id')->unsigned()->references('id')->on('flatshares')->onDelete('cascade');
+            $table->bigInteger('flatshare_id')->unsigned();
             $table->string('title');
             $table->string('description');
-            $table->dateTime('datetime');
+            $table->dateTime('appointment_at');
             $table->timestamps();
+            $table->foreign('flatshare_id')->references('id')->on('flatshares')->onDelete('cascade');
         });
     }
 

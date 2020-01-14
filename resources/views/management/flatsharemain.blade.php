@@ -1,4 +1,4 @@
-@extends("layouts.app", ["title" => "Auswahl"])
+@extends("layouts.app", ["title" => "WG-Verwaltung"])
 
 @section('headcss')
     <link href="{{ asset('css/management/flatshare.css') }}" rel="stylesheet">

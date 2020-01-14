@@ -36,6 +36,7 @@ Route::prefix('/management')->group(function() {
 Route::prefix('/modules')->group(function() {
 
     Route::get('purchase', 'View\PurchaseViewController@index')->name('purchaselist');
+    Route::get('calendar', 'View\AppointmentViewController@index')->name('calendar');
 
 });
 

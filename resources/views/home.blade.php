@@ -1,4 +1,4 @@
-@extends("layouts.app", ["title" => "Auswahl"])
+@extends("layouts.app", ["title" => "Übersicht"])
 
 @section('headcss')
     <link href="{{ asset('css/modules/dashboard.css') }}" rel="stylesheet">

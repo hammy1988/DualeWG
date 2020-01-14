@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="api_token" content="{{ (Auth::user()) ? Auth::user()->api_token : '' }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Laravel') }} - {{$title}}</title>
 
 
     <!-- Fonts -->
@@ -79,7 +79,7 @@
                                             <span class="fad fa-list"></span>
                                             {{ __('Einkaufsliste') }}
                                         </a>
-                                        <a class="dropdown-item wgNavAppointment" href="{{ route('dashboard') }}">
+                                        <a class="dropdown-item wgNavAppointment" href="{{ route('calendar') }}">
                                             <span class="fad fa-calendar-week"></span>
                                             {{ __('Kalender') }}
                                         </a>

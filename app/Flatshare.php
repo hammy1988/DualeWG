@@ -21,6 +21,10 @@ class Flatshare extends Model
         return $this->hasMany(Purchase::class);
     }
 
+    public function appointments(){
+        return $this->hasMany(Appointment::class);
+    }
+
     public function admin() {
         return $this->belongsTo(User::class, 'admin_id');
     }

@@ -18,7 +18,9 @@ class CreateAppointmentsTable extends Migration
             $table->bigInteger('flatshare_id')->unsigned();
             $table->string('title');
             $table->string('description');
-            $table->dateTime('appointment_at');
+            $table->dateTime('start_at');
+            $table->dateTime('end_at')->nullable()->default(null);;
+            $table->boolean('fullday');
             $table->timestamps();
             $table->foreign('flatshare_id')->references('id')->on('flatshares')->onDelete('cascade');
         });

@@ -11,8 +11,9 @@ class Appointment extends Model
         "flatshare_id",
         "title",
         "description",
-        "datetime",
-
+        "start_at",
+        "end_at",
+        "fullday",
     ];
 
     public function flatshare() {

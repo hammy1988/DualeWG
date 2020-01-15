@@ -14,7 +14,7 @@ $(document).ready(function() {
             wgsearchCallback({"status": "success", "responseData": [] });
         } else {
             emptyWGSearchInput = false;
-            xhr_flatchoice = apiCall_INDEX("flatshare", wgsearchCallback, xhr_flatchoice, "q=" +  encodeURIComponent($("#wgsearch").val()));
+            apiCall_INDEX("flatshare", wgsearchCallback, xhr_flatchoice, "q=" +  encodeURIComponent($("#wgsearch").val()));
         }
     });
 

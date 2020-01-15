@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends("layouts.app", ["title" => "Anmelden"])
 
 @section('headcss')
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
@@ -74,7 +74,7 @@
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Passwort vergessen?') }}
+                                        Passwort vergessen?
                                     </a>
                                 @endif
                             </div>

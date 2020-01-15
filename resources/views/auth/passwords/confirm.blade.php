@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends("layouts.app", ["title" => "Passwort bestätigen"])
 
 @section('headcss')
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">

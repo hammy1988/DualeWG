@@ -14,11 +14,13 @@ $(document).ready(function() {
         "Willkommen auf der Dualen WG Seite ♥\n" +
         "Die Seite ist nun geladen, und du darfst Sachen machen ツ\n\n" +
         "https://www.dualewg.de/\n\n" +
-        "Viel Spaß wünschen Andi, Luca, Basti, Martin und Ölf"
+        "Viel Spaß wünschen Andi, Luca, Basti, Martin und Ölf\n"+
+        "Creative Informatics (VInf)"
     );
 });
 
 function apiCall_INDEX(api, callback, xhr, query = '') {
+
 
     let url = "/api/" + api;
     if (query.length > 0) {
@@ -38,14 +40,13 @@ function apiCall_INDEX(api, callback, xhr, query = '') {
         },
         success: function(data){
 
-            if (!(emptyWGSearchInput)) {
-                let callbackData = {
-                    "status": "success",
-                    "responseData": data,
-                }
-
-                callback(callbackData);
+            let callbackData = {
+                "status": "success",
+                "responseData": data,
             }
+
+            callback(callbackData);
+
         },
         error: function(data) {
 

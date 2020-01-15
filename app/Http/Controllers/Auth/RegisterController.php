@@ -49,13 +49,27 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+
+
+        $rules = [
             'givenname' => ['required', 'string', 'max:255'],
             'name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'regex:/^[0-9a-zA-ZöäüÖÄÜ_\-.]+$/m', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+            'captcha' => ['required', 'captcha']
+        ];
+        $customMessages = [
+            'givenname.required' => 'Bitte geben Sie Ihren Vornamen an.',
+            'givenname.max' => 'Der Vorname darf maximal 255 Zeichen lang sein.',
+            'name.required' => 'Bitte geben Sie Ihren Namen an.',
+            'name.max' => 'Der Name darf maximal 255 Zeichen lang sein.',
+            'captcha.captcha' => 'Das eingegebene Captcha war falsch.',
+            'captcha.required' => 'Bitte geben Sie das oben stehende Captcha ein.',
+        ];
+
+        return Validator::make($data, $rules, $customMessages);
+
     }
 
     /**
@@ -75,5 +89,9 @@ class RegisterController extends Controller
             'api_token' => Str::random(80),
             'crowncnt' => 0,
         ]);
+    }
+
+    public function refreshCaptcha() {
+        return response()->json(['captcha' => captcha_img('flat')]);
     }
 }

@@ -106,6 +106,7 @@ class FlatshareController extends Controller
 
         $createuser->flatshare_id = $flatshare->id;
         $createuser->flatsharejoin_at = new \DateTime("now", new \DateTimeZone("UTC"));
+        $createuser->crowncnt = 0;
         $createuser->save();
 
         return response()->json($flatshare,201);

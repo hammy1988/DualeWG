@@ -1,4 +1,4 @@
-@extends("layouts.app", ["title" => "Auswahl"])
+@extends("layouts.app", ["title" => "Einkaufsliste"])
 
 @section('headcss')
     <link href="{{ asset('css/modules/purchase.css') }}" rel="stylesheet">

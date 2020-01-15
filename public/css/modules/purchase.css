@@ -3,6 +3,18 @@
     margin: 3px 0;
 }
 
+#wgaddpurchase > * {
+    vertical-align: top;
+ }
+
+.wgpurchaseFieldWrapper {
+    display: inline-block;
+}
+
+.wgerrormessages {
+    padding: 0.375rem 0.75rem;
+}
+
 #wgaddpurchase.wgpurchaseaddshow {
     display: inline-block;
 }
@@ -13,9 +25,9 @@
 .purchaseaddcount{
     display: inline-block;
     margin-left: 5px;
-
 }
-.purchaseaddbutton {
+
+.purchaseaddbutton, .purchasebuyagainbutton {
     display: inline-block;
     margin-left: 5px;
     font-size: 160%;

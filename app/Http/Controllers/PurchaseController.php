@@ -57,6 +57,10 @@ class PurchaseController extends Controller
             'count' => ['required', 'numeric'],
         ];
         $customMessages = [
+            'name.required' => 'Bitte geben Sie eine Produktbezeichnung ein.',
+            'name.max' => 'Die Bezeichnung darf maximal 255 Zeichen lang sein.',
+            'count.required' => 'Bitte geben Sie eine Anzahl an.',
+            'count.max' => 'Die Anzahl darf maximal 255 Zeichen lang sein.',
         ];
 
         $validator = Validator::make($request->all(), $rules, $customMessages);

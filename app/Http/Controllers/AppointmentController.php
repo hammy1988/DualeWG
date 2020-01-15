@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Flatshare;
+use App\Appointment;
+use Carbon\Carbon;
 
 class AppointmentController extends Controller
 {
@@ -11,9 +14,16 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        if ($request['q'] != null) {
+            return response()->json(
+                Appointment::where("flatshare_id", Auth::User()->flatshare->id)->where("start_at", ">=", new \DateTime("now", new \DateTimeZone("UTC")));
+            );
+        } else {
+
+        }
     }
 
     /**

@@ -21,6 +21,7 @@ class CreateAppointmentsTable extends Migration
             $table->dateTime('start_at');
             $table->dateTime('end_at')->nullable()->default(null);;
             $table->boolean('fullday');
+            $table->integer('recurring')->default(-1);
             $table->timestamps();
             $table->foreign('flatshare_id')->references('id')->on('flatshares')->onDelete('cascade');
         });

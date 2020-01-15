@@ -1,0 +1,53 @@
+.wgappointmentWaitWrapper {
+    text-align: center;
+    font-size: 500%;
+}
+
+#calendarShow {
+    display: none;
+}
+
+#appointmentListShow {
+    display: none;
+}
+
+.wgappointmentAddButton,
+.wgappointmentCloseButton {
+    float: right;
+}
+.wgappointmentAddButton span.fa,
+.wgappointmentCloseButton span.fa {
+    cursor: pointer;
+}
+
+.wgappointmentObject {
+    padding: 0 0 10px 0;
+    margin: 0 0 10px 0;
+    border-bottom: 1px solid #aaa;
+    font-size: 110%;
+}
+
+.wgappointmentTitleWrapper {
+    font-variant: small-caps;
+    font-weight: bold;
+    font-size: 120%;
+    color: #5db4bb;
+}
+
+.wgappointmentTitleWrapper .wgappointmentRecurring {
+    margin: 0 0 0 20px;
+    font-size: 80%;
+    color: #c580d6;
+}
+
+.wgappointmentDescriptionWrapper {
+    padding: 0 5px;
+    font-style: italic;
+    font-size: 90%;
+    color: #5e82df;
+}
+
+.wgappointmentFooterWrapper {
+    text-align: right;
+    color: #bb80d0;
+}

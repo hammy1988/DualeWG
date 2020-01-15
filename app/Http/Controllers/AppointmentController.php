@@ -2,27 +2,91 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Flatshare;
 use App\Appointment;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class AppointmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
         //
         if ($request['q'] != null) {
-            return response()->json(
-                Appointment::where("flatshare_id", Auth::User()->flatshare->id)->where("start_at", ">=", new \DateTime("now", new \DateTimeZone("UTC")));
-            );
-        } else {
 
+            $getAppYear = substr($request['q'], 0, 4);
+            $getAppMonth = substr($request['q'], 4, 2);
+
+            $getDataFrom = Carbon::parse(($getAppYear . "-" . $getAppMonth . "-" . "01 00:00:00"), 'Europe/Berlin')->setTimezone('UTC');
+            $getDataTo = Carbon::parse((Carbon::parse(($getAppYear . "-" . $getAppMonth . "-" . "01 00:00:00"))->format("Y-m-d") . " 23:59:59"), 'Europe/Berlin')->endOfMonth()->setTimezone('UTC');
+
+
+            $appointments = Appointment::where("flatshare_id", Auth::User()->flatshare->id)
+                ->where("start_at", ">=", $getDataFrom)
+                ->where("start_at", "<=", $getDataTo)
+                ->orWhere("flatshare_id", Auth::User()->flatshare->id)
+                ->where("start_at", "<=", $getDataTo)
+                ->where("recurring", ">", -1)
+                ->get();
+
+            return response()->json($appointments, 200);
+
+        } else {
+            $appointments = Appointment::where("flatshare_id", Auth::User()->flatshare->id)
+                ->where("start_at", ">=", new \DateTime("now", new \DateTimeZone("UTC")))
+                ->orWhere("flatshare_id", Auth::User()->flatshare->id)
+                ->where("recurring", ">", -1)
+                ->get();
+
+            foreach ($appointments as $appointment) {
+
+                // täglich
+                if ($appointment->recurring == 0) {
+                    $appointment->start_at = Carbon::parse((Carbon::now()->format("Y-m-d") . " " . Carbon::parse($appointment->start_at)->format("H:i:s")))->format("Y-m-d H:i:s");
+                    if ($appointment->fullday == 0) {
+                        $appointment->ent_at = Carbon::parse((Carbon::now()->format("Y-m-d") . " " . Carbon::parse($appointment->ent_at)->format("H:i:s")))->format("Y-m-d H:i:s");
+                    }
+                }
+
+                if ($appointment->recurring > 0) {
+                    while (Carbon::now() > Carbon::parse((Carbon::parse($appointment->start_at)->format("Y-m-d") . " 23:59:59"), 'Europe/Berlin')->setTimezone('UTC')) {
+                        //wöchentlich
+                        if ($appointment->recurring == 1) {
+                            $appointment->start_at = Carbon::parse($appointment->start_at)->addWeek(1)->format("Y-m-d H:i:s");
+                            if ($appointment->fullday == 0) {
+                                $appointment->ent_at = Carbon::parse($appointment->end_at)->addWeek(1)->format("Y-m-d H:i:s");
+                            }
+                        }
+
+                        //monatlich
+                        if ($appointment->recurring == 2) {
+                            $appointment->start_at = Carbon::parse($appointment->start_at)->addMonth(1)->format("Y-m-d H:i:s");
+                            if ($appointment->fullday == 0) {
+                                $appointment->ent_at = Carbon::parse($appointment->end_at)->addMonth(1)->format("Y-m-d H:i:s");
+                            }
+                        }
+
+                        //jährlich
+                        if ($appointment->recurring == 3) {
+                            $appointment->start_at = Carbon::parse($appointment->start_at)->addYear(1)->format("Y-m-d H:i:s");
+                            if ($appointment->fullday == 0) {
+                                $appointment->ent_at = Carbon::parse($appointment->end_at)->addYear(1)->format("Y-m-d H:i:s");
+                            }
+                        }
+                    }
+
+                }
+
+            }
+
+            return response()->json($appointments, 200);
         }
     }
 

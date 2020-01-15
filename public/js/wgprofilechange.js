@@ -7,6 +7,7 @@ var leavemember_sent = false;
 $(document).ready(function() {
 
     $(".wgerrormessages").hide();
+    $(".wgWaitWrapper").hide();
 
     $("#profileditbuttonstart").click(function (evt) {
 
@@ -16,6 +17,7 @@ $(document).ready(function() {
             $(".profileinputprefilled").hide();
 
             $("#profileeditstart").hide();
+            $("#passwordchange").hide();
 
             $("#profileusername_span").addClass("wgcurnotallowed");
 
@@ -34,6 +36,10 @@ $(document).ready(function() {
 
         $(".profileinputhide").hide();
         $(".profileinputprefilled").show();
+        $("#passwordchange").show();
+        $("#givennameerrorfield").hide();
+        $("#nameerrorfield").hide();
+        $("#emailerrorfield").hide();
 
         $("#profileeditstart").show();
 
@@ -50,10 +56,13 @@ $(document).ready(function() {
         let name = $('input[name=profilname]').val();
         let email = $('input[name=profilemail]').val();
 
+        $(".wgWaitWrapper").show();
+        $("#profileditbuttonsave").addClass('wgwaitbutton');
+        $("#profileditbuttonabort").addClass('wgwaitbutton');
         $("#givennameworkonfail").hide();
         $("#nameworkonfail").hide();
         $("#emailworkonfail").hide();
-
+        
         let jsonData = {
             action: 'updateProfile',
             givenname: $("#profilgivenname_input").val(),
@@ -131,6 +140,13 @@ function wgprofilupdateCallback(data) {
         $("#profileusername_span").removeClass("wgcurnotallowed");
 
         $("#profileeditend").hide();
+        $("#passwordchange").show();
+        $("#givennameerrorfield").hide();
+        $("#nameerrorfield").hide();
+        $("#emailerrorfield").hide();
+        $(".wgWaitWrapper").hide();
+        $("#profileditbuttonsave").removeClass('wgwaitbutton');
+        $("#profileditbuttonabort").removeClass('wgwaitbutton');
 
 
     } else if (status == "error") {
@@ -169,6 +185,9 @@ function wgprofilupdateCallback(data) {
                 } else {
                     console.error("Fehler: " + responseData.status + " - " + responseData.statusText);
                 }
+                $(".wgWaitWrapper").hide();
+                $("#profileditbuttonsave").removeClass('wgwaitbutton');
+                $("#profileditbuttonabort").removeClass('wgwaitbutton');
             }
         }
     }

@@ -91,7 +91,7 @@
                                     {{ __('Profil bearbeiten') }}
                                 </button>
                             </div>
-                            <div class="col-md-9 offset-md-3 profileinputhide" id="profileeditend">
+                            <div class="col-md-8 offset-md-3 profileinputhide" id="profileeditend">
                                 <button id="profileditbuttonsave" type="submit" class="btn btn-primary wgButton">
                                     {{ __('Profil speichern') }}
                                 </button>
@@ -100,8 +100,11 @@
                                     {{ __('Abbrechen') }}
                                 </a>
                             </div>
+                            <div class="card-body wgWaitWrapper">
+                                <span class="fas fa-spinner fa-pulse wgwaitspinner"></span>
+                            </div>
                         </div>
-                        <div class="form-group row mb-1">
+                        <div class="form-group row mb-1" style="height: 47.0333px">
                             <div class="col-md-9 offset-md-4" id="passwordchange">
                                 <a href="{{ route("profilepassword") }}" id="passwordchangebutton" class="btn btn-primary wgButton">
                                     {{ __('Passwort ändern') }}

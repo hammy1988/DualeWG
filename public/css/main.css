@@ -161,7 +161,7 @@ html, body {
     display: block;
     width: 100%;
     /*height: calc(1.6em + 0.75rem + 2px);*/
-    padding: 0.375rem 0.75rem;
+    padding: 7px 0.375rem 7px 0.75rem;
     font-size: 0.9rem;
     font-weight: 400;
     line-height: 1.6;
@@ -253,6 +253,10 @@ html, body {
 }
 .wgwaitspinner.wgColorChange {
     color: #ed88f0;
+}
+
+.wgwaitbutton {
+    background-image: linear-gradient(to left, #C7C7C7 ,#D9D9D9)
 }
 
 /*

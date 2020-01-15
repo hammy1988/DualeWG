@@ -2,6 +2,7 @@ var xhr_requestanswer;
 var xhr_removemember;
 var xhr_leaveflatshare;
 var xhr_changeadmin;
+var xhr_crownclick;
 
 
 var leavemember_sent = false;
@@ -15,6 +16,9 @@ var lastuseridrequest = 0;
 
 var changeadmin_sent = false;
 var lastuseridchangeadmin = 0;
+
+var crownclick_sent = false;
+var crownclick_animation = false;
 
 $(document).ready(function() {
 
@@ -42,6 +46,12 @@ $(document).ready(function() {
         wgRequest("deniedFlatshare", $(this).attr("data-userid"));
     });
 
+
+    wgcrownAnimation($("#wgAdminCrownCnd").val(), true);
+
+    $("#wgCrown").click(function() {
+        wgCrownClick("crownClick");
+    });
 
 });
 
@@ -99,7 +109,7 @@ function wgRemoveMember(actionStr, userid) {
     if (!(removemember_sent) && !(leavemember_sent) && !(changeadmin_sent)) {
 
         removemember_sent = true;
-        lastremovememberid = userid
+        lastremovememberid = userid;
 
         $("#wgremovefail_" + lastremovememberid).hide();
 
@@ -121,8 +131,6 @@ function wgremoveMemberCallback(data) {
     let status = data.status;
 
     if (status == "success") {
-
-        console.log(responseData);
 
         if (responseData.flatsharejoin_at == null) {
             var responseText = $("<span>", { class: "wgresponsedenied" }).append(
@@ -161,7 +169,7 @@ function wgChangeAdmin(actionStr, userid) {
     if (!(removemember_sent) && !(leavemember_sent) && !(changeadmin_sent)) {
 
         changeadmin_sent = true;
-        lastuseridchangeadmin = userid
+        lastuseridchangeadmin = userid;
 
         $("#wgremovefail_" + lastuseridchangeadmin).hide();
 
@@ -184,7 +192,6 @@ function wgchangeAdminCallback(data) {
 
     if (status == "success") {
 
-        console.log(responseData);
 
             var responseText = $("<span>", { class: "wgresponsechangeadmin" }).append(
                 $("<span>", { class: "fad fa-user-crown"})
@@ -222,7 +229,7 @@ function wgRequest(actionStr, userid) {
     if (!(requestanswer_sent)) {
 
         requestanswer_sent = true;
-        lastuseridrequest = userid
+        lastuseridrequest = userid;
 
         $("#wgrequestfail_" + lastuseridrequest).hide();
 
@@ -333,4 +340,65 @@ function wgrequestCallback(data) {
     lastuseridrequest = 0;
     $(".wgrequestaccept").removeClass("wgrequestdisable");
     $(".wgrequestdenied").removeClass("wgrequestdisable");
+}
+
+
+function wgCrownClick(actionStr) {
+
+    if (!(crownclick_sent) && !(crownclick_animation)) {
+
+        crownclick_sent = true;
+        crownclick_animation = true;
+
+        let jsonData = {
+            action: actionStr
+        };
+        apiCall_UPDATE("user", $("#wgAuthUserId").val(), jsonData, wgcrownCallback, xhr_crownclick)
+    }
+
+}
+
+
+function wgcrownCallback(data) {
+
+    let responseData = data.responseData;
+    let status = data.status;
+
+    if (status == "success") {
+
+        if (responseData.id != parseInt($("#wgAuthUserId").val())) {
+
+            $(".wgFlatshareMemberList .wgUserActions:not(.wgFlatshareMemberList #wgUserCard_" + $("#wgAuthUserId").val() + " .wgUserActions)").remove();
+            $(".wgUserCrown").remove();
+            $(".wgFlatshareRequestList .wgUserActions").remove();;
+
+        } else {
+
+            wgcrownAnimation(responseData.crowncnt, false);
+
+        }
+
+    } else if (status == "error") {
+
+        // Fehlerbehandlung
+
+    }
+
+
+}
+
+function wgcrownAnimation(colorNumber, docReadyCall) {
+
+    $(".wgUserCrown").css("font-size", "" + (100 + 2.3*colorNumber) + "%");
+    $("#wgCrown").css("color", "hsl(" + (53 - (colorNumber * 1)) + ", 100%, 59%)");
+
+    if (!(docReadyCall)) {
+        $("#wgCrown").addClass("blue");
+        setTimeout(function() {
+            $("#wgCrown").removeClass("blue");
+        }, 300);
+    }
+    crownclick_sent = false;
+    crownclick_animation = false;
+
 }

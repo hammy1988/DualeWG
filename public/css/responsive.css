@@ -1,0 +1,64 @@
+@media all and (max-width: 1000px) {
+
+    .container {
+        max-width: unset;
+    }
+
+    .col-md-8 {
+        min-width: 608px;
+    }
+}
+
+@media all and (max-width: 767px) {
+
+    .container {
+        max-width: unset;
+    }
+
+    .col-md-8 {
+        min-width: unset;
+    }
+
+    .wgNavUser {
+        text-align: center;
+    }
+
+    .wgNavUser:after {
+        display: none;
+    }
+
+    .wgNavMenu {
+        display: block;
+    }
+
+    #createWG, #joinInWG {
+        margin: 0 auto;
+        display: block;
+    }
+
+    .wgChoiceOptions {
+        display: block;
+    }
+
+    .wgChoiceOptions a {
+        width: 90%;
+        display: block;
+        margin: 10px auto 0 auto;
+    }
+
+    .wgChoiceOptions a:first-child {
+        margin-top: 0px;
+    }
+
+
+    .wgFlatshareMemberList, .wgFlatshareRequestList {
+        margin: 0 auto;
+        padding: 0px;
+        width: 90%;
+
+    }
+
+    #profileeditstart, #passwordchange {
+        text-align: center;
+    }
+}

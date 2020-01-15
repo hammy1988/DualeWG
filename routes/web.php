@@ -11,11 +11,11 @@
 |
 */
 
-use App\Task;
 use Illuminate\Http\Request;
 
 
 Route::get('/', 'View\FlatshareViewController@index')->name('dashboard');
+Route::get('refreshcaptcha', 'Auth\RegisterController@refreshCaptcha');
 
 Route::prefix('/flatshare')->group(function() {
 
@@ -36,49 +36,8 @@ Route::prefix('/management')->group(function() {
 Route::prefix('/modules')->group(function() {
 
     Route::get('purchase', 'View\PurchaseViewController@index')->name('purchaselist');
+    Route::get('calendar', 'View\AppointmentViewController@index')->name('calendar');
 
-});
-
-/**
- * Display All Tasks
- */
-Route::get('/grocerylist', function () {
-    $tasks = Task::orderBy('created_at', 'asc')->get();
-
-    return view('tasks', [
-        'tasks' => $tasks
-    ]);
-})->name('grocerylist');
-
-/**
- * Add A New Task
- */
-Route::post('/grocerylist/task', function (Request $request) {
-    /* $validator = Validator::make($request->all(), [
-        'name' => 'required|max:255',
-    ]);
-
-    if ($validator->fails()) {
-        return redirect('/list')
-            ->withInput()
-            ->withErrors($validator);
-    } */
-
-    $task = new Task;
-    $task->name = $request->name;
-    $task->menge = $request->menge;
-    $task->save();
-
-    return redirect('/grocerylist');
-});
-
-/**
- * Delete An Existing Task
- */
-Route::delete('/grocerylist/task/{id}', function ($id) {
-    Task::findOrFail($id)->delete();
-
-    return redirect('/grocerylist');
 });
 
 Auth::routes();

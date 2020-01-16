@@ -203,7 +203,7 @@ html, body {
 }
 .wgtable .wgtr .wgtd {
     display:table-cell;
-    border:thin solid darkgray;
+    border-bottom:thin solid darkgray;
 }
 
 /*

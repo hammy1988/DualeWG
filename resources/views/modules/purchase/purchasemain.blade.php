@@ -65,17 +65,17 @@
                         <div class="wgpurchaseitemlist wgtable">
                             <div class="wgtr wgtitle">
                                 <div class="wgtd">Name</div>
-                                <div class="wgtd">Anzahl</div>
-                                <div class="wgtd">Hinzugefügt am</div>
+                                <div class="wgtd" style="text-align: center">Anzahl</div>
+                                <div class="wgtd" style="text-align: center">Hinzugefügt am</div>
                                 <div class="wgtd"></div>
                             </div>
                             @foreach(Auth::user()->flatshare()->first()->purchases->sortBy('created_at', SORT_NATURAL|SORT_FLAG_CASE)->where('user_id', null) as $purchaseitem)
                                 <div id="purchaserownotpaid_{{ $purchaseitem->id }}" class="wgtr">
                                     <div class="wgtd">{{ $purchaseitem->name }}</div>
-                                    <div class="wgtd">{{ $purchaseitem->count }}</div>
+                                    <div class="wgtd" style="text-align: center">{{ $purchaseitem->count }}</div>
                                     <div
-                                        class="wgtd">{{ ((new DateTime($purchaseitem->created_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone('Europe/Berlin')))->format('d.m.Y H:i') }}</div>
-                                    <div class="wgtd">
+                                        class="wgtd" style="text-align: center">{{ ((new DateTime($purchaseitem->created_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone('Europe/Berlin')))->format('d.m.Y H:i') }}</div>
+                                    <div class="wgtd" style="text-align: right">
                                         <a href="#" class="purchaseboughtbutton"
                                            data-purchaseid="{{ $purchaseitem->id }}"><span
                                                 class="fad fa-cart-arrow-down"></span></a>
@@ -96,22 +96,22 @@
                         <div class="wgboughtitemlist wgtable">
                             <div class="wgtr wgtitle">
                                 <div class="wgtd">Name</div>
-                                <div class="wgtd">Anzahl</div>
+                                <div class="wgtd" style="text-align: center">Anzahl</div>
                                 <div class="wgtd">Bewohner</div>
-                                <div class="wgtd">Gekauft am</div>
+                                <div class="wgtd" style="text-align: center">Gekauft am</div>
                                 <div class="wgtd">&nbsp;</div>
                             </div>
                             @foreach(Auth::user()->flatshare()->first()->purchases->sortBy('paid_at', SORT_NATURAL|SORT_FLAG_CASE, true)->where('user_id', '<>',null) as $purchaseitem)
                                 <div id="purchaserowpaid_{{ $purchaseitem->id }}" class="wgtr">
                                     <div class="wgtd">{{ $purchaseitem->name }}</div>
-                                    <div class="wgtd">{{ $purchaseitem->count }}</div>
+                                    <div class="wgtd" style="text-align: center">{{ $purchaseitem->count }}</div>
                                     <div class="wgtd">{{ $purchaseitem->user->username }}</div>
                                     <div
-                                        class="wgtd">{{ ((new DateTime($purchaseitem->paid_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone('Europe/Berlin')))->format('d.m.Y H:i') }}</div>
-                                    <div class="wgtd">
+                                        class="wgtd" style="text-align: center">{{ ((new DateTime($purchaseitem->paid_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone('Europe/Berlin')))->format('d.m.Y H:i') }}</div>
+                                    <div class="wgtd" style="text-align: right">
                                         <a href="#" class="purchasebuyagainbutton"
                                            data-purchaseid="{{ $purchaseitem->id }}"><span
-                                                class="fad fa-cart-plus"></span></a>
+                                                class="fad fa-sync"></span></a>
                                         <a href="#" class="purchasedeletebutton" data-purchaselist="paid"
                                            data-purchaseid="{{ $purchaseitem->id }}"><span
                                                 class="fad fa-trash-alt"></span></a>

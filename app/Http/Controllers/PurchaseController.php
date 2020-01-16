@@ -89,6 +89,8 @@ class PurchaseController extends Controller
     public function show(Purchase $purchase)
     {
         //
+
+        return response()->json($purchase, 200);
     }
 
     /**

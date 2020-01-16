@@ -1,6 +1,7 @@
 var xhr_purchaseadd;
 var xhr_purchasepaid;
 var xhr_purchasedelete;
+var xhr_purchasebuyagain;
 
 var purchaseadd_sent = false;
 var purchasepaid_sent = false;
@@ -33,6 +34,7 @@ $(document).ready(function() {
         }
     });
 
+
     wgPurchaseReloadButtons();
 
 
@@ -64,7 +66,35 @@ function wgPurchaseReloadButtons() {
             wgPurchaseDelete(purchaseid);
         }
     });
+
+    $(".purchasebuyagainbutton").unbind("click");
+    $(".purchasebuyagainbutton").click(function(evt) {
+        evt.preventDefault();
+        $("#newproductbutton").hide();
+        $("#wgaddpurchase").addClass("wgpurchaseaddshow");
+
+        console.log($(this).attr("data-purchaseid"));
+
+        apiCall_SHOW("purchase", $(this).attr("data-purchaseid"), wgBuyAgainCallback, xhr_purchasebuyagain)
+
+        $("html, body").animate({
+            scrollTop: 0
+        }, 500);
+    });
+
 }
+
+function wgBuyAgainCallback(data) {
+    let responseData = data.responseData;
+
+    $("#purchaseaddname_input").val(responseData.name);
+    $("#purchaseaddcount_input").val(responseData.count);
+
+
+}
+
+
+
 
 function wgPurchaseAdd() {
 
@@ -81,7 +111,10 @@ function wgPurchaseAdd() {
     apiCall_STORE("purchase", jsonData, wgPurchaseAddCallback, xhr_purchaseadd);
 
 
+
 }
+
+
 function wgPurchaseAddCallback(data) {
 
     let responseData = data.responseData;
@@ -89,13 +122,18 @@ function wgPurchaseAddCallback(data) {
 
     if (status == "success") {
 
+        $("#purchaseaddname_input").val("");
+        $("#purchaseaddcount_input").val("");
+
+        $("#nameerrorfield").hide();
+        $("#counterrorfield").hide();
 
         var responseText = $("<div>", { class: "wgtr", id: ("purchaserownotpaid_" + responseData.id) }).append(
-            $("<div>", { class: "wgtd"}).append(
+            $("<div>", { class: "wgtd boughtproductname"}).append(
                 responseData.name
             )
         ).append(
-            $("<div>", { class: "wgtd"}).append(
+            $("<div>", { class: "wgtd boughtproductcount"}).append(
                 responseData.count
             )
         ).append(
@@ -122,8 +160,42 @@ function wgPurchaseAddCallback(data) {
 
     } else if (status == "error") {
 
-        // Fehlerbehandlung
 
+        $("#nameerrorfield").hide();
+        $("#counterrorfield").hide();
+
+        // Fehlerbehandlung
+        if (responseData.status == 422) {
+            let errorJSON = responseData.responseJSON.errors;
+
+            let errorText = "Fehler:\n"
+            for (var err in errorJSON) {
+                errorText += "  - " + err + ": " + errorJSON[err] + "\n";
+            }
+            console.error(errorText)
+
+            for (var err in errorJSON) {
+
+                var errTextShow = "";
+
+                for (let i = 0; i < errorJSON[err].length; i++) {
+                    errTextShow += errorJSON[err][i];
+                    if (i < (errorJSON[err].length - 1)) {
+                        errTextShow += "<br />";
+                    }
+                }
+
+                if (err == 'name') {
+                    $("#nameerrorfield").html(errTextShow);
+                    $("#nameerrorfield").show();
+                } else if (err == 'count') {
+                    $("#counterrorfield").html(errTextShow);
+                    $("#counterrorfield").show();
+                }  else {
+                    console.error("Fehler: " + responseData.status + " - " + responseData.statusText);
+                }
+            }
+        }
 
     }
 
@@ -170,11 +242,17 @@ function wgPurchaseBoughtCallback(data) {
             )
         ).append(
             $("<div>", { class: "wgtd"}).append(
-                $("<a>", { href:"#",class:"purchasedeletebutton", "data-purchaseid": responseData.id, "data-purchaselist": "paid" }).append(
-                    $("<span>",{class:"fad fa-trash-alt"})
+                $("<a>", { href:"#",class:"purchasebuyagainbutton", "data-purchaseid": responseData.id, "data-purchaselist": "paid" }).append(
+                    $("<span>",{class:"fad fa-cart-plus"})
                 )
+            ).append(
+                    $("<a>", { href:"#",class:"purchasedeletebutton", "data-purchaseid": responseData.id}).append(
+                        $("<span>",{class:"fad fa-trash-alt"})
+                    )
+
             )
         );
+
 
         $(".wgboughtitemlist.wgtable .wgtitle").after(responseText);
 
@@ -203,7 +281,7 @@ function wgPurchaseDeleteCallback(data) {
     let responseData = data.responseData;
     let status = data.status;
 
-    console.log("callsback: " + purchaselastdeletelist);
+    console.log("callback: " + purchaselastdeletelist);
 
     if (status == "success") {
 

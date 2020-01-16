@@ -15,23 +15,53 @@
                 <div class="card wgpurchaselist">
                     <div class="card-header">{{ __('Einkaufsliste') }}</div>
                     <div class="card-body">
-                        <a href="{{ route("purchaselist") }}" id="newproductbutton" class="btn btn-primary wgButton">
-                            {{ __('Neues Produkt hinzufügen') }}
-                        </a>
-                        <div id="wgaddpurchase">
-                            <div class="wgInputFieldWrapper purchaseaddname">
-                                <input id="purchaseaddname_input" type="text"
-                                       class="form-control wgInputField" name="purchaseaddname" placeholder="Produkt"
-                                       value=""autofocus autocomplete="off" />
+                        <div class="form-group row">
+                            <a href="{{ route("purchaselist") }}" id="newproductbutton"
+                               class="btn btn-primary wgButton">
+                                {{ __('Neues Produkt hinzufügen') }}
+                            </a>
+
+                            <div class="col-md-10" id="wgaddpurchase">
+                                <div class="wgpurchaseFieldWrapper purchaseaddname">
+                                    <div class="wgInputFieldWrapper">
+                                        <input id="purchaseaddname_input" type="text"
+                                               class="form-control wgInputField" name="purchaseaddname"
+                                               placeholder="Produkt"
+                                               value="" autofocus autocomplete="off"/>
+                                    </div>
+
+                                    <div class="invalid-feedback wgerrormessages">
+                                        <div>
+                                            <span id="nameerrorfield"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="wgpurchaseFieldWrapper purchaseaddcount">
+                                    <div class="wgInputFieldWrapper">
+                                        <input id="purchaseaddcount_input" type="text"
+                                               class="form-control wgInputField" name="purchaseaddcount"
+                                               placeholder="Anzahl"
+                                               value="" autofocus autocomplete="off"/>
+                                    </div>
+                                    <div class="invalid-feedback wgerrormessages">
+                                        <div>
+                                            <span id="counterrorfield"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <a href="#" id="purchaseaddbutton" class="purchaseaddbutton"><span
+                                        class="fad fa-cart-plus"></span></a>
+                                <a href="#" id="purchasecancelbutton" class="purchasecancelbutton"><span
+                                        class="fad fa-ban"></span></a>
                             </div>
-                            <div class="wgInputFieldWrapper purchaseaddcount">
-                                <input id="purchaseaddcount_input" type="text"
-                                       class="form-control wgInputField" name="purchaseaddcount" placeholder="Anzahl"
-                                       value=""autofocus autocomplete="off" />
-                            </div>
-                            <a href="#" id="purchaseaddbutton" class="purchaseaddbutton"><span class="fad fa-cart-plus"></span></a>
-                            <a href="#" id="purchasecancelbutton" class="purchasecancelbutton"><span class="fad fa-ban"></span></a>
+
                         </div>
+
+
+
+
+
                         <div class="wgpurchaseitemlist wgtable">
                             <div class="wgtr wgtitle">
                                 <div class="wgtd">Name</div>
@@ -43,10 +73,15 @@
                                 <div id="purchaserownotpaid_{{ $purchaseitem->id }}" class="wgtr">
                                     <div class="wgtd">{{ $purchaseitem->name }}</div>
                                     <div class="wgtd">{{ $purchaseitem->count }}</div>
-                                    <div class="wgtd">{{ ((new DateTime($purchaseitem->created_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone('Europe/Berlin')))->format('d.m.Y H:i') }}</div>
+                                    <div
+                                        class="wgtd">{{ ((new DateTime($purchaseitem->created_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone('Europe/Berlin')))->format('d.m.Y H:i') }}</div>
                                     <div class="wgtd">
-                                        <a href="#" class="purchaseboughtbutton" data-purchaseid="{{ $purchaseitem->id }}"><span class="fad fa-cart-arrow-down"></span></a>
-                                        <a href="#" class="purchasedeletebutton" data-purchaselist="notpaid" data-purchaseid="{{ $purchaseitem->id }}"><span class="fad fa-trash-alt"></span></a>
+                                        <a href="#" class="purchaseboughtbutton"
+                                           data-purchaseid="{{ $purchaseitem->id }}"><span
+                                                class="fad fa-cart-arrow-down"></span></a>
+                                        <a href="#" class="purchasedeletebutton" data-purchaselist="notpaid"
+                                           data-purchaseid="{{ $purchaseitem->id }}"><span
+                                                class="fad fa-trash-alt"></span></a>
                                     </div>
 
                                 </div>
@@ -67,13 +102,19 @@
                                 <div class="wgtd">&nbsp;</div>
                             </div>
                             @foreach(Auth::user()->flatshare()->first()->purchases->sortBy('paid_at', SORT_NATURAL|SORT_FLAG_CASE, true)->where('user_id', '<>',null) as $purchaseitem)
-                                <div id="purchaserowpaid_{{ $purchaseitem->id }}"  class="wgtr">
+                                <div id="purchaserowpaid_{{ $purchaseitem->id }}" class="wgtr">
                                     <div class="wgtd">{{ $purchaseitem->name }}</div>
                                     <div class="wgtd">{{ $purchaseitem->count }}</div>
                                     <div class="wgtd">{{ $purchaseitem->user->username }}</div>
-                                    <div class="wgtd">{{ ((new DateTime($purchaseitem->paid_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone('Europe/Berlin')))->format('d.m.Y H:i') }}</div>
+                                    <div
+                                        class="wgtd">{{ ((new DateTime($purchaseitem->paid_at, new DateTimeZone('UTC')))->setTimezone(new DateTimeZone('Europe/Berlin')))->format('d.m.Y H:i') }}</div>
                                     <div class="wgtd">
-                                        <a href="#" class="purchasedeletebutton" data-purchaselist="paid" data-purchaseid="{{ $purchaseitem->id }}"><span class="fad fa-trash-alt"></span></a>
+                                        <a href="#" class="purchasebuyagainbutton"
+                                           data-purchaseid="{{ $purchaseitem->id }}"><span
+                                                class="fad fa-cart-plus"></span></a>
+                                        <a href="#" class="purchasedeletebutton" data-purchaselist="paid"
+                                           data-purchaseid="{{ $purchaseitem->id }}"><span
+                                                class="fad fa-trash-alt"></span></a>
                                     </div>
                                 </div>
                             @endforeach

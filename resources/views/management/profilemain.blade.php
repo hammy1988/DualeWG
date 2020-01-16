@@ -100,7 +100,7 @@
                                     {{ __('Abbrechen') }}
                                 </a>
                             </div>
-                            <div class="card-body wgWaitWrapper">
+                            <div class="col-md-1 wgWaitWrapper">
                                 <span class="fas fa-spinner fa-pulse wgwaitspinner"></span>
                             </div>
                         </div>

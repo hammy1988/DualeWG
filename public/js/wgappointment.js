@@ -1,7 +1,8 @@
 var xhr_appointmentcalendarload;
 var xhr_appointmentlistload;
 
-
+var xhr_appointmentsave;
+appointmentsave_sent = false;
 
 
 $(document).ready(function() {
@@ -37,6 +38,14 @@ $(document).ready(function() {
         }
     });
 
+    $("#appointmentditbuttonsave").click(function(evt) {
+        evt.preventDefault();
+
+        if (appointmentsave_sent == false) {
+            wgAppointmentSave();
+        }
+    });
+
 });
 
 function showAppointmentOverlay() {
@@ -50,6 +59,8 @@ function hideAppointmentOverlay() {
 
 function loadSiteContent() {
 
+    $("#appointmentListShow").hide();
+    $("#appointmentListLoad").show();
     apiCall_INDEX("appointment", wgAppointmentlistLoadCallback, xhr_appointmentlistload);
 
 }
@@ -123,5 +134,72 @@ function wgAppointmentlistLoadCallback(data) {
     }
 
 
+
+}
+
+
+function wgAppointmentSave() {
+    appointmentsave_sent = true;
+
+    let appotitle = $("#appointmenttitle_input").val();
+    let appodesc = $("#appointmentdesc_input").val();
+    let appodate = $("#appointmentdate_input").val();
+    let appostartat = "00:00";
+    let appoendat = "00:00";
+    let appofullday = 1;
+    let apporecurring = -1;
+
+    if ($("#appointmentfullday_input").prop("checked")) {
+        appofullday = 1;
+    } else {
+        appofullday = 0;
+        appostartat = $("#appointmentstartat_input").val();
+        appoendat = $("#appointmentendat_input").val();
+    }
+    if ($("#appointmentrecurringchk_input").prop("checked")) {
+        apporecurring = parseInt($("#appointmentrecurring_input option:selected").val());
+    }
+
+    let jsonData = {
+        title: appotitle,
+        desc: appodesc,
+        start_at: appodate + " " + appostartat,
+        end_at: appodate + " " + appoendat,
+        fullday: appofullday,
+        recurring: apporecurring,
+    }
+
+    apiCall_STORE("appointment", jsonData, wgAppointmentSaveCallback, xhr_appointmentsave);
+
+}
+
+
+function wgAppointmentSaveCallback(data) {
+
+    let responseData = data.responseData;
+    let status = data.status;
+
+    if (status == "success") {
+
+        $("#appointmenttitle_input").val("");
+        $("#appointmentdesc_input").val("");
+        $("#appointmentdate_input").val("");
+        $("#appointmentstartat_input").val("");
+        $("#appointmentendat_input").val("");
+        $("#appointmentfullday_input").prop("checked", true);
+        $(".wgfulldayrows").hide();
+        $("#appointmentrecurringchk_input").prop("checked", false);
+        $(".wgrecuuringrows").hide();
+
+        hideAppointmentOverlay();
+
+        loadSiteContent();
+
+    } else if (status == "error") {
+        // Fehlerbehandlung
+    }
+
+
+    appointmentsave_sent = false;
 
 }

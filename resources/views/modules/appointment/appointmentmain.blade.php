@@ -153,10 +153,10 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-2">
-                                    <button id="profileditbuttonsave" type="submit" class="btn btn-primary wgButton">
+                                    <button id="appointmentditbuttonsave" type="submit" class="btn btn-primary wgButton">
                                         {{ __('Termin speichern') }}
                                     </button>
-                                    <input type="hidden" id="wgProfileUserId" name="wgProfileUserId" value="{{ Auth::id() }}" />
+                                    <input type="hidden" id="wgAppointmentUserId" name="wgAppointmentUserId" value="{{ Auth::id() }}" />
                                     <a href="{{ route("calendar") }}" id="appointmenteditbuttonabort" class="btn btn-primary wgButton">
                                         {{ __('Abbrechen') }}
                                     </a>

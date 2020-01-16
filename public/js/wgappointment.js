@@ -10,17 +10,43 @@ $(document).ready(function() {
 
     $(".wgappointmentAddButton span.fa").click(function(evt) {
         evt.preventDefault();
-
-        $("body").addClass("wgShowOverlay");
-        $("#appointmentOverlayAdd").addClass("wgShowOverlayWrapper");
+        showAppointmentOverlay();
     });
 
-    $(".wgappointmentCloseButton span.fa").click(function () {
-        $("body").removeClass("wgShowOverlay");
-        $("#appointmentOverlayAdd").removeClass("wgShowOverlayWrapper");
+    $(".wgappointmentCloseButton span.fa").click(function (evt) {
+        evt.preventDefault();
+        hideAppointmentOverlay();
+    });
+    $("#appointmenteditbuttonabort").click(function (evt) {
+        evt.preventDefault();
+        hideAppointmentOverlay();
+    });
+
+    $("#appointmentfullday_input").click(function() {
+        if ($(this).prop("checked")) {
+            $(".wgfulldayrows").hide();
+        } else {
+            $(".wgfulldayrows").css("display", "flex");
+        }
+    });
+    $("#appointmentrecurringchk_input").click(function() {
+        if ($(this).prop("checked")) {
+            $(".wgrecuuringrows").css("display", "flex");
+        } else {
+            $(".wgrecuuringrows").hide();
+        }
     });
 
 });
+
+function showAppointmentOverlay() {
+    $("body").addClass("wgShowOverlay");
+    $("#appointmentOverlayAdd").addClass("wgShowOverlayWrapper");
+}
+function hideAppointmentOverlay() {
+    $("body").removeClass("wgShowOverlay");
+    $("#appointmentOverlayAdd").removeClass("wgShowOverlayWrapper");
+}
 
 function loadSiteContent() {
 

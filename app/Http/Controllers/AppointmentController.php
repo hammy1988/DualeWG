@@ -109,6 +109,19 @@ class AppointmentController extends Controller
     public function store(Request $request)
     {
         //
+
+        $createflatshare = Auth::user()->flatshare;
+
+        $appointment = new Appointment();
+        $appointment->title = $request->title;
+        $appointment->description = $request->desc;
+        $appointment->start_at = Carbon::parse($request->start_at, 'Europe/Berlin')->setTimezone('UTC')->format("Y-m-d H:i:s");
+        $appointment->end_at = Carbon::parse($request->end_at, 'Europe/Berlin')->setTimezone('UTC')->format("Y-m-d H:i:s");
+        $appointment->fullday = $request->fullday;
+        $appointment->recurring = $request->recurring;
+        $appointment->flatshare_id = $createflatshare->id;
+        $appointment->save();
+        return response()->json($appointment ,200);
     }
 
     /**

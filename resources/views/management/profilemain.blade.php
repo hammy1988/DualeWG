@@ -76,7 +76,7 @@
                                 <div class="wgInputFieldWrapper profileinputhide">
                                     <input id="profilemail_input" type="text"
                                            class="form-control wgInputField " name="profilemail"
-                                           value="{{Auth::user()->email}}" autofocus autocomplete="off" />
+                                           value="{{Auth::user()->email}}" autocomplete="off" />
                                 </div>
                             </div>
                             <div class="col-md-6 offset-4">

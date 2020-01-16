@@ -51,3 +51,8 @@
     text-align: right;
     color: #bb80d0;
 }
+
+
+.wgfulldayrows, .wgrecuuringrows {
+    display: none;
+}

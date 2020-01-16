@@ -62,7 +62,7 @@ $(document).ready(function() {
         $("#givennameworkonfail").hide();
         $("#nameworkonfail").hide();
         $("#emailworkonfail").hide();
-        
+
         let jsonData = {
             action: 'updateProfile',
             givenname: $("#profilgivenname_input").val(),
@@ -83,8 +83,6 @@ $(document).ready(function() {
 
     $("#passwordchangesubmitbutton").click(function (evt) {
 
-        $("#oldpassworderrorfield").hide();
-        $("#newpassworderrorfield").hide();
         evt.preventDefault();
         wgPasswordchangeFormAjaxSubmit();
     });
@@ -234,6 +232,11 @@ function wgprofilupdateCallback(data) {
 
     function wgPasswordchangeFormAjaxSubmit() {
 
+
+        $("#oldpassworderrorfield").hide();
+        $("#newpassworderrorfield").hide();
+        $("#wgPWReset").hide();
+
         let oldpassword = $('input[name=oldpassword]', '#wgpasswortchangeinput').val();
         let newpassword = $('input[name=newpassword]', '#wgpasswortchangeinput').val();
         let newpassword_confirmation = $('input[name=newpassword_confirmation]', '#wgpasswortchangeinput').val();
@@ -259,12 +262,15 @@ function wgprofilupdateCallback(data) {
 
         if (status == "success") {
 
-            console.log(responseData);
+
+            $('input[name=oldpassword]', '#wgpasswortchangeinput').val("");
+            $('input[name=newpassword]', '#wgpasswortchangeinput').val("");
+            $('input[name=newpassword_confirmation]', '#wgpasswortchangeinput').val("");
+            $("#wgPWReset").show();
 
 
         } else if (status == "error") {
 
-            console.error(responseData);
 
             // Fehlerbehandlung
             if (responseData.status == 422) {
@@ -274,7 +280,6 @@ function wgprofilupdateCallback(data) {
                 for (var err in errorJSON) {
                     errorText += "  - " + err + ": " + errorJSON[err] + "\n";
                 }
-                console.error(errorText)
 
                 for (var err in errorJSON) {
 
@@ -290,7 +295,6 @@ function wgprofilupdateCallback(data) {
 
 
                     }
-                    console.log(err);
 
                 }
             }

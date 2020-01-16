@@ -152,3 +152,11 @@ tbody tr:nth-child(even){
     color: #c09;
     margin: 0 0 0 5px;
 }
+
+
+#wgPWReset {
+    font-size: 110%;
+    color: #5ebd44;
+    font-weight: bold;
+    display: none;
+}

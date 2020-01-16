@@ -73,7 +73,6 @@ function wgPurchaseReloadButtons() {
         $("#newproductbutton").hide();
         $("#wgaddpurchase").addClass("wgpurchaseaddshow");
 
-        console.log($(this).attr("data-purchaseid"));
 
         apiCall_SHOW("purchase", $(this).attr("data-purchaseid"), wgBuyAgainCallback, xhr_purchasebuyagain)
 
@@ -85,10 +84,22 @@ function wgPurchaseReloadButtons() {
 }
 
 function wgBuyAgainCallback(data) {
-    let responseData = data.responseData;
 
-    $("#purchaseaddname_input").val(responseData.name);
-    $("#purchaseaddcount_input").val(responseData.count);
+    let responseData = data.responseData;
+    let status = data.status;
+
+    if (status == "success") {
+
+        $("#purchaseaddname_input").val(responseData.name);
+        $("#purchaseaddcount_input").val(responseData.count);
+
+
+    } else if (status == "error") {
+
+
+        // Fehlerbehandlung
+
+    }
 
 
 }
@@ -133,15 +144,15 @@ function wgPurchaseAddCallback(data) {
                 responseData.name
             )
         ).append(
-            $("<div>", { class: "wgtd boughtproductcount"}).append(
+            $("<div>", { class: "wgtd boughtproductcount", style:"text-align:center"}).append(
                 responseData.count
             )
         ).append(
-            $("<div>", { class: "wgtd"}).append(
+            $("<div>", { class: "wgtd", style:"text-align:center"}).append(
                 wgDateTimeFormat(responseData.created_at)
             )
         ).append(
-            $("<div>", { class: "wgtd"}).append(
+            $("<div>", { class: "wgtd", style:"text-align:right"}).append(
                 $("<a>", { href:"#",class:"purchaseboughtbutton", "data-purchaseid": responseData.id }).append(
                     $("<span>",{class:"fad fa-cart-arrow-down"})
                 )
@@ -214,7 +225,31 @@ function wgPurchaseBought(purchaseid) {
 
 }
 
+var responseDataBeforeGetID;
 function wgPurchaseBoughtCallback(data) {
+
+    let responseData = data.responseData;
+    let status = data.status;
+
+
+    if (status == "success") {
+
+        responseDataBeforeGetID = responseData;
+
+        apiCall_SHOW("user", responseDataBeforeGetID.user_id,wgPurchaseBoughtCallbackUser, xhr_purchasepaid)
+
+
+    } else if (status == "error") {
+
+        // Fehlerbehandlung
+
+
+    }
+
+
+}
+
+function wgPurchaseBoughtCallbackUser(data) {
 
     let responseData = data.responseData;
     let status = data.status;
@@ -222,33 +257,35 @@ function wgPurchaseBoughtCallback(data) {
     if (status == "success") {
 
 
-        $("#purchaserownotpaid_" + responseData.id).remove();
+        $("#purchaserownotpaid_" + responseDataBeforeGetID.id).remove();
 
-        var responseText = $("<div>", { class: "wgtr", id: ("purchaserowpaid_" + responseData.id) }).append(
+
+
+        var responseText = $("<div>", { class: "wgtr", id: ("purchaserowpaid_" + responseDataBeforeGetID.id) }).append(
             $("<div>", { class: "wgtd"}).append(
-                responseData.name
+                responseDataBeforeGetID.name
+            )
+        ).append(
+            $("<div>", { class: "wgtd", style:"text-align:center"} ).append(
+                responseDataBeforeGetID.count
             )
         ).append(
             $("<div>", { class: "wgtd"}).append(
-                responseData.count
+                responseData.username
             )
         ).append(
-            $("<div>", { class: "wgtd"}).append(
-                responseData.user_id
+            $("<div>", { class: "wgtd", style:"text-align:center"}).append(
+                wgDateTimeFormat(responseDataBeforeGetID.paid_at.date)
             )
         ).append(
-            $("<div>", { class: "wgtd"}).append(
-                wgDateTimeFormat(responseData.paid_at.date)
-            )
-        ).append(
-            $("<div>", { class: "wgtd"}).append(
-                $("<a>", { href:"#",class:"purchasebuyagainbutton", "data-purchaseid": responseData.id, "data-purchaselist": "paid" }).append(
-                    $("<span>",{class:"fad fa-cart-plus"})
+            $("<div>", { class: "wgtd", style:"text-align:right"}).append(
+                $("<a>", { href:"#",class:"purchasebuyagainbutton", "data-purchaseid": responseDataBeforeGetID.id, "data-purchaselist": "paid" }).append(
+                    $("<span>",{class:"fad fa-sync"})
                 )
             ).append(
-                    $("<a>", { href:"#",class:"purchasedeletebutton", "data-purchaseid": responseData.id}).append(
-                        $("<span>",{class:"fad fa-trash-alt"})
-                    )
+                $("<a>", { href:"#",class:"purchasedeletebutton", "data-purchaseid": responseDataBeforeGetID.id}).append(
+                    $("<span>",{class:"fad fa-trash-alt"})
+                )
 
             )
         );

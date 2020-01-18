@@ -164,8 +164,15 @@ class AppointmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Appointment $appointment)
     {
         //
+        $actUser = Auth::user();
+        if (!($actUser->flatshare->id == $appointment->flatshare->id)) {
+        }
+
+        $appointment->delete();
+
+        return response()->json($appointment,200);
     }
 }

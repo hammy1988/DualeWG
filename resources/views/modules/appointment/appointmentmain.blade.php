@@ -15,7 +15,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Kalender') }}<span class="wgappointmentAddButton"><span class="fa fa-plus" id="wpappointmentAddButtonInner"></span></span></div>
                     <div class="card-body" id="calendarShow">
-                        Hier könnte Ihr Termin stehen
+                        <div id="showCalHere"></div>
                     </div>
                     <div class="card-body wgappointmentWaitWrapper" id="calendarLoad">
                         <span class="fas fa-spinner fa-pulse wgwaitspinner"></span>

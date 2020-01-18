@@ -56,3 +56,151 @@
 .wgfulldayrows, .wgrecuuringrows {
     display: none;
 }
+
+
+.wgappointmentRecurring span.fa {
+    vertical-align: middle;
+}
+
+.wgappointmentRecurring .wgappointmentrectext {
+    margin: 0 0 0 5px;
+}
+
+
+.wgappointmenteditbuttons {
+    float: right;
+}
+
+.wgappointmenteditbutton {
+    display: inline-block;
+    font-size: 80%;
+    margin: 0 7px 0 0;
+    color: #dba156 !important;
+}
+
+.wgappointmentdeletebutton {
+    display: inline-block;
+    font-size: 80%;
+    color: #f00 !important;;
+}
+
+
+
+
+
+
+
+
+
+/* ########## */
+
+
+
+/* --- Kalender ---*/
+#showCalHere {
+    margin: 0 auto;
+    width: 234px;
+}
+
+#AppointCalenderTableWrapper {
+    display: table;
+    margin: 0 auto;
+    border: 1px solid #666;
+}
+
+#showCalHere .AppointCalenderTableHeader {
+    background: #eee;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#showCalHere .AppointCalenderTableHeader a {
+    padding: 3px 5px;
+    display: inline-block;
+}
+
+#showCalHere .AppointCalenderTableHeader a span {
+    font-size: 180%;
+}
+
+#showCalHere .AppointCalenderTableHeader a.AppointCalenderTableHeaderLeft {
+}
+
+#showCalHere .AppointCalenderTableHeader a.AppointCalenderTableHeaderRight {
+}
+
+#showCalHere .AppointCalenderTableHeader .AppointCalenderTableHeaderCaption {
+    display: inline-block;
+    font-weight: bold;
+    padding: 2px 0;
+}
+
+#showCalHere .AppointCalenderTable {
+    display: table;
+    table-layout: fixed;
+}
+
+#showCalHere .AppointCalenderTable .AppointCalenderRow {
+    display: table-row;
+}
+
+#showCalHere .AppointCalenderTable .AppointCalenderRow .AppointCalenderCell {
+    display: table-cell;
+    background: #eee;
+    text-align: center;
+    border-bottom: 2px solid #eee;
+}
+
+#showCalHere .AppointCalenderTable .AppointCalenderRow .AppointCalenderCell span,
+#showCalHere .AppointCalenderTable .AppointCalenderRow .AppointCalenderCell a {
+    display: inline-block;
+    min-width: 20px;
+    padding: 4px 8px;
+    text-decoration: none;
+    color: #000;
+}
+
+#showCalHere .AppointCalenderTable .AppointCalenderRow.AppointCalenderRowCaption .AppointCalenderCell {
+    border-bottom: 1px solid #999;
+    border-top: 1px solid #333;
+    padding-bottom: 1px !important;
+    padding-top: 1px !important;
+}
+
+#showCalHere .AppointCalenderTable .AppointCalenderRow.AppointCalenderRowCaption .AppointCalenderCell span {
+    padding: 1px 4px !important;
+}
+
+#showCalHere .AppointCalenderTable .AppointCalenderRow .AppointCalenderCell.AppointCalenderCellDay {
+    background-image: linear-gradient(45deg, #ccc 0%, #eee 50%);
+    border-color: #bbb;
+}
+
+#showCalHere .AppointCalenderTable .AppointCalenderRow .AppointCalenderCell.AppointCalenderCellPast {
+    background-image: linear-gradient(45deg, #ddd 0%, #eee 50%);
+    border-color: #ccc;
+}
+
+#showCalHere .AppointCalenderTable .AppointCalenderRow .AppointCalenderCell.AppointCalenderCellPast span,
+#showCalHere .AppointCalenderTable .AppointCalenderRow .AppointCalenderCell.AppointCalenderCellPast a {
+    color: #aaa;
+}
+
+#showCalHere .AppointCalenderTable .AppointCalenderRow .AppointCalenderCell.AppointCalenderCellToday {
+    border-color: #52a858;
+}
+
+#showCalHere .AppointCalenderTable .AppointCalenderRow .AppointCalenderCell.AppointCalenderCellToday span,
+#showCalHere .AppointCalenderTable .AppointCalenderRow .AppointCalenderCell.AppointCalenderCellToday a {
+    font-weight: bold;
+}
+
+#showCalHere .AppointCalenderTable .AppointCalenderRow .AppointCalenderCell.AppointCalenderCellEvent {
+    background-image: linear-gradient(45deg, #4db35a 0%, #a0f2ab 50%);
+}
+
+.AppointNoEvents {
+    font-weight: bold;
+}

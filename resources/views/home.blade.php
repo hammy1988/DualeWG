@@ -13,68 +13,32 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">WG-Infos<span class="wgmehrheader"><a href="{{ route('flatsharemanagement') }}">mehr...</a></span></div>
                 <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    <div class="form-group row">
+                        <div class="col-md-8">
+                            Hallo {{Auth::user()->name}} :)<br />
+                            Du bist in der WG: <span style="font-weight: bold;">{{Auth::user()->flatshare()->first()->username}}</span><br />
+                            Es leben <span style="font-weight: bold;">{{$flatshareUsers->users->where("flatsharejoin_at","<>",null)->count()}} Mitbewohner</span> in deiner WG.
 
-                    Du wurdest erfolgreich eingeloggt!
+
+                            @if($flatshareUsers->users->where('flatsharejoin_at',null)->count() > 0)
+                                <br /><br />
+                                <span style="font-weight: bold;">WG-Anfragen:</span><br />
+                                <span style="margin: 0 0 0 10px">Es gibt {{$flatshareUsers->users->where('flatsharejoin_at',null)->count()}} offene Anfragen.</span>
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="card">
-                <div class="card-header">Benutzer Infos</div>
+                <div class="card-header">Termine<span class="wgmehrheader"><a href="{{ route('calendar') }}">mehr...</a></span></div>
                 <div class="card-body">
-                    Benutzername: {{Auth::user()->name}}<br />
-                    Datenbank-ID: {{Auth::id()}}<br />
-                    <br />
-                    Login-Infos:<br />
-                    <code>
-                        {{Auth::user()}}
-                    </code>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">WG - Info</div>
-                <div class="card-body">
-                    @if(Auth::user()->hasActiveFlatshare())
-                        Ist in der WG: <b><u>{{Auth::user()->flatshare()->first()->name}}</u></b>
-                    @else
-                        Ist in keiner WG.
-                    @endif
-                    <br />
-                    Ist WG-Admin:
-                    @if(Auth::user()->isFlatshareAdmin())
-                        <b>ja</b>
-                        <br />
-                        <b style="font-weight: 800">&nbsp;&nbsp;WG-Anfragen: </b><br />
-                        <ul>
-                        @foreach ($flatshareUsers->users->where('flatsharejoin_at',null) as $wguser)
-                            <li id="wgcontroluserrequest_{{ $wguser->id }}">{{ $wguser->username }} (<a href="#" class="wgcontrolaccept" data-userid="{{ $wguser->id }}">annehmen</a> | <a href="#" class="wgcontroldenied" data-userid="{{ $wguser->id }}">verweigern</a>)</li>
-                        @endforeach
-                        </ul>
-                    @else
-                        <b>nein</b>
-                    @endif
-                    <br /><br />
-                    WG-Datensatz:<br />
-                    <code>
-                        {{ Auth::user()->flatshare()->first() }}
-                    </code>
-                    <br /><br />
-                    WG-Admin:
-                    <code>
-                        {{Auth::user()->flatshare()->first()->admin()->first()}}
-                    </code>
-                    <br /><br />
-                    Alle WG Mitglieder:<br />
-                    <ul>
-                    @foreach ($flatshareUsers->users->where("flatsharejoin_at","<>",null) as $wguser)
-                            <li><code>{{ $wguser }}</code></li>
-                    @endforeach
-                    </ul>
+                    <div class="form-group row">
+                        <div class="col-md-8">
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

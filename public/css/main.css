@@ -318,3 +318,8 @@ body.wgShowOverlay {
     margin: 50px 0 50px 0;
     max-width: 750px;
 }
+
+
+.wgmehrheader {
+    float: right;
+}

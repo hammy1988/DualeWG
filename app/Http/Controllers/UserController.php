@@ -75,92 +75,94 @@ class UserController extends Controller
                 return $this->updateDeleteFlatshare($request, $id, $user);
             }
 
-        } else if ($request->action == 'acceptFlatshare' ||
-                   $request->action == 'deniedFlatshare' ||
-                   $request->action == 'removeFlatshareUser' ||
-                   $request->action == 'changeFlatshareAdmin' ||
-                   $request->action == 'crownClick') {
-            // Nur WG-Admin autorisiert
+        } else {
+            if ($request->action == 'acceptFlatshare' ||
+                $request->action == 'deniedFlatshare' ||
+                $request->action == 'removeFlatshareUser' ||
+                $request->action == 'changeFlatshareAdmin' ||
+                $request->action == 'crownClick') {
+                // Nur WG-Admin autorisiert
 
 
-            $actUser = Auth::user();
+                $actUser = Auth::user();
 
-            if (!($actUser->isFlatshareAdmin() &&
-                  $user->flatshare_id == $actUser->flatshare->id)) {
-                abort(403, 'Access denied');
-            }
+                if (!($actUser->isFlatshareAdmin() &&
+                    $user->flatshare_id == $actUser->flatshare->id)) {
+                    abort(403, 'Access denied');
+                }
 
-            if ($request->action == 'acceptFlatshare') {
-                $user->flatsharejoin_at = new \DateTime("now", new \DateTimeZone("UTC"));
-                $user->save();
-            }
-            if ($request->action == 'deniedFlatshare') {
-                $user->flatshare_id = null;
-                $user->flatsharejoin_at = null;
-                $user->save();
-            }
-            if ($request->action == 'removeFlatshareUser') {
-                $user->flatshare_id = null;
-                $user->flatsharejoin_at = null;
-                $user->save();
-            }
-            if ($request->action == 'changeFlatshareAdmin') {
-                $user->crowncnt = 0;
-                $user->save();
-                $flatshare = $user->flatshare()->first();
-                $flatshare->admin_id = $user->id;
-                $flatshare->save();
-            }
-            if ($request->action == 'crownClick') {
-                $crownCnt = $actUser->crowncnt;
-                $crownCnt += 1;
-                if ($crownCnt >= 42) {
-                    $actUser->crowncnt = 0;
-                    $actUser->save();
+                if ($request->action == 'acceptFlatshare') {
+                    $user->flatsharejoin_at = new \DateTime("now", new \DateTimeZone("UTC"));
+                    $user->save();
+                }
+                if ($request->action == 'deniedFlatshare') {
+                    $user->flatshare_id = null;
+                    $user->flatsharejoin_at = null;
+                    $user->save();
+                }
+                if ($request->action == 'removeFlatshareUser') {
+                    $user->flatshare_id = null;
+                    $user->flatsharejoin_at = null;
+                    $user->save();
+                }
+                if ($request->action == 'changeFlatshareAdmin') {
+                    $user->crowncnt = 0;
+                    $user->save();
+                    $flatshare = $user->flatshare()->first();
+                    $flatshare->admin_id = $user->id;
+                    $flatshare->save();
+                }
+                if ($request->action == 'crownClick') {
+                    $crownCnt = $actUser->crowncnt;
+                    $crownCnt += 1;
+                    if ($crownCnt >= 42) {
+                        $actUser->crowncnt = 0;
+                        $actUser->save();
 
-                    $newRngAdm = $actUser->flatshare->newRandomAdmin($actUser);
+                        $newRngAdm = $actUser->flatshare->newRandomAdmin($actUser);
 
-                    if ($newRngAdm == null) {
-                        return response()->json($actUser, 200);
+                        if ($newRngAdm == null) {
+                            return response()->json($actUser, 200);
+                        } else {
+                            return response()->json($newRngAdm, 200);
+                        }
+
                     } else {
-                        return response()->json($newRngAdm, 200);
+
+                        $actUser->crowncnt = $crownCnt;
+                        $actUser->save();
+
                     }
 
-                } else {
-
-                    $actUser->crowncnt = $crownCnt;
-                    $actUser->save();
+                    return response()->json($actUser, 200);
 
                 }
 
-                return response()->json($actUser,200);
+            } else if ($request->action == 'updateFlatshare' ||
+                $request->action == 'updateProfile' ||
+                $request->action == 'updatePassword' ||
+                $request->action == 'leaveFlatshare') {
+
+                // Nur selbst
+
+                if ($user->id != Auth::id()) {
+                    abort(403, 'Access denied');
+                }
+
+                if ($request->action == 'updateFlatshare') {
+                    return $this->updateFlatshare($request, $id, $user);
+                }
+                if ($request->action == 'updateProfile') {
+                    return $this->updateProfile($request, $id, $user);
+                }
+                if ($request->action == 'updatePassword') {
+                    return $this->updatePassword($request, $id, $user);
+                }
+                if ($request->action == 'leaveFlatshare') {
+                    return $this->leaveFlatshare($request, $id, $user);
+                }
 
             }
-
-        } else if ($request->action == 'updateFlatshare' ||
-                   $request->action == 'updateProfile' ||
-                   $request->action == 'updatePassword' ||
-                   $request->action == 'leaveFlatshare') {
-
-            // Nur selbst
-
-            if ($user->id != Auth::id()) {
-                abort(403, 'Access denied');
-            }
-
-            if ($request->action == 'updateFlatshare') {
-                return $this->updateFlatshare($request, $id, $user);
-            }
-            if ($request->action == 'updateProfile') {
-                return $this->updateProfile($request, $id, $user);
-            }
-            if ($request->action == 'updatePassword') {
-                return $this->updatePassword($request, $id, $user);
-            }
-            if ($request->action == 'leaveFlatshare') {
-                return $this->leaveFlatshare($request, $id, $user);
-            }
-
         }
 
         return $user;

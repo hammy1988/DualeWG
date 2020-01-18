@@ -37,7 +37,7 @@ class Flatshare extends Model
 
         $otherUsers = array();
         foreach($this->users as $val) {
-            if ($val->id != $notThisOne->id) {
+            if ($val->id != $notThisOne->id && $val->flatsharejoin_at != null) {
                 $otherUsers[] = $val;
             }
         }

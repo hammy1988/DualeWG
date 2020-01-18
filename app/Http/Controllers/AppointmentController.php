@@ -169,6 +169,7 @@ class AppointmentController extends Controller
         //
         $actUser = Auth::user();
         if (!($actUser->flatshare->id == $appointment->flatshare->id)) {
+            abort(403, 'Access denied');
         }
 
         $appointment->delete();

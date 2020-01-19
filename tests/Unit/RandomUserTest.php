@@ -16,6 +16,9 @@ class RandomUserTest extends TestCase
     private $flatshare_a;
 
     // Es werden 3 Tests durchgeführt!
+    // Allgemein geht es darum, dass im Easteregg nicht kaputt gehen darf.
+    // Daher dürfen die Leute, die eine WG-Anfrage gestellt haben nicht neuer Admin werden!!!
+    // 
     //
     //    1. Test: In der WG ist nur ein Mitglied
     //             Die Funktion newRandomAdmin() soll null zurückgeben,
